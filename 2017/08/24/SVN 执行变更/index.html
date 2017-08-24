@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="创建用户1234[root@CentOS ~]# htpasswd -cm /etc/svn-users desirelllNew password: Re-type new password: Adding password for user tom 创建 SVN 主目录12[root@CentOS ~]# mkdir /var/www/svn[root@CentOS ~]# cd /var/w">
+<meta name="description" content="在 trunk 目录下新建一个 test.c 文件，内容随意，执行 命令后使用 ```svn status```命令查询文件状态12 ➜  trunk svn status?       test?       test.c1可以看到在未对文件进行任何操作之前是 ？ 状态，在提交前我们需要将文件添加到挂起的更改列表中 ➜  trunk svn add test.cA         test.c1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVN 创建仓库以及检出处理">
-<meta property="og:url" content="http://yoursite.com/2017/08/24/SVN 创建仓库以及检出处理/index.html">
+<meta property="og:title" content="SVN 执行变更">
+<meta property="og:url" content="http://yoursite.com/2017/08/24/SVN 执行变更/index.html">
 <meta property="og:site_name" content="卢佳伟的个人博客">
-<meta property="og:description" content="创建用户1234[root@CentOS ~]# htpasswd -cm /etc/svn-users desirelllNew password: Re-type new password: Adding password for user tom 创建 SVN 主目录12[root@CentOS ~]# mkdir /var/www/svn[root@CentOS ~]# cd /var/w">
+<meta property="og:description" content="在 trunk 目录下新建一个 test.c 文件，内容随意，执行 命令后使用 ```svn status```命令查询文件状态12 ➜  trunk svn status?       test?       test.c1可以看到在未对文件进行任何操作之前是 ？ 状态，在提交前我们需要将文件添加到挂起的更改列表中 ➜  trunk svn add test.cA         test.c1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-24T00:55:32.000Z">
+<meta property="og:updated_time" content="2017-08-24T06:18:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SVN 创建仓库以及检出处理">
-<meta name="twitter:description" content="创建用户1234[root@CentOS ~]# htpasswd -cm /etc/svn-users desirelllNew password: Re-type new password: Adding password for user tom 创建 SVN 主目录12[root@CentOS ~]# mkdir /var/www/svn[root@CentOS ~]# cd /var/w">
+<meta name="twitter:title" content="SVN 执行变更">
+<meta name="twitter:description" content="在 trunk 目录下新建一个 test.c 文件，内容随意，执行 命令后使用 ```svn status```命令查询文件状态12 ➜  trunk svn status?       test?       test.c1可以看到在未对文件进行任何操作之前是 ？ 状态，在提交前我们需要将文件添加到挂起的更改列表中 ➜  trunk svn add test.cA         test.c1">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/24/SVN 创建仓库以及检出处理/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/24/SVN 执行变更/"/>
 
 
 
 
 
-  <title>SVN 创建仓库以及检出处理 | 卢佳伟的个人博客</title>
+  <title>SVN 执行变更 | 卢佳伟的个人博客</title>
   
 
 
@@ -272,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/SVN 创建仓库以及检出处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/SVN 执行变更/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="desirelll">
@@ -289,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SVN 创建仓库以及检出处理</h1>
+          <h1 class="post-title" itemprop="name headline">SVN 执行变更</h1>
         
 
         <div class="post-meta">
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T08:55:32+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T14:18:21+08:00">
                 2017-08-24
               </time>
             
@@ -343,8 +343,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/24/SVN 创建仓库以及检出处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 创建仓库以及检出处理/" itemprop="commentsCount"></span>
+                <a href="/2017/08/24/SVN 执行变更/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 执行变更/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -353,7 +353,7 @@
 
           
           
-             <span id="/2017/08/24/SVN 创建仓库以及检出处理/" class="leancloud_visitors" data-flag-title="SVN 创建仓库以及检出处理">
+             <span id="/2017/08/24/SVN 执行变更/" class="leancloud_visitors" data-flag-title="SVN 执行变更">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -384,26 +384,11 @@
       
 
       
-        <h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@CentOS ~]# htpasswd -cm /etc/svn-users desirelll</div><div class="line">New password: </div><div class="line">Re-type new password: </div><div class="line">Adding password for user tom</div></pre></td></tr></table></figure>
-<h2 id="创建-SVN-主目录"><a href="#创建-SVN-主目录" class="headerlink" title="创建 SVN 主目录"></a>创建 SVN 主目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@CentOS ~]# mkdir /var/www/svn</div><div class="line">[root@CentOS ~]# cd /var/www/svn/</div></pre></td></tr></table></figure>
-<h2 id="创建-repository"><a href="#创建-repository" class="headerlink" title="创建 repository"></a>创建 repository</h2><p>使用 svnadmin 命令创建一个名为 project_repo 的仓库，会自动生成目录结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# svnadmin create project_repo</div><div class="line"></div><div class="line">[root@CentOS svn]# ls -l project_repo</div><div class="line">total 24</div><div class="line">drwxr-xr-x. 2 root root 4096 Aug  4 22:30 conf</div><div class="line">drwxr-sr-x. 6 root root 4096 Aug  4 22:30 db</div><div class="line">-r--r--r--. 1 root root    2 Aug  4 22:30 format</div><div class="line">drwxr-xr-x. 2 root root 4096 Aug  4 22:30 hooks</div><div class="line">drwxr-xr-x. 2 root root 4096 Aug  4 22:30 locks</div><div class="line">-rw-r--r--. 1 root root  229 Aug  4 22:30 README.txt</div></pre></td></tr></table></figure>
-<p>修改仓库的用户和用户组所有权</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# chown -R apache.apache project_repo/</div></pre></td></tr></table></figure>
-<p>使用 sestatus 指令查询 SELinux 是否开启，若开启了则需要修改 SELinux 上下文和 HTTP 权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# chcon -R -t httpd_sys_content_t /var/www/svn/project_repo/</div><div class="line">[root@CentOS svn]# chcon -R -t httpd_sys_rw_content_t /var/www/svn/project_repo/</div></pre></td></tr></table></figure>
-<p>重启 Apache Server，若因端口占用启动失败则修改端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# service httpd restart</div><div class="line">Stopping httpd:                                            [FAILED]</div><div class="line">Starting httpd: httpd: apr_sockaddr_info_get() failed for CentOS</div><div class="line">httpd: Could not reliably determine the server&apos;s fully qualified domain name, using 127.0.0.1 for ServerName</div><div class="line">                                                           [  OK  ]</div><div class="line">[root@CentOS svn]# service httpd status</div><div class="line">httpd (pid  1372) is running...</div><div class="line">[root@CentOS svn]#</div></pre></td></tr></table></figure>
-<p>指定只有授权用户才能获取访问权限和使用默认授权文件，在 project_repo/conf/svnserve.conf 后添加如下语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">anon-access = none</div><div class="line">authz-db = authz</div></pre></td></tr></table></figure>
-<p>创建 trunk、branches、tags目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template</div><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template/trunk</div><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template/branches</div><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template/tags</div></pre></td></tr></table></figure>
-<p>进入svn-template目录，将三个子目录导入仓库，其中 server.com:port 为仓库所在服务器服务端口，端口若没修改默认为80（80端口可不填）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost svn-template]# svn import -m &apos;Create trunk, branches, tags directory structure&apos;  http://server.com:port/repo/svn-template/</div><div class="line">Adding         trunk</div><div class="line">Adding         branches</div><div class="line">Adding         tags</div><div class="line">Committed revision 1.</div></pre></td></tr></table></figure>
-<h2 id="SVN-检出"><a href="#SVN-检出" class="headerlink" title="SVN 检出"></a>SVN 检出</h2><p>使用 checkout 指令从仓库中取出一个工作拷贝，并存放在本地 ~/svn/project_repo/ 路径下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">svn checkout http://server.com:port/svn/project_repo ~/svn/project_repo/ --username=desirelll</div><div class="line">A    svn/project_repo/trunk</div><div class="line">A    svn/project_repo/branches</div><div class="line">A    svn/project_repo/tags</div><div class="line">Checked out revision 1.</div></pre></td></tr></table></figure>
-<p>执行 info 命令可以查看更多的信息存储库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cd ~/svn/project_repo/trunk </div><div class="line">svn info</div><div class="line">Path: .</div><div class="line">Working Copy Root Path: /Users/desire/svn/project_repo</div><div class="line">URL: http://server.com:port/svn/project_repo/trunk</div><div class="line">Relative URL: ^/trunk</div><div class="line">Repository Root: http://server.com:port/svn/project_repo</div><div class="line">Repository UUID: 2c586176-cfb6-492d-a901-aa94609b56ba</div><div class="line">Revision: 1</div><div class="line">Node Kind: directory</div><div class="line">Schedule: normal</div><div class="line">Last Changed Author: desirelll</div><div class="line">Last Changed Rev: 1</div><div class="line">Last Changed Date: 2017-08-23 14:41:54 +0800 (三, 23  8 2017)</div></pre></td></tr></table></figure>
+        <p>在 trunk 目录下新建一个 test.c 文件，内容随意，执行 <figure class="highlight plain"><figcaption><span>命令后使用 ```svn status```命令查询文件状态</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>➜  trunk svn status<br>?       test<br>?       test.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">可以看到在未对文件进行任何操作之前是 ？ 状态，在提交前我们需要将文件添加到挂起的更改列表中</div></pre></td></tr></table></figure></p>
+<p>➜  trunk svn add test.c<br>A         test.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">再次查询文件状态</div></pre></td></tr></table></figure></p>
+<p>➜  trunk svn status<br>?       test<br>A       test.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">现在可以使用 ```svn commit``` 提交文件了，使用参数 -m 可以省略本次提交的文本信息</div></pre></td></tr></table></figure></p>
+<p>➜  trunk svn commit -m “Initial commit”<br>Adding         test.c<br>Transmitting file data .done<br>Committing transaction…<br>Committed revision 2.<br>```</p>
 
       
     </div>
@@ -457,15 +442,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/24/SVN 审查变更/" rel="next" title="SVN 审查变更">
+                <i class="fa fa-chevron-left"></i> SVN 审查变更
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/24/解决错误：svn: Invalid URL '-tmp-svn-template'/" rel="prev" title="解决错误:SVN:Invalid URL '/tmp/svn-template'">
-                解决错误:SVN:Invalid URL '/tmp/svn-template' <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,17 +504,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg"
@@ -582,22 +558,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户"><span class="nav-number">1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-SVN-主目录"><span class="nav-number">2.</span> <span class="nav-text">创建 SVN 主目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-repository"><span class="nav-number">3.</span> <span class="nav-text">创建 repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVN-检出"><span class="nav-number">4.</span> <span class="nav-text">SVN 检出</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -746,7 +706,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/08/24/SVN 创建仓库以及检出处理/"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/08/24/SVN 执行变更/"});
 		
 
 		(function() {

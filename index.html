@@ -280,6 +280,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/netty 基本使用（五）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/netty 基本使用（五）/" itemprop="url">netty 基本使用（五）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T14:53:03+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/netty/" itemprop="url" rel="index">
+                    <span itemprop="name">netty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/28/netty 基本使用（五）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/28/netty 基本使用（五）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/08/28/netty 基本使用（五）/" class="leancloud_visitors" data-flag-title="netty 基本使用（五）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用-POJO-代替-ByteBuf"><a href="#使用-POJO-代替-ByteBuf" class="headerlink" title="使用 POJO 代替 ByteBuf"></a>使用 POJO 代替 ByteBuf</h2><p>到此为止我们前面使用的数据都是以 ByteBuf 为主要的数据结构，接下来我们将使用 POJO 来代替 ByteBuf 来改善 TIME 客户端和服务端</p>
+<p>首先定义一个新类型 UnixTime</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">package io.netty.example.time;</div><div class="line"></div><div class="line">import java.util.Date;</div><div class="line"></div><div class="line">public class UnixTime &#123;</div><div class="line"></div><div class="line">    private final long value;</div><div class="line">    </div><div class="line">    public UnixTime() &#123;</div><div class="line">        this(System.currentTimeMillis() / 1000L + 2208988800L);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public UnixTime(long value) &#123;</div><div class="line">        this.value = value;</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    public long value() &#123;</div><div class="line">        return value;</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    @Override</div><div class="line">    public String toString() &#123;</div><div class="line">        return new Date((value() - 2208988800L) * 1000L).toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来就可以修改 TimeDecoder</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List&lt;Object&gt; out) throws Exception &#123;</div><div class="line">		if (in.readableBytes() &lt; 4) &#123;</div><div class="line">			return;</div><div class="line">		&#125;</div><div class="line">		out.add(new UnixTime(in.readUnsignedInt()));</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>然后 TimeClientHandler 也不再使用 ByteBuf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void channelRead(ChannelHandlerContext ctx, Object msg) &#123;</div><div class="line">    UnixTime m = (UnixTime) msg;</div><div class="line">    System.out.println(m);</div><div class="line">    ctx.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样看起来就简单而不失精致了…同样也可以对 Server 端进行修改，首先对 TimeServerHandler 进行修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void channelActive(ChannelHandlerContext ctx) &#123;</div><div class="line">    ChannelFuture f = ctx.writeAndFlush(new UnixTime());</div><div class="line">    f.addListener(ChannelFutureListener.CLOSE);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在还有一件事没做，就是解码类的编写，用于把 UnixTime 转为 ByteBuf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">package io.netty.example.time;</div><div class="line"></div><div class="line">public class TimeEncoder extends ChannelOutboundHandlerAdapter &#123;</div><div class="line">    @Override</div><div class="line">    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) &#123;</div><div class="line">        UnixTime m = (UnixTime) msg;</div><div class="line">        ByteBuf encoded = ctx.alloc().buffer(4);</div><div class="line">        encoded.writeInt((int)m.value());</div><div class="line">        ctx.write(encoded, promise); // (1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>注意这里我们没有调用 ctx.flush（），因为有一个被分割出来的 <code>void flush(ChannelHandlerContext ctx)</code> 方法用来覆盖 flush（）操作，首先将父类修改为 MessageToByteEncoder</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class TimeEncoder extends MessageToByteEncoder&lt;UnixTime&gt; &#123;</div><div class="line">    @Override</div><div class="line">    protected void encode(ChannelHandlerContext ctx, UnixTime msg, ByteBuf out) &#123;</div><div class="line">        out.writeInt((int)msg.value());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后只需要把 TimeEncoder 插入到 服务端的 ChannelPipeline 中，注意，要放在 TimeServerHandler 前<br>再次启动服务和客户端，可以得到正确结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Mon Aug 28 14:49:07 CST 2017</div></pre></td></tr></table></figure>
+<p>以上就是本次对 netty 快速入门学习的全部内容<br>关于更多的学习章节和例子，官网建议前往 <a href="https://github.com/netty/netty/tree/4.0/example/src/main/java/io/netty/example" target="_blank" rel="external">io.netty.example</a> 包查看</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/netty 基本使用（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1806,7 +1999,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

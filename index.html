@@ -280,6 +280,419 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/05/ZooKeeper 常用接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/05/ZooKeeper 常用接口/" itemprop="url">ZooKeeper 常用接口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T11:04:45+08:00">
+                2017-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">ZooKeeper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/05/ZooKeeper 常用接口/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/ZooKeeper 常用接口/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/05/ZooKeeper 常用接口/" class="leancloud_visitors" data-flag-title="ZooKeeper 常用接口">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>方法功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stringcreate(String path, byte[] data, List<acl> acl, CreateMode createMode)</acl></td>
+<td>创建一个给定的目录节点 path, 并给它设置数据，CreateMode 标识有四种形式的目录节点，分别是 PERSISTENT：持久化目录节点，这个目录节点存储的数据不会丢失；PERSISTENT_SEQUENTIAL：顺序自动编号的目录节点，这种目录节点会根据当前已近存在的节点数自动加 1，然后返回给客户端已经成功创建的目录节点名；EPHEMERAL：临时目录节点，一旦创建这个节点的客户端与服务器端口也就是 session 超时，这种节点会被自动删除；EPHEMERAL_SEQUENTIAL：临时自动编号节点</td>
+</tr>
+<tr>
+<td>Statexists(String path, boolean watch)</td>
+<td>判断某个 path 是否存在，并设置是否监控这个目录节点，这里的 watcher 是在创建 ZooKeeper 实例时指定的 watcher，exists方法还有一个重载方法，可以指定特定的 watcher</td>
+</tr>
+<tr>
+<td>Statexists(String path, Watcher watcher)</td>
+<td>重载方法，这里给某个目录节点设置特定的 watcher，Watcher 在 ZooKeeper 是一个核心功能，Watcher 可以监控目录节点的数据变化以及子目录的变化，一旦这些状态发生变化，服务器就会通知所有设置在这个目录节点上的 Watcher，从而每个客户端都很快知道它所关注的目录节点的状态发生变化，而做出相应的反应</td>
+</tr>
+<tr>
+<td>void delete(String path, int version)</td>
+<td>删除 path 对应的目录节点，version 为 -1 可以匹配任何版本，也就删除了这个目录节点所有数据</td>
+</tr>
+<tr>
+<td>List<string> getChildren(String path, boolean watch)</string></td>
+<td>获取指定 path 下的所有子目录节点，同样 getChildren方法也有一个重载方法可以设置特定的 watcher 监控子节点的状态</td>
+</tr>
+<tr>
+<td>StatsetData(String path, byte[] data, int version)</td>
+<td>给 path 设置数据，可以指定这个数据的版本号，如果 version 为 -1 怎可以匹配任何版本</td>
+</tr>
+<tr>
+<td>byte[] getData(String path, boolean watch, Stat stat)</td>
+<td>获取这个 path 对应的目录节点存储的数据，数据的版本等信息可以通过 stat 来指定，同时还可以设置是否监控这个目录节点数据的状态</td>
+</tr>
+<tr>
+<td>void addAuthInfo(String scheme, byte[] auth)</td>
+<td>客户端将自己的授权信息提交给服务器，服务器将根据这个授权信息验证客户端的访问权限。</td>
+</tr>
+<tr>
+<td>StatsetACL(String path, List<acl> acl, int version)</acl></td>
+<td>给某个目录节点重新设置访问权限，需要注意的是 Zookeeper 中的目录节点权限不具有传递性，父目录节点的权限不能传递给子目录节点。目录节点 ACL 由两部分组成：perms 和 id。<br>Perms 有 ALL、READ、WRITE、CREATE、DELETE、ADMIN 几种<br>而 id 标识了访问目录节点的身份列表，默认情况下有以下两种：<br>ANYONE_ID_UNSAFE = new Id(“world”, “anyone”) 和 AUTH_IDS = new Id(“auth”, “”) 分别表示任何人都可以访问和创建者拥有访问权限。</td>
+</tr>
+<tr>
+<td>List<acl> getACL(String path, Stat stat)</acl></td>
+<td>获取某个目录节点的访问权限列表</td>
+</tr>
+</tbody>
+</table>
+<p>除了以上这些上表中列出的方法之外还有一些重载方法，如都提供了一个回调类的重载方法以及可以设置特定 Watcher 的重载方法，具体的方法可以参考 org.apache.zookeeper. ZooKeeper 类的 API 说明。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/05/ZooKeeper Java 实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/05/ZooKeeper Java 实例/" itemprop="url">ZooKeeper Java 实例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T10:45:58+08:00">
+                2017-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">ZooKeeper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/05/ZooKeeper Java 实例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/ZooKeeper Java 实例/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/05/ZooKeeper Java 实例/" class="leancloud_visitors" data-flag-title="ZooKeeper Java 实例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Java-API-简单调用"><a href="#Java-API-简单调用" class="headerlink" title="Java API 简单调用"></a>Java API 简单调用</h3><p>创建一个 maven 工程，引入 ZooKeeper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper --&gt;</div><div class="line">        &lt;dependency&gt;</div><div class="line">            &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;3.4.6&lt;/version&gt;</div><div class="line">        &lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>创建 NormalZooKeeper 类<br>其中创建 ZooKeeper 实例时 host 若不指定端口，默认是2181，而我的三个服务器端口分别是 2182，2183，2184，所以需要写上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import org.apache.zookeeper.CreateMode;</div><div class="line">import org.apache.zookeeper.KeeperException;</div><div class="line">import org.apache.zookeeper.ZooDefs;</div><div class="line">import org.apache.zookeeper.ZooKeeper;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by desire on 2017/9/5.</div><div class="line"> */</div><div class="line">public class NormalZookeeper &#123;</div><div class="line">    public static void main(String[] args) throws IOException, InterruptedException, KeeperException&#123;</div><div class="line">        //创建一个Zookeeper实例，第一个参数为目标服务器地址和端口，第二个参数为Session超时时间，第三个为节点变化时的回调方法</div><div class="line">        ZooKeeper zooKeeper = new ZooKeeper(&quot;127.0.0.1:2182&quot;, 50000, new ConnectionWatcher());</div><div class="line"></div><div class="line">        //创建一个节点root，数据是mydata,不进行ACL权限控制，节点为永久性的(即客户端shutdown了也不会消失)</div><div class="line">        zooKeeper.create(&quot;/root&quot;, &quot;mydata&quot;.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);</div><div class="line"></div><div class="line">        //在root下面创建一个childone znode,数据为childone,不进行ACL权限控制，节点为永久性的</div><div class="line">        zooKeeper.create(&quot;/root/childone&quot;,&quot;childone&quot;.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);</div><div class="line"></div><div class="line">        //取得/root节点下的子节点名称,返回List&lt;String&gt;</div><div class="line">        zooKeeper.getChildren(&quot;/root&quot;, true);</div><div class="line"></div><div class="line">        //取得/root/childone节点下的数据,返回byte[]</div><div class="line">        zooKeeper.getData(&quot;/root/childone&quot;, true, null);</div><div class="line"></div><div class="line">        //修改节点/root/childone下的数据，第三个参数为版本，如果是-1，那会无视被修改的数据版本，直接改掉</div><div class="line">        zooKeeper.setData(&quot;/root/childone&quot;, &quot;childonemodify&quot;.getBytes(), -1);</div><div class="line"></div><div class="line">        //zooKeeper.delete(&quot;/root/childone&quot;, -1);</div><div class="line"></div><div class="line">        zooKeeper.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="继承-Watcher-的使用方式"><a href="#继承-Watcher-的使用方式" class="headerlink" title="继承 Watcher 的使用方式"></a>继承 Watcher 的使用方式</h3><p>创建 ConnetctionWatcher 类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import org.apache.zookeeper.WatchedEvent;</div><div class="line">import org.apache.zookeeper.Watcher;</div><div class="line">import org.apache.zookeeper.ZooKeeper;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.util.concurrent.CountDownLatch;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by desire on 2017/9/2.</div><div class="line"> */</div><div class="line">public class ConnectionWatcher implements Watcher &#123;</div><div class="line"></div><div class="line">    private CountDownLatch connettedSignal = new CountDownLatch(1);</div><div class="line"></div><div class="line">    private static final int SESSION_TIMEOUT = 5000;</div><div class="line"></div><div class="line">    ZooKeeper zk;</div><div class="line"></div><div class="line">    public void connect(String host) throws InterruptedException, IOException &#123;</div><div class="line">        zk = new ZooKeeper(host, SESSION_TIMEOUT, this);</div><div class="line">        connettedSignal.await();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void process(WatchedEvent watchedEvent) &#123;</div><div class="line">        if (watchedEvent.getState() == Event.KeeperState.SyncConnected) &#123;</div><div class="line">            connettedSignal.countDown();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void close() throws InterruptedException &#123;</div><div class="line">        try &#123;</div><div class="line">            zk.close();</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建 HelloZooKeeper 类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">import org.apache.zookeeper.CreateMode;</div><div class="line">import org.apache.zookeeper.KeeperException;</div><div class="line">import org.apache.zookeeper.ZooDefs;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.util.concurrent.TimeUnit;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by desire on 2017/9/2.</div><div class="line"> */</div><div class="line">public class HelloZookeeper extends ConnectionWatcher &#123;</div><div class="line"></div><div class="line">    public void createNode(String nodeName, String nodeValue) throws KeeperException, InterruptedException &#123;</div><div class="line">        String path = &quot;/&quot; + nodeName;</div><div class="line"></div><div class="line">        String createPath = zk.create(path, nodeValue.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);</div><div class="line"></div><div class="line">        System.out.println(&quot;Created znode: &quot; + createPath);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void getValue(String nodeName) throws KeeperException, InterruptedException &#123;</div><div class="line">        String path = &quot;/&quot; + nodeName;</div><div class="line">        byte[] value = zk.getData(path, false, null);</div><div class="line">        System.out.printf(&quot;[%s,%s]&quot;,path, new String(value));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws IOException, InterruptedException, KeeperException &#123;</div><div class="line">        // 1 - Connect</div><div class="line">        HelloZookeeper zk = new HelloZookeeper();</div><div class="line">        zk.connect(&quot;127.0.0.1:2182&quot;);</div><div class="line"></div><div class="line">        // 2 - Created node</div><div class="line">        zk.createNode(&quot;hello&quot;, &quot;world&quot;);</div><div class="line"></div><div class="line">        // 3 - Get value</div><div class="line">        zk.getValue(&quot;hello&quot;);</div><div class="line"></div><div class="line">        TimeUnit.HOURS.sleep(1);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意这里创建 node 时 CreateMode 跟上面的例子不一样，具体区别如下</p>
+<blockquote>
+<p>CreateMode 标识有四种形式的目录节点，分别是 PERSISTENT：持久化目录节点，这个目录节点存储的数据不会丢失；PERSISTENT_SEQUENTIAL：顺序自动编号的目录节点，这种目录节点会根据当前已近存在的节点数自动加 1，然后返回给客户端已经成功创建的目录节点名；EPHEMERAL：临时目录节点，一旦创建这个节点的客户端与服务器端口也就是 session 超时，这种节点会被自动删除；EPHEMERAL_SEQUENTIAL：临时自动编号节点</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/05/ZooKeeper 集群部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1829,353 +2242,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/SVN 执行变更/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/SVN 执行变更/" itemprop="url">SVN 执行变更</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T14:31:02+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SVN/" itemprop="url" rel="index">
-                    <span itemprop="name">SVN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/24/SVN 执行变更/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 执行变更/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/24/SVN 执行变更/" class="leancloud_visitors" data-flag-title="SVN 执行变更">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在 trunk 目录下新建一个 test.c 文件，内容随意，执行 <code>make</code> 命令后使用 <code>svn status</code> 命令查询文件状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn status</div><div class="line">?       test</div><div class="line">?       test.c</div></pre></td></tr></table></figure>
-<p>可以看到在未对文件进行任何操作之前是 ？ 状态，在提交前我们需要将文件添加到挂起的更改列表中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn add test.c</div><div class="line">A         test.c</div></pre></td></tr></table></figure>
-<p>再次查询文件状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn status    </div><div class="line">?       test</div><div class="line">A       test.c</div></pre></td></tr></table></figure>
-<p>现在可以使用 <code>svn commit</code> 提交文件了，使用参数 -m 可以省略本次提交的文本信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn commit -m &quot;Initial commit&quot;</div><div class="line">Adding         test.c</div><div class="line">Transmitting file data .done</div><div class="line">Committing transaction...</div><div class="line">Committed revision 2.</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/SVN 审查变更/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/SVN 审查变更/" itemprop="url">SVN 审查变更</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T14:30:30+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SVN/" itemprop="url" rel="index">
-                    <span itemprop="name">SVN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/24/SVN 审查变更/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 审查变更/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/24/SVN 审查变更/" class="leancloud_visitors" data-flag-title="SVN 审查变更">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用户 user01 检出最后一个版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">➜  ~ svn checkout http://104.224.145.103:81/svn/project_repo ~/svn/user01/project_repo/ --username=user01</div><div class="line">A    svn/user01/project_repo/trunk</div><div class="line">A    svn/user01/project_repo/trunk/test.c</div><div class="line">A    svn/user01/project_repo/branches</div><div class="line">A    svn/user01/project_repo/tags</div><div class="line">Checked out revision 2.</div></pre></td></tr></table></figure>
-<p>发现已经有人添加了代码，于是使用 <code>svn log</code> 命令检查信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn log</div><div class="line">------------------------------------------------------------------------</div><div class="line">r2 | desirelll | 2017-08-24 10:09:14 +0800 (四, 24  8 2017) | 1 line</div><div class="line"></div><div class="line">Initial commit</div><div class="line">------------------------------------------------------------------------</div><div class="line">r1 | desirelll | 2017-08-23 14:41:54 +0800 (三, 23  8 2017) | 1 line</div><div class="line"></div><div class="line">Create trunk, branches, tags directory structure</div><div class="line">------------------------------------------------------------------------</div></pre></td></tr></table></figure>
-<p>user01 对 test.c 文件进行了修改，使用 <code>svn status</code> 可以看到文件状态发生变化 A-&gt;M</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn status</div><div class="line">M       test.c</div></pre></td></tr></table></figure>
-<p><code>svn diff</code>可以查看更改内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn diff</div><div class="line">Index: test.c</div><div class="line">===================================================================</div><div class="line">--- test.c	(revision 2)</div><div class="line">+++ test.c	(working copy)</div><div class="line">@@ -5,6 +5,12 @@</div><div class="line"> printf(&quot;Enter the total number of elements: &quot;);</div><div class="line"> scanf(&quot;%d&quot;, &amp;n);</div><div class="line"> </div><div class="line">+/* handle array overflow condition  */</div><div class="line">+if (n &gt; MAX) &#123;</div><div class="line">+fprintf(stderr, &quot;Number of elements must be less than %d\n&quot;, MAX);</div><div class="line">+return 1;</div><div class="line">+&#125;</div><div class="line">+</div><div class="line"> printf(&quot;Enter the elements\n&quot;);</div><div class="line"> </div><div class="line"> for (i=0; i&lt;n; ++i) scanf(&quot;%d&quot;, &amp;arr[i]);</div></pre></td></tr></table></figure>
-<p>提交代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">➜  trunk svn commit -m &quot;Fix array overflow problem&quot;</div><div class="line">Sending        test.c</div><div class="line">Transmitting file data .done</div><div class="line">Committing transaction...</div><div class="line">Committed revision 3.</div></pre></td></tr></table></figure>
-<p>user01 的更改被成功提交到了仓库中</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2226,7 +2292,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

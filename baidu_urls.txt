@@ -1,3 +1,4 @@
+http://desirelll.com/2017/10/17/单例模式/
 http://desirelll.com/2017/10/16/Storm 单机版部署/
 http://desirelll.com/2017/09/15/MySQL 修改默认字符集/
 http://desirelll.com/2017/09/13/MySQL 重置密码/

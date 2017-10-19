@@ -280,6 +280,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/19/Mycat 两节点部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/Mycat 两节点部署/" itemprop="url">Mycat 两节点部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T14:13:22+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/mycat/" itemprop="url" rel="index">
+                    <span itemprop="name">mycat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/19/Mycat 两节点部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/19/Mycat 两节点部署/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/10/19/Mycat 两节点部署/" class="leancloud_visitors" data-flag-title="Mycat 两节点部署">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、环境介绍"><a href="#一、环境介绍" class="headerlink" title="一、环境介绍"></a>一、环境介绍</h3><h4 id="1-mysql-节点1环境"><a href="#1-mysql-节点1环境" class="headerlink" title="1. mysql 节点1环境"></a>1. mysql 节点1环境</h4><ul>
+<li>操作系统: centos x64</li>
+<li>数据库名: lujw_mycat_db_53_1</li>
+<li>hostname: c1</li>
+<li>ip: 192.168.171.53</li>
+</ul>
+<h4 id="2-mysql-节点2环境"><a href="#2-mysql-节点2环境" class="headerlink" title="2. mysql 节点2环境"></a>2. mysql 节点2环境</h4><ul>
+<li>操作系统: centos x64</li>
+<li>数据库名: lujw_mycat_db_54_1</li>
+<li>hostname: c2</li>
+<li>ip: 192.168.171.54</li>
+</ul>
+<h4 id="3-mycat-环境"><a href="#3-mycat-环境" class="headerlink" title="3. mycat 环境"></a>3. mycat 环境</h4><p>安装在个人电脑 MacBook 上<br>版本:1.6 release</p>
+<h4 id="4-前提条件"><a href="#4-前提条件" class="headerlink" title="4. 前提条件"></a>4. 前提条件</h4><p>安装好 mycat，两个节点安装好 mysql</p>
+<h3 id="二、配置-mycat"><a href="#二、配置-mycat" class="headerlink" title="二、配置 mycat"></a>二、配置 mycat</h3><h4 id="1-配置-schema-xml"><a href="#1-配置-schema-xml" class="headerlink" title="1. 配置 schema.xml"></a>1. 配置 schema.xml</h4><p>根据个人情况修改 url，user，password </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</div><div class="line">&lt;!DOCTYPE mycat:schema SYSTEM &quot;schema.dtd&quot;&gt;</div><div class="line">&lt;mycat:schema xmlns:mycat=&quot;http://io.mycat/&quot;&gt;</div><div class="line"></div><div class="line">	&lt;schema name=&quot;TESTDB&quot; checkSQLschema=&quot;false&quot; sqlMaxLimit=&quot;100&quot;&gt;</div><div class="line">		&lt;table name=&quot;travelrecord&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;auto-sharding-long&quot; /&gt;</div><div class="line">		&lt;table name=&quot;company&quot; primaryKey=&quot;ID&quot; type=&quot;global&quot; dataNode=&quot;dn1,dn2&quot; /&gt;</div><div class="line">		&lt;table name=&quot;goods&quot; primaryKey=&quot;ID&quot; type=&quot;global&quot; dataNode=&quot;dn1,dn2&quot; /&gt;</div><div class="line">		&lt;table name=&quot;hotnews&quot; primaryKey=&quot;ID&quot; autoIncrement=&quot;true&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;mod-long&quot; /&gt;</div><div class="line">		&lt;table name=&quot;employee&quot; primaryKey=&quot;ID&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;sharding-by-intfile&quot; /&gt;</div><div class="line">	&lt;/schema&gt;</div><div class="line">	</div><div class="line">	&lt;dataNode name=&quot;dn1&quot; dataHost=&quot;c1&quot; database=&quot;lujw_mycat_db&quot; /&gt;</div><div class="line">	&lt;dataNode name=&quot;dn2&quot; dataHost=&quot;c2&quot; database=&quot;lujw_mycat_db&quot; /&gt;</div><div class="line">    </div><div class="line">    &lt;!-- 主机C1 --&gt;</div><div class="line">	&lt;dataHost name=&quot;c1&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot; writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;</div><div class="line">		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</div><div class="line">		&lt;writeHost host=&quot;hostM1&quot; url=&quot;192.168.171.53:1234&quot; user=&quot;user&quot; password=&quot;123456&quot;&gt;</div><div class="line">		&lt;/writeHost&gt;</div><div class="line">	&lt;/dataHost&gt;</div><div class="line">    &lt;!-- 主机C2 --&gt;</div><div class="line">	&lt;dataHost name=&quot;c2&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot; writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot;&gt;</div><div class="line">		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</div><div class="line">		&lt;writeHost host=&quot;hostM2&quot; url=&quot;192.168.171.54:1234&quot; user=&quot;user&quot; password=&quot;123456&quot;&gt;</div><div class="line">		&lt;/writeHost&gt;</div><div class="line">	&lt;/dataHost&gt;</div><div class="line">    </div><div class="line">	</div><div class="line">&lt;/mycat:schema&gt;</div></pre></td></tr></table></figure>
+<h4 id="2-配置-server-xml"><a href="#2-配置-server-xml" class="headerlink" title="2. 配置 server.xml"></a>2. 配置 server.xml</h4><p>在尾部添加一个访问数据库的用户，具体看个人用户设置<br>格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 为mycat配置一个用户 --&gt;</div><div class="line">&lt;user name=&quot;cat&quot;&gt;</div><div class="line">		&lt;property name=&quot;password&quot;&gt;cat&lt;/property&gt;</div><div class="line">		&lt;property name=&quot;schemas&quot;&gt;TESTDB&lt;/property&gt;</div><div class="line">&lt;/user&gt;</div></pre></td></tr></table></figure>
+<h4 id="3-创建数据库"><a href="#3-创建数据库" class="headerlink" title="3. 创建数据库"></a>3. 创建数据库</h4><p>分别在两个节点上使用 mysql 创建 lujw_mycat_db 数据库</p>
+<h3 id="三、启动-mycat"><a href="#三、启动-mycat" class="headerlink" title="三、启动 mycat"></a>三、启动 mycat</h3><p>使用 <code>mycat start</code> 指令尝试运行 mycat，会发现在 logs 目录下的输出日志 wrapper.log 中出现错误，这是因为 mycat 默认的 schema.xml 配置了三个节点，相应的 rule.xml 中的规则也设置了三个节点。我们可以根据日志中的提示找到相应的 rule，然后进行修改。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Caused by: io.mycat.config.util.ConfigException: Illegal table conf : table [ TRAVELRECORD ] rule function [ rang-long ] partition size : 3 &gt; table datanode size : 2, please make sure table datanode size = function partition size</div></pre></td></tr></table></figure>
+<p>打开 rule.xml 找到上述 rang-long 的规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;function name=&quot;rang-long&quot;</div><div class="line">		class=&quot;io.mycat.route.function.AutoPartitionByLong&quot;&gt;</div><div class="line">		&lt;property name=&quot;mapFile&quot;&gt;autopartition-long.txt&lt;/property&gt;</div><div class="line">&lt;/function&gt;</div></pre></td></tr></table></figure>
+<p>再打开属性文件 autopartition-long.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># range start-end ,data node index</div><div class="line"># K=1000,M=10000.</div><div class="line">0-500M=0</div><div class="line">500M-1000M=1</div><div class="line">1000M-1500M=2</div></pre></td></tr></table></figure>
+<p>修改为两个节点的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># range start-end ,data node index</div><div class="line"># K=1000,M=10000.</div><div class="line">0-500M=0</div><div class="line">500M-1500M=1</div><div class="line"># 1000M-1500M=2</div></pre></td></tr></table></figure>
+<p>根据日志所有的提示，我们还需要修改的规则有<br>mod-long: count 3 –&gt; 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;function name=&quot;mod-long&quot; class=&quot;io.mycat.route.function.PartitionByMod&quot;&gt;</div><div class="line">		&lt;!-- how many data nodes --&gt;</div><div class="line">		&lt;property name=&quot;count&quot;&gt;2&lt;/property&gt;</div><div class="line">&lt;/function&gt;</div></pre></td></tr></table></figure>
+<p>再次启动 mycat，在 wrapper.log 和 mycat.log 中会得到启动成功的信息</p>
+<h3 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h3><p>在 mycat.log 日志中搜索 serverport，可以看到 serverport=8066，使用 mysql 连接这个端口，可以查到根据我们配置好的信息创建的数据库和表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">./mysql -u root -p123456 -P8066 -h127.0.0.1</div><div class="line"></div><div class="line">mysql&gt; show databases;</div><div class="line">+----------+</div><div class="line">| DATABASE |</div><div class="line">+----------+</div><div class="line">| TESTDB   |</div><div class="line">+----------+</div><div class="line">1 row in set (0.01 sec)</div><div class="line"></div><div class="line">mysql&gt; show tables;</div><div class="line">+------------------+</div><div class="line">| Tables in TESTDB |</div><div class="line">+------------------+</div><div class="line">| company          |</div><div class="line">| employee         |</div><div class="line">| goods            |</div><div class="line">| hotnews          |</div><div class="line">| travelrecord     |</div><div class="line">+------------------+</div><div class="line">5 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>虽然查到了 tables，但其实那些都是空的，所以还需要我们手动创建一次，这里以 employee 为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create table employee (id int not null primary key,name varchar(100),sharding_id int not null);</div></pre></td></tr></table></figure>
+<p>然后插入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">insert into employee(id,name,sharding_id) values(1,&apos;leader us&apos;,10000);</div><div class="line">insert into employee(id,name,sharding_id) values(2, &apos;me&apos;,10010);</div><div class="line">insert into employee(id,name,sharding_id) values(3, &apos;mycat&apos;,10000);</div><div class="line">insert into employee(id,name,sharding_id) values(4, &apos;mydog&apos;,10010);</div></pre></td></tr></table></figure>
+<p>分别到两个节点中的数据库查看，可以看到在数据库1中有：<br>1    leader us    10000<br>3    mycat    10000<br>数据库2中有：<br>2    me    10010<br>4    mydog 10010</p>
+<p>这说明分片成功了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/17/单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2058,220 +2271,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/Zookeeper 伪集群部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/05/Zookeeper 伪集群部署/" itemprop="url">Zookeeper 伪集群部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T09:31:53+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">ZooKeeper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/05/Zookeeper 伪集群部署/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/Zookeeper 伪集群部署/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/05/Zookeeper 伪集群部署/" class="leancloud_visitors" data-flag-title="Zookeeper 伪集群部署">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有分布式的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例</p>
-<hr>
-<p>创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4</p>
-<h3 id="修改-zoo-cfg-文件"><a href="#修改-zoo-cfg-文件" class="headerlink" title="修改 zoo.cfg 文件"></a>修改 zoo.cfg 文件</h3><ul>
-<li>server2/conf/zoo.cfg</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server2/data</div><div class="line">clientPort=2182</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
-<ul>
-<li>server3/conf/zoo.cfg</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server3/data</div><div class="line">clientPort=2183</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
-<ul>
-<li>server4/conf/zoo.cfg</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server4/data</div><div class="line">clientPort=2184</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
-<p>可以看到三个配置文件不同的地方是</p>
-<ul>
-<li>dataDir 目录：分别在自己的文件夹内创建一个 data 文件夹</li>
-<li>clientPort：因为是在同一个服务器下，所以三个启动端口必须不一样</li>
-</ul>
-<h3 id="创建-myid-文件"><a href="#创建-myid-文件" class="headerlink" title="创建 myid 文件"></a>创建 myid 文件</h3><p>在上面指定的 dataDir 里面分别创建一个名为 myid 的文件（没有后缀名），存储的是各自的 server id</p>
-<ul>
-<li>/Library/zookeeper/server2/data/myid</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1</div></pre></td></tr></table></figure>
-<ul>
-<li>/Library/zookeeper/server3/data/myid</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure>
-<ul>
-<li>/Library/zookeeper/server4/data/myid</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
-<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>分别进入 bin 文件夹内执行<br><code>./zkServer.sh start</code><br>并执行<br><code>./zkCli.sh -server 127.0.0.1:端口号</code><br>注意端口号要用到配置文件中的三个不同的端口号，以便测试所有服务都可用，完了我们就已经开了三个连接不同端口的客户端<br>然后在其中一个执行 <code>create /test hello</code> 指令创建一个节点，在另外的客户端中执行 <code>ls /</code>命令查看是否创建成功即可</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2317,7 +2321,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2328,7 +2332,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

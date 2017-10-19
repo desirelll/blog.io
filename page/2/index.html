@@ -280,6 +280,215 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/Zookeeper 伪集群部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/05/Zookeeper 伪集群部署/" itemprop="url">Zookeeper 伪集群部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T09:31:53+08:00">
+                2017-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">ZooKeeper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/05/Zookeeper 伪集群部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/Zookeeper 伪集群部署/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/05/Zookeeper 伪集群部署/" class="leancloud_visitors" data-flag-title="Zookeeper 伪集群部署">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有分布式的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例</p>
+<hr>
+<p>创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4</p>
+<h3 id="修改-zoo-cfg-文件"><a href="#修改-zoo-cfg-文件" class="headerlink" title="修改 zoo.cfg 文件"></a>修改 zoo.cfg 文件</h3><ul>
+<li>server2/conf/zoo.cfg</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server2/data</div><div class="line">clientPort=2182</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
+<ul>
+<li>server3/conf/zoo.cfg</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server3/data</div><div class="line">clientPort=2183</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
+<ul>
+<li>server4/conf/zoo.cfg</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server4/data</div><div class="line">clientPort=2184</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
+<p>可以看到三个配置文件不同的地方是</p>
+<ul>
+<li>dataDir 目录：分别在自己的文件夹内创建一个 data 文件夹</li>
+<li>clientPort：因为是在同一个服务器下，所以三个启动端口必须不一样</li>
+</ul>
+<h3 id="创建-myid-文件"><a href="#创建-myid-文件" class="headerlink" title="创建 myid 文件"></a>创建 myid 文件</h3><p>在上面指定的 dataDir 里面分别创建一个名为 myid 的文件（没有后缀名），存储的是各自的 server id</p>
+<ul>
+<li>/Library/zookeeper/server2/data/myid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1</div></pre></td></tr></table></figure>
+<ul>
+<li>/Library/zookeeper/server3/data/myid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure>
+<ul>
+<li>/Library/zookeeper/server4/data/myid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>分别进入 bin 文件夹内执行<br><code>./zkServer.sh start</code><br>并执行<br><code>./zkCli.sh -server 127.0.0.1:端口号</code><br>注意端口号要用到配置文件中的三个不同的端口号，以便测试所有服务都可用，完了我们就已经开了三个连接不同端口的客户端<br>然后在其中一个执行 <code>create /test hello</code> 指令创建一个节点，在另外的客户端中执行 <code>ls /</code>命令查看是否创建成功即可</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/ZooKeeper 安装和启动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1949,195 +2158,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/08/24/SVN 创建仓库以及检出处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/SVN 创建仓库以及检出处理/" itemprop="url">SVN 创建仓库以及检出处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T08:55:32+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SVN/" itemprop="url" rel="index">
-                    <span itemprop="name">SVN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/24/SVN 创建仓库以及检出处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 创建仓库以及检出处理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/24/SVN 创建仓库以及检出处理/" class="leancloud_visitors" data-flag-title="SVN 创建仓库以及检出处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@CentOS ~]# htpasswd -cm /etc/svn-users desirelll</div><div class="line">New password: </div><div class="line">Re-type new password: </div><div class="line">Adding password for user tom</div></pre></td></tr></table></figure>
-<h2 id="创建-SVN-主目录"><a href="#创建-SVN-主目录" class="headerlink" title="创建 SVN 主目录"></a>创建 SVN 主目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@CentOS ~]# mkdir /var/www/svn</div><div class="line">[root@CentOS ~]# cd /var/www/svn/</div></pre></td></tr></table></figure>
-<h2 id="创建-repository"><a href="#创建-repository" class="headerlink" title="创建 repository"></a>创建 repository</h2><p>使用 svnadmin 命令创建一个名为 project_repo 的仓库，会自动生成目录结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# svnadmin create project_repo</div><div class="line"></div><div class="line">[root@CentOS svn]# ls -l project_repo</div><div class="line">total 24</div><div class="line">drwxr-xr-x. 2 root root 4096 Aug  4 22:30 conf</div><div class="line">drwxr-sr-x. 6 root root 4096 Aug  4 22:30 db</div><div class="line">-r--r--r--. 1 root root    2 Aug  4 22:30 format</div><div class="line">drwxr-xr-x. 2 root root 4096 Aug  4 22:30 hooks</div><div class="line">drwxr-xr-x. 2 root root 4096 Aug  4 22:30 locks</div><div class="line">-rw-r--r--. 1 root root  229 Aug  4 22:30 README.txt</div></pre></td></tr></table></figure>
-<p>修改仓库的用户和用户组所有权</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# chown -R apache.apache project_repo/</div></pre></td></tr></table></figure>
-<p>使用 sestatus 指令查询 SELinux 是否开启，若开启了则需要修改 SELinux 上下文和 HTTP 权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# chcon -R -t httpd_sys_content_t /var/www/svn/project_repo/</div><div class="line">[root@CentOS svn]# chcon -R -t httpd_sys_rw_content_t /var/www/svn/project_repo/</div></pre></td></tr></table></figure>
-<p>重启 Apache Server，若因端口占用启动失败则修改端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# service httpd restart</div><div class="line">Stopping httpd:                                            [FAILED]</div><div class="line">Starting httpd: httpd: apr_sockaddr_info_get() failed for CentOS</div><div class="line">httpd: Could not reliably determine the server&apos;s fully qualified domain name, using 127.0.0.1 for ServerName</div><div class="line">                                                           [  OK  ]</div><div class="line">[root@CentOS svn]# service httpd status</div><div class="line">httpd (pid  1372) is running...</div><div class="line">[root@CentOS svn]#</div></pre></td></tr></table></figure>
-<p>指定只有授权用户才能获取访问权限和使用默认授权文件，在 project_repo/conf/svnserve.conf 后添加如下语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">anon-access = none</div><div class="line">authz-db = authz</div></pre></td></tr></table></figure>
-<p>创建 trunk、branches、tags目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template</div><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template/trunk</div><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template/branches</div><div class="line">[root@CentOS svn]# mkdir /tmp/svn-template/tags</div></pre></td></tr></table></figure>
-<p>进入svn-template目录，将三个子目录导入仓库，其中 server.com:port 为仓库所在服务器服务端口，端口若没修改默认为80（80端口可不填）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost svn-template]# svn import -m &apos;Create trunk, branches, tags directory structure&apos;  http://server.com:port/repo/svn-template/</div><div class="line">Adding         trunk</div><div class="line">Adding         branches</div><div class="line">Adding         tags</div><div class="line">Committed revision 1.</div></pre></td></tr></table></figure>
-<h2 id="SVN-检出"><a href="#SVN-检出" class="headerlink" title="SVN 检出"></a>SVN 检出</h2><p>使用 checkout 指令从仓库中取出一个工作拷贝，并存放在本地 ~/svn/project_repo/ 路径下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">svn checkout http://server.com:port/svn/project_repo ~/svn/project_repo/ --username=desirelll</div><div class="line">A    svn/project_repo/trunk</div><div class="line">A    svn/project_repo/branches</div><div class="line">A    svn/project_repo/tags</div><div class="line">Checked out revision 1.</div></pre></td></tr></table></figure>
-<p>执行 info 命令可以查看更多的信息存储库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cd ~/svn/project_repo/trunk </div><div class="line">svn info</div><div class="line">Path: .</div><div class="line">Working Copy Root Path: /Users/desire/svn/project_repo</div><div class="line">URL: http://server.com:port/svn/project_repo/trunk</div><div class="line">Relative URL: ^/trunk</div><div class="line">Repository Root: http://server.com:port/svn/project_repo</div><div class="line">Repository UUID: 2c586176-cfb6-492d-a901-aa94609b56ba</div><div class="line">Revision: 1</div><div class="line">Node Kind: directory</div><div class="line">Schedule: normal</div><div class="line">Last Changed Author: desirelll</div><div class="line">Last Changed Rev: 1</div><div class="line">Last Changed Date: 2017-08-23 14:41:54 +0800 (三, 23  8 2017)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2183,7 +2208,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2194,7 +2219,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

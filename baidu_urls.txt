@@ -1,3 +1,4 @@
+http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/
 http://desirelll.com/2017/10/24/MySQL 主从复制/
 http://desirelll.com/2017/10/19/Mycat 两节点部署/
 http://desirelll.com/2017/10/17/单例模式/

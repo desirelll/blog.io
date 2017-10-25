@@ -280,6 +280,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="url">MySQL TIMESTAMP 字段 Invalid default value 问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:30:58+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" class="leancloud_visitors" data-flag-title="MySQL TIMESTAMP 字段 Invalid default value 问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">-- 创建表</div><div class="line">CREATE TABLE seckill(</div><div class="line">  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &apos;商品库存id&apos;,</div><div class="line">  `name` varchar(120) NOT NULL COMMENT &apos;商品名称&apos;,</div><div class="line">  `number` int NOT NULL COMMENT &apos;库存数量&apos;,</div><div class="line"></div><div class="line">  -- 此行不会报错，因为默认值使用CURRENT_TIMESTAMP</div><div class="line">  `start_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀开启时间&apos;,</div><div class="line"></div><div class="line">  -- 此行会报错，因为默认值使用“0000-00-00 00:00:00”，</div><div class="line">  -- Mysql 5.7版本后的SQL_MODE默认为strict（NO_ZERO_DATE），</div><div class="line">  -- 所以第二个出现报错</div><div class="line">  -- 解决方案：SET SQL_MODE = &apos;ALLOW_INVALID_DATES&apos;;</div><div class="line"></div><div class="line">  `end_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀结束时间&apos;,</div><div class="line">  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;,</div><div class="line">  PRIMARY KEY (seckill_id),</div><div class="line">  key idx_start_time(start_time),</div><div class="line">  key idx_end_time(end_time),</div><div class="line">  key idx_create_time(create_time)</div><div class="line">)ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=UTF8 COMMENT=&apos;秒杀库存表&apos;;</div><div class="line"></div><div class="line">作者：一个理想主义的大兵</div><div class="line">链接：http://www.jianshu.com/p/e21065e32444</div><div class="line">來源：简书</div><div class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</div></pre></td></tr></table></figure>
+<p>解决方案是：<br><code>SET SQL_MODE = &#39;ALLOW_INVALID_DATES&#39;;</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/24/MySQL 主从复制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2098,204 +2275,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/ZooKeeper Java 实例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/05/ZooKeeper Java 实例/" itemprop="url">ZooKeeper Java 实例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T10:45:58+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">ZooKeeper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/05/ZooKeeper Java 实例/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/ZooKeeper Java 实例/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/05/ZooKeeper Java 实例/" class="leancloud_visitors" data-flag-title="ZooKeeper Java 实例">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Java-API-简单调用"><a href="#Java-API-简单调用" class="headerlink" title="Java API 简单调用"></a>Java API 简单调用</h3><ul>
-<li>创建一个 maven 工程，引入 ZooKeeper</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper --&gt;</div><div class="line">        &lt;dependency&gt;</div><div class="line">            &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;3.4.6&lt;/version&gt;</div><div class="line">        &lt;/dependency&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>创建 NormalZooKeeper 类</li>
-</ul>
-<p>创建 ZooKeeper 实例时 host 若不指定端口，默认是2181，而我的三个服务器端口分别是 2182，2183，2184，所以需要写上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">import org.apache.zookeeper.CreateMode;</div><div class="line">import org.apache.zookeeper.KeeperException;</div><div class="line">import org.apache.zookeeper.ZooDefs;</div><div class="line">import org.apache.zookeeper.ZooKeeper;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by desire on 2017/9/5.</div><div class="line"> */</div><div class="line">public class NormalZookeeper &#123;</div><div class="line">    public static void main(String[] args) throws IOException, InterruptedException, KeeperException&#123;</div><div class="line">        //创建一个Zookeeper实例，第一个参数为目标服务器地址和端口，第二个参数为Session超时时间，第三个为节点变化时的回调方法</div><div class="line">        ZooKeeper zooKeeper = new ZooKeeper(&quot;127.0.0.1:2182&quot;, 50000, new ConnectionWatcher());</div><div class="line"></div><div class="line">        //创建一个节点root，数据是mydata,不进行ACL权限控制，节点为永久性的(即客户端shutdown了也不会消失)</div><div class="line">        zooKeeper.create(&quot;/root&quot;, &quot;mydata&quot;.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);</div><div class="line"></div><div class="line">        //在root下面创建一个childone znode,数据为childone,不进行ACL权限控制，节点为永久性的</div><div class="line">        zooKeeper.create(&quot;/root/childone&quot;,&quot;childone&quot;.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);</div><div class="line"></div><div class="line">        //取得/root节点下的子节点名称,返回List&lt;String&gt;</div><div class="line">        zooKeeper.getChildren(&quot;/root&quot;, true);</div><div class="line"></div><div class="line">        //取得/root/childone节点下的数据,返回byte[]</div><div class="line">        zooKeeper.getData(&quot;/root/childone&quot;, true, null);</div><div class="line"></div><div class="line">        //修改节点/root/childone下的数据，第三个参数为版本，如果是-1，那会无视被修改的数据版本，直接改掉</div><div class="line">        zooKeeper.setData(&quot;/root/childone&quot;, &quot;childonemodify&quot;.getBytes(), -1);</div><div class="line"></div><div class="line">        //zooKeeper.delete(&quot;/root/childone&quot;, -1);</div><div class="line"></div><div class="line">        zooKeeper.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>使用这种方法测试程序容易出现错误，当端口写错或者服务器挂了的时候，我们无法成功连接，程序就挂了，所以可以使用下面这种比较优化的方式</p>
-<h3 id="继承-Watcher-的使用方式"><a href="#继承-Watcher-的使用方式" class="headerlink" title="继承 Watcher 的使用方式"></a>继承 Watcher 的使用方式</h3><ul>
-<li>创建 ConnetctionWatcher 类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import org.apache.zookeeper.WatchedEvent;</div><div class="line">import org.apache.zookeeper.Watcher;</div><div class="line">import org.apache.zookeeper.ZooKeeper;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.util.concurrent.CountDownLatch;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by desire on 2017/9/2.</div><div class="line"> */</div><div class="line">public class ConnectionWatcher implements Watcher &#123;</div><div class="line"></div><div class="line">    private CountDownLatch connettedSignal = new CountDownLatch(1);</div><div class="line"></div><div class="line">    private static final int SESSION_TIMEOUT = 5000;</div><div class="line"></div><div class="line">    ZooKeeper zk;</div><div class="line"></div><div class="line">    public void connect(String host) throws InterruptedException, IOException &#123;</div><div class="line">        zk = new ZooKeeper(host, SESSION_TIMEOUT, this);</div><div class="line">        connettedSignal.await();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void process(WatchedEvent watchedEvent) &#123;</div><div class="line">        if (watchedEvent.getState() == Event.KeeperState.SyncConnected) &#123;</div><div class="line">            connettedSignal.countDown();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void close() throws InterruptedException &#123;</div><div class="line">        try &#123;</div><div class="line">            zk.close();</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在这里我们使用了 CountDownLatch，一个同步辅助类，在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。<br>countDown 方法，当前线程调用此方法，则计数减一<br>await 方法，调用此方法会一直阻塞当前线程，直到计时器的值为 0<br>在 process 中增加了条件判断是否成功连接，若成功了则 await 方法停止阻塞，可以自行添加失败时进行的操作</p>
-<ul>
-<li>创建 HelloZooKeeper 类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">import org.apache.zookeeper.CreateMode;</div><div class="line">import org.apache.zookeeper.KeeperException;</div><div class="line">import org.apache.zookeeper.ZooDefs;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.util.concurrent.TimeUnit;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by desire on 2017/9/2.</div><div class="line"> */</div><div class="line">public class HelloZookeeper extends ConnectionWatcher &#123;</div><div class="line"></div><div class="line">    public void createNode(String nodeName, String nodeValue) throws KeeperException, InterruptedException &#123;</div><div class="line">        String path = &quot;/&quot; + nodeName;</div><div class="line"></div><div class="line">        String createPath = zk.create(path, nodeValue.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);</div><div class="line"></div><div class="line">        System.out.println(&quot;Created znode: &quot; + createPath);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void getValue(String nodeName) throws KeeperException, InterruptedException &#123;</div><div class="line">        String path = &quot;/&quot; + nodeName;</div><div class="line">        byte[] value = zk.getData(path, false, null);</div><div class="line">        System.out.printf(&quot;[%s,%s]&quot;,path, new String(value));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws IOException, InterruptedException, KeeperException &#123;</div><div class="line">        // 1 - Connect</div><div class="line">        HelloZookeeper zk = new HelloZookeeper();</div><div class="line">        zk.connect(&quot;127.0.0.1:2182&quot;);</div><div class="line"></div><div class="line">        // 2 - Created node</div><div class="line">        zk.createNode(&quot;hello&quot;, &quot;world&quot;);</div><div class="line"></div><div class="line">        // 3 - Get value</div><div class="line">        zk.getValue(&quot;hello&quot;);</div><div class="line"></div><div class="line">        TimeUnit.HOURS.sleep(1);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>注意这里创建 node 时 CreateMode 跟上面的例子不一样，具体区别如下</p>
-<blockquote>
-<p>CreateMode 标识有四种形式的目录节点，分别是 PERSISTENT：持久化目录节点，这个目录节点存储的数据不会丢失；PERSISTENT_SEQUENTIAL：顺序自动编号的目录节点，这种目录节点会根据当前已近存在的节点数自动加 1，然后返回给客户端已经成功创建的目录节点名；EPHEMERAL：临时目录节点，一旦创建这个节点的客户端与服务器端口也就是 session 超时，这种节点会被自动删除；EPHEMERAL_SEQUENTIAL：临时自动编号节点</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2346,7 +2325,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

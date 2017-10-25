@@ -94,20 +94,17 @@
 
 
 
-<meta name="description" content="1. 检查默认字符集1234567891011121314mysql&amp;gt; show variables like &amp;apos;%char%&amp;apos;;+--------------------------+-----------------------------------------------------------+| Variable_name            | Value">
+<meta name="description" content="1234567891011121314151617181920212223242526-- 创建表CREATE TABLE seckill(  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;商品库存id&amp;apos;,  `name` varchar(120) NOT NULL COMMENT &amp;apos;商品名称&amp;apos;,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 修改默认字符集">
-<meta property="og:url" content="http://desirelll.com/2017/09/15/MySQL 修改默认字符集/index.html">
+<meta property="og:title" content="MySQL TIMESTAMP 字段 Invalid default value 问题">
+<meta property="og:url" content="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/index.html">
 <meta property="og:site_name" content="卢佳伟的个人博客">
-<meta property="og:description" content="1. 检查默认字符集1234567891011121314mysql&amp;gt; show variables like &amp;apos;%char%&amp;apos;;+--------------------------+-----------------------------------------------------------+| Variable_name            | Value">
+<meta property="og:description" content="1234567891011121314151617181920212223242526-- 创建表CREATE TABLE seckill(  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;商品库存id&amp;apos;,  `name` varchar(120) NOT NULL COMMENT &amp;apos;商品名称&amp;apos;,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba48361bd79.png">
-<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba48a097c00.png">
-<meta property="og:updated_time" content="2017-09-15T01:18:28.000Z">
+<meta property="og:updated_time" content="2017-10-25T02:30:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL 修改默认字符集">
-<meta name="twitter:description" content="1. 检查默认字符集1234567891011121314mysql&amp;gt; show variables like &amp;apos;%char%&amp;apos;;+--------------------------+-----------------------------------------------------------+| Variable_name            | Value">
-<meta name="twitter:image" content="https://i.loli.net/2017/09/14/59ba48361bd79.png">
+<meta name="twitter:title" content="MySQL TIMESTAMP 字段 Invalid default value 问题">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526-- 创建表CREATE TABLE seckill(  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;商品库存id&amp;apos;,  `name` varchar(120) NOT NULL COMMENT &amp;apos;商品名称&amp;apos;,">
 
 
 
@@ -136,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://desirelll.com/2017/09/15/MySQL 修改默认字符集/"/>
+  <link rel="canonical" href="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/"/>
 
 
 
 
 
-  <title>MySQL 修改默认字符集 | 卢佳伟的个人博客</title>
+  <title>MySQL TIMESTAMP 字段 Invalid default value 问题 | 卢佳伟的个人博客</title>
   
 
 
@@ -285,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/15/MySQL 修改默认字符集/">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="desirelll">
@@ -302,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MySQL 修改默认字符集</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL TIMESTAMP 字段 Invalid default value 问题</h1>
         
 
         <div class="post-meta">
@@ -314,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T09:18:28+08:00">
-                2017-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:30:58+08:00">
+                2017-10-25
               </time>
             
 
@@ -367,8 +364,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/15/MySQL 修改默认字符集/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/15/MySQL 修改默认字符集/" itemprop="commentsCount"></span>
+                <a href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -377,7 +374,7 @@
 
           
           
-             <span id="/2017/09/15/MySQL 修改默认字符集/" class="leancloud_visitors" data-flag-title="MySQL 修改默认字符集">
+             <span id="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" class="leancloud_visitors" data-flag-title="MySQL TIMESTAMP 字段 Invalid default value 问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,13 +405,8 @@
       
 
       
-        <h4 id="1-检查默认字符集"><a href="#1-检查默认字符集" class="headerlink" title="1. 检查默认字符集"></a>1. 检查默认字符集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;%char%&apos;;</div><div class="line">+--------------------------+-----------------------------------------------------------+</div><div class="line">| Variable_name            | Value                                                     |</div><div class="line">+--------------------------+-----------------------------------------------------------+</div><div class="line">| character_set_client     | utf8                                                      |</div><div class="line">| character_set_connection | utf8                                                      |</div><div class="line">| character_set_database   | latin1                                                    |</div><div class="line">| character_set_filesystem | binary                                                    |</div><div class="line">| character_set_results    | utf8                                                      |</div><div class="line">| character_set_server     | latin1                                                    |</div><div class="line">| character_set_system     | utf8                                                      |</div><div class="line">| character_sets_dir       | /usr/local/mysql-5.7.19-macos10.12-x86_64/share/charsets/ |</div><div class="line">+--------------------------+-----------------------------------------------------------+</div><div class="line">8 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
-<p>character_set_database和character_set_server依然是latin1的字符集，也就是说mysql后续创建的表都是latin1字符集的，不是utf8，会造成一些麻烦。所以有必要修改my.cnf，在修改my.cnf之前一定要关闭mysql进程，不然会遇到mysql的sock不能连接的问题。</p>
-<h4 id="2-关闭-mysqld-后台进程"><a href="#2-关闭-mysqld-后台进程" class="headerlink" title="2. 关闭 mysqld 后台进程"></a>2. 关闭 mysqld 后台进程</h4><p><img src="https://i.loli.net/2017/09/14/59ba48361bd79.png" alt=""><br><img src="https://i.loli.net/2017/09/14/59ba48a097c00.png" alt=""></p>
-<h4 id="3-修改-mysql-配置文件"><a href="#3-修改-mysql-配置文件" class="headerlink" title="3. 修改 mysql 配置文件"></a>3. 修改 mysql 配置文件</h4><p>sudo vi /etc/my.cnf<br>添加如下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[client]</div><div class="line">default-character-set=utf8</div><div class="line"></div><div class="line">[mysqld]</div><div class="line">character-set-server=utf8</div></pre></td></tr></table></figure>
-<p>然后重启 mysql</p>
-<h4 id="4-检查结果"><a href="#4-检查结果" class="headerlink" title="4. 检查结果"></a>4. 检查结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;%char%&apos;;</div><div class="line">+--------------------------+-----------------------------------------------------------+</div><div class="line">| Variable_name            | Value                                                     |</div><div class="line">+--------------------------+-----------------------------------------------------------+</div><div class="line">| character_set_client     | utf8                                                      |</div><div class="line">| character_set_connection | utf8                                                      |</div><div class="line">| character_set_database   | utf8                                                      |</div><div class="line">| character_set_filesystem | binary                                                    |</div><div class="line">| character_set_results    | utf8                                                      |</div><div class="line">| character_set_server     | utf8                                                      |</div><div class="line">| character_set_system     | utf8                                                      |</div><div class="line">| character_sets_dir       | /usr/local/mysql-5.7.19-macos10.12-x86_64/share/charsets/ |</div><div class="line">+--------------------------+-----------------------------------------------------------+</div><div class="line">8 rows in set (0.01 sec)</div></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">-- 创建表</div><div class="line">CREATE TABLE seckill(</div><div class="line">  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &apos;商品库存id&apos;,</div><div class="line">  `name` varchar(120) NOT NULL COMMENT &apos;商品名称&apos;,</div><div class="line">  `number` int NOT NULL COMMENT &apos;库存数量&apos;,</div><div class="line"></div><div class="line">  -- 此行不会报错，因为默认值使用CURRENT_TIMESTAMP</div><div class="line">  `start_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀开启时间&apos;,</div><div class="line"></div><div class="line">  -- 此行会报错，因为默认值使用“0000-00-00 00:00:00”，</div><div class="line">  -- Mysql 5.7版本后的SQL_MODE默认为strict（NO_ZERO_DATE），</div><div class="line">  -- 所以第二个出现报错</div><div class="line">  -- 解决方案：SET SQL_MODE = &apos;ALLOW_INVALID_DATES&apos;;</div><div class="line"></div><div class="line">  `end_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀结束时间&apos;,</div><div class="line">  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;,</div><div class="line">  PRIMARY KEY (seckill_id),</div><div class="line">  key idx_start_time(start_time),</div><div class="line">  key idx_end_time(end_time),</div><div class="line">  key idx_create_time(create_time)</div><div class="line">)ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=UTF8 COMMENT=&apos;秒杀库存表&apos;;</div><div class="line"></div><div class="line">作者：一个理想主义的大兵</div><div class="line">链接：http://www.jianshu.com/p/e21065e32444</div><div class="line">來源：简书</div><div class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</div></pre></td></tr></table></figure>
+<p>解决方案是：<br><code>SET SQL_MODE = &#39;ALLOW_INVALID_DATES&#39;;</code></p>
 
       
     </div>
@@ -468,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/MySQL 重置密码/" rel="next" title="MySQL 重置密码">
-                <i class="fa fa-chevron-left"></i> MySQL 重置密码
+              <a href="/2017/10/24/MySQL 主从复制/" rel="next" title="MySQL 主从复制">
+                <i class="fa fa-chevron-left"></i> MySQL 主从复制
               </a>
             
           </div>
@@ -477,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/16/Storm 单机版部署/" rel="prev" title="Storm 单机版部署">
-                Storm 单机版部署 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -534,17 +522,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg"
@@ -597,22 +576,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-检查默认字符集"><span class="nav-number">1.</span> <span class="nav-text">1. 检查默认字符集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-关闭-mysqld-后台进程"><span class="nav-number">2.</span> <span class="nav-text">2. 关闭 mysqld 后台进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改-mysql-配置文件"><span class="nav-number">3.</span> <span class="nav-text">3. 修改 mysql 配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-检查结果"><span class="nav-number">4.</span> <span class="nav-text">4. 检查结果</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -761,7 +724,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/09/15/MySQL 修改默认字符集/"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/"});
 		
 
 		(function() {

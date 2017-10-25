@@ -1,7 +1,8 @@
+http://desirelll.com/2017/10/25/单例模式/
+http://desirelll.com/2017/10/25/Redis 官网集群步骤/
 http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/
 http://desirelll.com/2017/10/24/MySQL 主从复制/
 http://desirelll.com/2017/10/19/Mycat 两节点部署/
-http://desirelll.com/2017/10/17/单例模式/
 http://desirelll.com/2017/10/16/Storm 单机版部署/
 http://desirelll.com/2017/09/15/MySQL 修改默认字符集/
 http://desirelll.com/2017/09/13/MySQL 重置密码/

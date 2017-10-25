@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="1.关闭 mysql 服务可以使用 ps ax | grep mysql 查找 mysql 进程，然后用 sudo kill -9 [pid] 结束进程 2.以安全模式运行 mysql进入 mysql 的 bin 目录进入管理员模式12cd /usr/local/mysql/binsu 然后以安全模式运行 mysql 1./mysqld_safe --skip-grant-tables &amp;amp;">
+<meta name="description" content="1. 创建目录要让集群正常运作至少需要三个主节点， 不过在刚开始试用集群功能时， 强烈建议使用六个节点： 其中三个为主节点， 而其余三个则是各个主节点的从节点创建一个新目录 redis，并在其中创建六个以端口号为名字的子目录，每个子目录都是一个 redis 123mkdir rediscd redismkdir 7000 7001 7002 7003 7004 7005 2. 修改配置文件分别进入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 重置密码">
-<meta property="og:url" content="http://desirelll.com/2017/09/13/MySQL 重置密码/index.html">
+<meta property="og:title" content="Redis 官网集群步骤">
+<meta property="og:url" content="http://desirelll.com/2017/10/25/Redis 官网集群步骤/index.html">
 <meta property="og:site_name" content="卢佳伟的个人博客">
-<meta property="og:description" content="1.关闭 mysql 服务可以使用 ps ax | grep mysql 查找 mysql 进程，然后用 sudo kill -9 [pid] 结束进程 2.以安全模式运行 mysql进入 mysql 的 bin 目录进入管理员模式12cd /usr/local/mysql/binsu 然后以安全模式运行 mysql 1./mysqld_safe --skip-grant-tables &amp;amp;">
+<meta property="og:description" content="1. 创建目录要让集群正常运作至少需要三个主节点， 不过在刚开始试用集群功能时， 强烈建议使用六个节点： 其中三个为主节点， 而其余三个则是各个主节点的从节点创建一个新目录 redis，并在其中创建六个以端口号为名字的子目录，每个子目录都是一个 redis 123mkdir rediscd redismkdir 7000 7001 7002 7003 7004 7005 2. 修改配置文件分别进入">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-13T06:50:03.000Z">
+<meta property="og:updated_time" content="2017-10-25T02:32:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL 重置密码">
-<meta name="twitter:description" content="1.关闭 mysql 服务可以使用 ps ax | grep mysql 查找 mysql 进程，然后用 sudo kill -9 [pid] 结束进程 2.以安全模式运行 mysql进入 mysql 的 bin 目录进入管理员模式12cd /usr/local/mysql/binsu 然后以安全模式运行 mysql 1./mysqld_safe --skip-grant-tables &amp;amp;">
+<meta name="twitter:title" content="Redis 官网集群步骤">
+<meta name="twitter:description" content="1. 创建目录要让集群正常运作至少需要三个主节点， 不过在刚开始试用集群功能时， 强烈建议使用六个节点： 其中三个为主节点， 而其余三个则是各个主节点的从节点创建一个新目录 redis，并在其中创建六个以端口号为名字的子目录，每个子目录都是一个 redis 123mkdir rediscd redismkdir 7000 7001 7002 7003 7004 7005 2. 修改配置文件分别进入">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://desirelll.com/2017/09/13/MySQL 重置密码/"/>
+  <link rel="canonical" href="http://desirelll.com/2017/10/25/Redis 官网集群步骤/"/>
 
 
 
 
 
-  <title>MySQL 重置密码 | 卢佳伟的个人博客</title>
+  <title>Redis 官网集群步骤 | 卢佳伟的个人博客</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/13/MySQL 重置密码/">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/Redis 官网集群步骤/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="desirelll">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MySQL 重置密码</h1>
+          <h1 class="post-title" itemprop="name headline">Redis 官网集群步骤</h1>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T14:50:03+08:00">
-                2017-09-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:32:46+08:00">
+                2017-10-25
               </time>
             
 
@@ -345,8 +345,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/java/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
                   </a>
                 </span>
 
@@ -364,8 +364,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/13/MySQL 重置密码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/13/MySQL 重置密码/" itemprop="commentsCount"></span>
+                <a href="/2017/10/25/Redis 官网集群步骤/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/Redis 官网集群步骤/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -374,7 +374,7 @@
 
           
           
-             <span id="/2017/09/13/MySQL 重置密码/" class="leancloud_visitors" data-flag-title="MySQL 重置密码">
+             <span id="/2017/10/25/Redis 官网集群步骤/" class="leancloud_visitors" data-flag-title="Redis 官网集群步骤">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -405,19 +405,23 @@
       
 
       
-        <h3 id="1-关闭-mysql-服务"><a href="#1-关闭-mysql-服务" class="headerlink" title="1.关闭 mysql 服务"></a>1.关闭 mysql 服务</h3><p>可以使用 <code>ps ax | grep mysql</code> 查找 mysql 进程，然后用 <code>sudo kill -9 [pid]</code> 结束进程</p>
-<h3 id="2-以安全模式运行-mysql"><a href="#2-以安全模式运行-mysql" class="headerlink" title="2.以安全模式运行 mysql"></a>2.以安全模式运行 mysql</h3><p>进入 mysql 的 bin 目录进入管理员模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/mysql/bin</div><div class="line">su</div></pre></td></tr></table></figure></p>
-<p>然后以安全模式运行 mysql</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./mysqld_safe --skip-grant-tables &amp;</div></pre></td></tr></table></figure>
-<h3 id="3-修改密码"><a href="#3-修改密码" class="headerlink" title="3.修改密码"></a>3.修改密码</h3><p>新建一个终端，输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u -root</div></pre></td></tr></table></figure>
-<p>就能无密码进入 mysql</p>
-<p>修改密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mysql&gt; FLUSH PRIVILEGES;</div><div class="line">mysql&gt; SET PASSWORD FOR root@&apos;localhost&apos; = PASSWORD(&apos;newpassword&apos;);</div><div class="line">mysql&gt; FLUSH PRIVILEGES;</div></pre></td></tr></table></figure>
-<p>然后退出即可</p>
-<h3 id="重启-mysql"><a href="#重启-mysql" class="headerlink" title="重启 mysql"></a>重启 mysql</h3><p>回到第一个终端，关闭 mysql</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./mysqladmin -u root -p shutdown</div></pre></td></tr></table></figure>
-<p>再正常启动 mysql 即可</p>
+        <h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1. 创建目录"></a>1. 创建目录</h4><p>要让集群正常运作至少需要三个主节点， 不过在刚开始试用集群功能时， 强烈建议使用六个节点： 其中三个为主节点， 而其余三个则是各个主节点的从节点<br>创建一个新目录 redis，并在其中创建六个以端口号为名字的子目录，每个子目录都是一个 redis</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir redis</div><div class="line">cd redis</div><div class="line">mkdir 7000 7001 7002 7003 7004 7005</div></pre></td></tr></table></figure>
+<h4 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2. 修改配置文件"></a>2. 修改配置文件</h4><p>分别进入每个子目录，修改 redis.conf 中如下的配置项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 7000</div><div class="line">cluster-enabled yes</div><div class="line">cluster-config-file nodes.conf</div><div class="line">cluster-node-timeout 5000</div><div class="line">appendonly yes</div></pre></td></tr></table></figure>
+<p>其中端口号 port 分别为 7000-7005</p>
+<h4 id="3-运行实例"><a href="#3-运行实例" class="headerlink" title="3. 运行实例"></a>3. 运行实例</h4><p>接着，从 <a href="https://github.com/antirez/redis" target="_blank" rel="external">Redis Github 页面</a>的 unstable 分支中下载最新代码，然后编译出可执行文件放在 redis 文件夹中。（其实从我们的任一子目录里面编译后在 src 文件夹里拿出来也可以）通过如下命令分别创建出 6 个实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd 7000</div><div class="line">../redis-server ./redis.conf</div></pre></td></tr></table></figure>
+<h4 id="4-创建集群"><a href="#4-创建集群" class="headerlink" title="4. 创建集群"></a>4. 创建集群</h4><p>可以使用 src 目录中的 redis-trib 程序来创建集群，首先需要安装 redis gem 才能运行 redis-trib</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install redis</div></pre></td></tr></table></figure>
+<p>然后创建集群</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 \</div><div class="line">127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</div></pre></td></tr></table></figure>
+<p>然后终端会列出集群的情况，并礼貌性的问你这样创建可以吗，当然是输入 yes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; Creating cluster</div><div class="line">&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...</div><div class="line">Using 3 masters:</div><div class="line">127.0.0.1:7000</div><div class="line">127.0.0.1:7001</div><div class="line">127.0.0.1:7002</div><div class="line">Adding replica 127.0.0.1:7003 to 127.0.0.1:7000</div><div class="line">Adding replica 127.0.0.1:7004 to 127.0.0.1:7001</div><div class="line">Adding replica 127.0.0.1:7005 to 127.0.0.1:7002</div><div class="line">M: 968f13cefb4f895cec739794835fcd160bde22af 127.0.0.1:7000</div><div class="line">   slots:0-5460 (5461 slots) master</div><div class="line">M: 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0 127.0.0.1:7001</div><div class="line">   slots:5461-10922 (5462 slots) master</div><div class="line">M: 433145fbee24fa60a3e7194b9b8056b02f375023 127.0.0.1:7002</div><div class="line">   slots:10923-16383 (5461 slots) master</div><div class="line">S: d29b5ce6e4ea9a33a9044d4211ba37aafa5198f8 127.0.0.1:7003</div><div class="line">   replicates 968f13cefb4f895cec739794835fcd160bde22af</div><div class="line">S: ba9052a112e11e757a563ce6ed89adde463c7ec5 127.0.0.1:7004</div><div class="line">   replicates 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0</div><div class="line">S: 130bfe6c6e1b8d31ed1e030ae7c41902be268a1f 127.0.0.1:7005</div><div class="line">   replicates 433145fbee24fa60a3e7194b9b8056b02f375023</div><div class="line">Can I set the above configuration? (type &apos;yes&apos; to accept): yes</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; Nodes configuration updated</div><div class="line">&gt;&gt;&gt; Assign a different config epoch to each node</div><div class="line">&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster</div><div class="line">Waiting for the cluster to join...</div><div class="line">&gt;&gt;&gt; Performing Cluster Check (using node 127.0.0.1:7000)</div><div class="line">M: 968f13cefb4f895cec739794835fcd160bde22af 127.0.0.1:7000</div><div class="line">   slots:0-5460 (5461 slots) master</div><div class="line">   1 additional replica(s)</div><div class="line">M: 433145fbee24fa60a3e7194b9b8056b02f375023 127.0.0.1:7002</div><div class="line">   slots:10923-16383 (5461 slots) master</div><div class="line">   1 additional replica(s)</div><div class="line">M: 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0 127.0.0.1:7001</div><div class="line">   slots:5461-10922 (5462 slots) master</div><div class="line">   1 additional replica(s)</div><div class="line">S: ba9052a112e11e757a563ce6ed89adde463c7ec5 127.0.0.1:7004</div><div class="line">   slots: (0 slots) slave</div><div class="line">   replicates 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0</div><div class="line">S: d29b5ce6e4ea9a33a9044d4211ba37aafa5198f8 127.0.0.1:7003</div><div class="line">   slots: (0 slots) slave</div><div class="line">   replicates 968f13cefb4f895cec739794835fcd160bde22af</div><div class="line">S: 130bfe6c6e1b8d31ed1e030ae7c41902be268a1f 127.0.0.1:7005</div><div class="line">   slots: (0 slots) slave</div><div class="line">   replicates 433145fbee24fa60a3e7194b9b8056b02f375023</div><div class="line">[OK] All nodes agree about slots configuration.</div><div class="line">&gt;&gt;&gt; Check for open slots...</div><div class="line">&gt;&gt;&gt; Check slots coverage...</div><div class="line">[OK] All 16384 slots covered.</div></pre></td></tr></table></figure>
+<p>到此集群就创建成功了。<br>但很明显这是个伪集群，如果条件允许的话建议使用 6 台机器来创建集群，只需修改相应的地址和端口，并在防火墙开放该端口就行。</p>
+<h4 id="5-简单测试"><a href="#5-简单测试" class="headerlink" title="5. 简单测试"></a>5. 简单测试</h4><p>使用 redis-cli 进行简单的命令测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ redis-cli -c -p 7000</div><div class="line">redis 127.0.0.1:7000&gt; set foo bar</div><div class="line">-&gt; Redirected to slot [12182] located at 127.0.0.1:7002</div><div class="line">OK</div><div class="line">redis 127.0.0.1:7002&gt; set hello world</div><div class="line">-&gt; Redirected to slot [866] located at 127.0.0.1:7000</div><div class="line">OK</div><div class="line">redis 127.0.0.1:7000&gt; get foo</div><div class="line">-&gt; Redirected to slot [12182] located at 127.0.0.1:7002</div><div class="line">&quot;bar&quot;</div><div class="line">redis 127.0.0.1:7000&gt; get hello</div><div class="line">-&gt; Redirected to slot [866] located at 127.0.0.1:7000</div><div class="line">&quot;world&quot;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -471,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/kafka 集群/" rel="next" title="kafka 集群">
-                <i class="fa fa-chevron-left"></i> kafka 集群
+              <a href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" rel="next" title="MySQL TIMESTAMP 字段 Invalid default value 问题">
+                <i class="fa fa-chevron-left"></i> MySQL TIMESTAMP 字段 Invalid default value 问题
               </a>
             
           </div>
@@ -481,8 +485,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/15/MySQL 修改默认字符集/" rel="prev" title="MySQL 修改默认字符集">
-                MySQL 修改默认字符集 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/25/单例模式/" rel="prev" title="单例模式">
+                单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -610,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-关闭-mysql-服务"><span class="nav-number">1.</span> <span class="nav-text">1.关闭 mysql 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-以安全模式运行-mysql"><span class="nav-number">2.</span> <span class="nav-text">2.以安全模式运行 mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-修改密码"><span class="nav-number">3.</span> <span class="nav-text">3.修改密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启-mysql"><span class="nav-number">4.</span> <span class="nav-text">重启 mysql</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建目录"><span class="nav-number">1.</span> <span class="nav-text">1. 创建目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">2. 修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行实例"><span class="nav-number">3.</span> <span class="nav-text">3. 运行实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-创建集群"><span class="nav-number">4.</span> <span class="nav-text">4. 创建集群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-简单测试"><span class="nav-number">5.</span> <span class="nav-text">5. 简单测试</span></a></li></ol></div>
             
 
           </div>
@@ -764,7 +768,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/09/13/MySQL 重置密码/"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/10/25/Redis 官网集群步骤/"});
 		
 
 		(function() {

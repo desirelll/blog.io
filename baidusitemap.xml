@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://desirelll.com/2017/10/25/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-10-25T02:33:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>单例模式</title>
+        <pubTime>2017-10-25T02:33:45.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="java" url="http://desirelll.com/categories/java/"/>
+          
+             
+              <breadCrumb title="design pattern" url="http://desirelll.com/categories/java/design-pattern/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://desirelll.com/2017/10/25/Redis%20%E5%AE%98%E7%BD%91%E9%9B%86%E7%BE%A4%E6%AD%A5%E9%AA%A4/</loc>
+    <lastmod>2017-10-25T02:32:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Redis 官网集群步骤</title>
+        <pubTime>2017-10-25T02:32:46.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="java" url="http://desirelll.com/categories/java/"/>
+          
+             
+              <breadCrumb title="redis" url="http://desirelll.com/categories/java/redis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://desirelll.com/2017/10/25/MySQL%20TIMESTAMP%20%1B%E5%AD%97%E6%AE%B5%20Invalid%20default%20value%20%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2017-10-25T02:30:58.000Z</lastmod>
     <data>
@@ -60,27 +102,6 @@
           
              
               <breadCrumb title="mycat" url="http://desirelll.com/categories/java/mycat/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://desirelll.com/2017/10/17/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-10-17T07:09:18.000Z</lastmod>
-    <data>
-        <display>
-        <title>单例模式</title>
-        <pubTime>2017-10-17T07:09:18.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="java" url="http://desirelll.com/categories/java/"/>
-          
-             
-              <breadCrumb title="desine pattern" url="http://desirelll.com/categories/java/desine-pattern/"/>
           
         </display>
     </data>

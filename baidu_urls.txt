@@ -1,3 +1,4 @@
+http://desirelll.com/2017/10/25/Mycat 实现读写分离/
 http://desirelll.com/2017/10/25/单例模式/
 http://desirelll.com/2017/10/25/Redis 官网集群步骤/
 http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/

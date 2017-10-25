@@ -280,6 +280,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/Mycat 实现读写分离/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/Mycat 实现读写分离/" itemprop="url">Mycat 实现读写分离</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:48:10+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/mycat/" itemprop="url" rel="index">
+                    <span itemprop="name">mycat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/Mycat 实现读写分离/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/Mycat 实现读写分离/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/10/25/Mycat 实现读写分离/" class="leancloud_visitors" data-flag-title="Mycat 实现读写分离">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、环境介绍"><a href="#一、环境介绍" class="headerlink" title="一、环境介绍"></a>一、环境介绍</h3><p>macOS（Mycat1.6） + centos（MySQL主从复制）<br>实验拓扑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      mycat</div><div class="line">      /    \</div><div class="line">master -- slave (主从复制)</div></pre></td></tr></table></figure>
+<p>需求：已部署好 MySQL 主从复制</p>
+<h3 id="二、Mycat-配置"><a href="#二、Mycat-配置" class="headerlink" title="二、Mycat 配置"></a>二、Mycat 配置</h3><h4 id="schema-xml"><a href="#schema-xml" class="headerlink" title="schema.xml"></a>schema.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</div><div class="line">&lt;!DOCTYPE mycat:schema SYSTEM &quot;schema.dtd&quot;&gt;</div><div class="line">&lt;mycat:schema xmlns:mycat=&quot;http://io.mycat/&quot;&gt;</div><div class="line"></div><div class="line">    &lt;schema name=&quot;TESTDB&quot; checkSQLschema=&quot;false&quot; sqlMaxLimit=&quot;100&quot;&gt;</div><div class="line">        &lt;table name=&quot;item&quot; primaryKey=&quot;id&quot; dataNode=&quot;dn1&quot; /&gt;</div><div class="line">    &lt;/schema&gt;</div><div class="line"> </div><div class="line">    &lt;dataNode name=&quot;dn1&quot; dataHost=&quot;c1&quot; database=&quot;lujw_mycat_db01&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;!-- 读写分离 --&gt;</div><div class="line">    &lt;dataHost name=&quot;c1&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;3&quot; writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;-1&quot;  slaveThreshold=&quot;100&quot;&gt;</div><div class="line">        &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</div><div class="line">        &lt;writeHost host=&quot;WHost&quot; url=&quot;116.7.40.10:3305&quot; user=&quot;root&quot; password=&quot;password&quot;&gt;</div><div class="line">            &lt;readHost host=&quot;RHost&quot; url=&quot;116.7.40.10:3304&quot; user=&quot;root&quot; password=&quot;password&quot; /&gt;</div><div class="line">        &lt;/writeHost&gt;</div><div class="line">    &lt;/dataHost&gt;</div><div class="line">	</div><div class="line">&lt;/mycat:schema&gt;</div></pre></td></tr></table></figure>
+<p>dataNode 标签定义了 MyCat 中的数据节点,也就是我们通常说所的数据分片。一个 dataNode 标签就是 一个独立的数据分片。</p>
+<p>dataHost: 包含一个 writeHost 和 一个 readHost，它们之前已经配置好主从复制了。</p>
+<p>balance=”3”：表示写请求只发给节点，读请求只发给读节点。</p>
+<p>dataHost属性说明：</p>
+<ol>
+<li>writeType=”0”, 所有写操作发送到配置的第一个 writeHost,第一个挂了切到还生存的第二个 writeHost,重新启动后已切换后的为准,切换记录在配置文件中:dnindex.properties .</li>
+<li>balance=”3”,所有读请求随机的分发到 wiriterHost 对应的 readhost 执行,writerHost 不负担读压力,注意 balance=3 只在 1.4 及其以后版本有,1.3 没有。<h4 id="server-xml-配置"><a href="#server-xml-配置" class="headerlink" title="server.xml 配置"></a>server.xml 配置</h4></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;user name=&quot;root&quot;&gt;</div><div class="line">        &lt;property name=&quot;password&quot;&gt;123456&lt;/property&gt;</div><div class="line">        &lt;property name=&quot;schemas&quot;&gt;TESTDB&lt;/property&gt;</div><div class="line">&lt;/user&gt;</div></pre></td></tr></table></figure>
+<p>这里根据自己 Mycat 设定来修改</p>
+<h3 id="三、创建数据库"><a href="#三、创建数据库" class="headerlink" title="三、创建数据库"></a>三、创建数据库</h3><p>在主库中创建如 schema.xml 所示的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">create database lujw_mycat_db01;</div><div class="line">use lujw_mycat_db01;</div><div class="line">create table item(</div><div class="line">id int not null,</div><div class="line">name varchar(20)</div><div class="line">);</div></pre></td></tr></table></figure>
+<h3 id="四、Mycat-管理端口和数据端口"><a href="#四、Mycat-管理端口和数据端口" class="headerlink" title="四、Mycat 管理端口和数据端口"></a>四、Mycat 管理端口和数据端口</h3><p>管理端口：9066<br>数据端口：8066<br>为了观察数据路由和验证读写分离的正确性，使用两个终端分别进入两种 Mycat 管理模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql -uroot -p123456 -P8066</div><div class="line">mysql -uroot -p123456 -P9066</div></pre></td></tr></table></figure>
+<p>列出管理端口支持的命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show @@help;</div><div class="line">+------------------------------------------+--------------------------------------------+</div><div class="line">| STATEMENT                                | DESCRIPTION                                |</div><div class="line">+------------------------------------------+--------------------------------------------+</div><div class="line">| show @@time.current                      | Report current timestamp                   |</div><div class="line">| show @@time.startup                      | Report startup timestamp                   |</div><div class="line">| show @@version                           | Report Mycat Server version                |</div><div class="line">| show @@server                            | Report server status                       |</div><div class="line">| show @@threadpool                        | Report threadPool status                   |</div><div class="line">| show @@database                          | Report databases                           |</div><div class="line">| show @@datanode                          | Report dataNodes                           |</div><div class="line">| show @@datanode where schema = ?         | Report dataNodes                           |</div><div class="line">| show @@datasource                        | Report dataSources                         |</div><div class="line">| show @@datasource where dataNode = ?     | Report dataSources                         |</div><div class="line">| show @@datasource.synstatus              | Report datasource data synchronous         |</div><div class="line">| show @@datasource.syndetail where name=? | Report datasource data synchronous detail  |</div><div class="line">| show @@datasource.cluster                | Report datasource galary cluster variables |</div><div class="line">| show @@processor                         | Report processor status                    |</div><div class="line">| show @@command                           | Report commands status                     |</div><div class="line">| show @@connection                        | Report connection status                   |</div><div class="line">| show @@cache                             | Report system cache usage                  |</div><div class="line">| show @@backend                           | Report backend connection status           |</div><div class="line">| show @@session                           | Report front session details               |</div><div class="line">| show @@connection.sql                    | Report connection sql                      |</div><div class="line">| show @@sql.execute                       | Report execute status                      |</div><div class="line">| show @@sql.detail where id = ?           | Report execute detail status               |</div><div class="line">| show @@sql                               | Report SQL list                            |</div><div class="line">| show @@sql.high                          | Report Hight Frequency SQL                 |</div><div class="line">| show @@sql.slow                          | Report slow SQL                            |</div><div class="line">| show @@sql.resultset                     | Report BIG RESULTSET SQL                   |</div><div class="line">| show @@sql.sum                           | Report  User RW Stat                       |</div><div class="line">| show @@sql.sum.user                      | Report  User RW Stat                       |</div><div class="line">| show @@sql.sum.table                     | Report  Table RW Stat                      |</div><div class="line">| show @@parser                            | Report parser status                       |</div><div class="line">| show @@router                            | Report router status                       |</div><div class="line">| show @@heartbeat                         | Report heartbeat status                    |</div><div class="line">| show @@heartbeat.detail where name=?     | Report heartbeat current detail            |</div><div class="line">| show @@slow where schema = ?             | Report schema slow sql                     |</div><div class="line">| show @@slow where datanode = ?           | Report datanode slow sql                   |</div><div class="line">| show @@sysparam                          | Report system param                        |</div><div class="line">| show @@syslog limit=?                    | Report system mycat.log                    |</div><div class="line">| show @@white                             | show mycat white host                      |</div><div class="line">| show @@white.set=?,?                     | set mycat white host,[ip,user]             |</div><div class="line">| show @@directmemory=1 or 2               | show mycat direct memory usage             |</div><div class="line">| switch @@datasource name:index           | Switch dataSource                          |</div><div class="line">| kill @@connection id1,id2,...            | Kill the specified connections             |</div><div class="line">| stop @@heartbeat name:time               | Pause dataNode heartbeat                   |</div><div class="line">| reload @@config                          | Reload basic config from file              |</div><div class="line">| reload @@config_all                      | Reload all config from file                |</div><div class="line">| reload @@route                           | Reload route config from file              |</div><div class="line">| reload @@user                            | Reload user config from file               |</div><div class="line">| reload @@sqlslow=                        | Set Slow SQL Time(ms)                      |</div><div class="line">| reload @@user_stat                       | Reset show @@sql  @@sql.sum @@sql.slow     |</div><div class="line">| rollback @@config                        | Rollback all config from memory            |</div><div class="line">| rollback @@route                         | Rollback route config from memory          |</div><div class="line">| rollback @@user                          | Rollback user config from memory           |</div><div class="line">| reload @@sqlstat=open                    | Open real-time sql stat analyzer           |</div><div class="line">| reload @@sqlstat=close                   | Close real-time sql stat analyzer          |</div><div class="line">| offline                                  | Change MyCat status to OFF                 |</div><div class="line">| online                                   | Change MyCat status to ON                  |</div><div class="line">| clear @@slow where schema = ?            | Clear slow sql by schema                   |</div><div class="line">| clear @@slow where datanode = ?          | Clear slow sql by datanode                 |</div><div class="line">+------------------------------------------+--------------------------------------------+</div><div class="line">58 rows in set (0.01 sec)</div></pre></td></tr></table></figure>
+<p>其中比较有用的是<br>查看心跳报告：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show @@heartbeat;</div><div class="line">+-------+-------+-------------+------+---------+-------+--------+---------+--------------+---------------------+-------+</div><div class="line">| NAME  | TYPE  | HOST        | PORT | RS_CODE | RETRY | STATUS | TIMEOUT | EXECUTE_TIME | LAST_ACTIVE_TIME    | STOP  |</div><div class="line">+-------+-------+-------------+------+---------+-------+--------+---------+--------------+---------------------+-------+</div><div class="line">| WHost | mysql | 116.7.40.10 | 3305 |       1 |     0 | idle   |       0 | 68,45,34     | 2017-10-25 15:40:20 | false |</div><div class="line">| RHost | mysql | 116.7.40.10 | 3304 |       1 |     0 | idle   |       0 | 65,39,33     | 2017-10-25 15:40:20 | false |</div><div class="line">+-------+-------+-------------+------+---------+-------+--------+---------+--------------+---------------------+-------+</div><div class="line">2 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>根据 RS_CODE 可以得到节点状态<br>RS_CODE 状态:<br>    OK_STATUS = 1;正常状态<br>    ERROR_STATUS = -1; 连接出错<br>    TIMEOUT_STATUS = -2; 连接超时<br>    INIT_STATUS = 0; 初始化状态</p>
+<p>显示数据源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show @@datasource;</div><div class="line">+----------+-------+-------+-------------+------+------+--------+------+------+---------+-----------+------------+</div><div class="line">| DATANODE | NAME  | TYPE  | HOST        | PORT | W/R  | ACTIVE | IDLE | SIZE | EXECUTE | READ_LOAD | WRITE_LOAD |</div><div class="line">+----------+-------+-------+-------------+------+------+--------+------+------+---------+-----------+------------+</div><div class="line">| dn1      | WHost | mysql | 116.7.40.10 | 3305 | W    |      0 |   10 | 1000 |     242 |         0 |          5 |</div><div class="line">| dn1      | RHost | mysql | 116.7.40.10 | 3304 | R    |      0 |    8 | 1000 |     205 |         1 |          0 |</div><div class="line">+----------+-------+-------+-------------+------+------+--------+------+------+---------+-----------+------------+</div><div class="line">2 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>这里可以看到主从信息，最后两列可以用来判断读写分离是否成功<br>接下来插入数据来验证<br>使用 Mycat 8066端进行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">insert into item(id, name) value(100, &quot;hello&quot;);</div><div class="line">select * from item;</div></pre></td></tr></table></figure></p>
+<p>切换到 9066 再次查询数据源信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show @@datasource;</div><div class="line">+----------+-------+-------+-------------+------+------+--------+------+------+---------+-----------+------------+</div><div class="line">| DATANODE | NAME  | TYPE  | HOST        | PORT | W/R  | ACTIVE | IDLE | SIZE | EXECUTE | READ_LOAD | WRITE_LOAD |</div><div class="line">+----------+-------+-------+-------------+------+------+--------+------+------+---------+-----------+------------+</div><div class="line">| dn1      | WHost | mysql | 116.7.40.10 | 3305 | W    |      0 |   10 | 1000 |     265 |         0 |          6 |</div><div class="line">| dn1      | RHost | mysql | 116.7.40.10 | 3304 | R    |      0 |    8 | 1000 |     228 |         2 |          0 |</div><div class="line">+----------+-------+-------+-------------+------+------+--------+------+------+---------+-----------+------------+</div><div class="line">2 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>可以看到主从库的读写分别加了1，说明读写分离是成功的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2042,205 +2246,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/13/kafka 命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/13/kafka 命令/" itemprop="url">kafka 命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T14:44:12+08:00">
-                2017-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/kafka/" itemprop="url" rel="index">
-                    <span itemprop="name">kafka</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/13/kafka 命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/13/kafka 命令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/13/kafka 命令/" class="leancloud_visitors" data-flag-title="kafka 命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./kafka-topics.sh --zookeeper localhost:2181 --create --topic Hello-Kafka --partitions 2 --replication-factor 2</div></pre></td></tr></table></figure>
-<p>注： partitions指定topic分区数，replication-factor指定topic每个分区的副本数</p>
-<ul>
-<li>partitions分区数:<ul>
-<li>partitions ：分区数，控制topic将分片成多少个log。可以显示指定，如果不指定则会使用broker(server.properties)中的num.partitions配置的数量</li>
-<li>虽然增加分区数可以提供kafka集群的吞吐量、但是过多的分区数或者或是单台服务器上的分区数过多，会增加不可用及延迟的风险。因为多的分区数，意味着需要打开更多的文件句柄、增加点到点的延时、增加客户端的内存消耗。</li>
-<li>分区数也限制了consumer的并行度，即限制了并行consumer消息的线程数不能大于分区数</li>
-<li>分区数也限制了producer发送消息是指定的分区。如创建topic时分区设置为1，producer发送消息时通过自定义的分区方法指定分区为2或以上的数都会出错的；这种情况可以通过alter –partitions 来增加分区数。</li>
-</ul>
-</li>
-<li>replication-factor副本<ul>
-<li>replication factor 控制消息保存在几个broker(服务器)上，一般情况下等于broker的个数。</li>
-<li>如果没有在创建时显示指定或通过API向一个不存在的topic生产消息时会使用broker(server.properties)中的default.replication.factor配置的数量</li>
-</ul>
-</li>
-</ul>
-<h4 id="查看所有-topic-列表"><a href="#查看所有-topic-列表" class="headerlink" title="查看所有 topic 列表"></a>查看所有 topic 列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./kafka-topics.sh --zookeeper localhost:2181 --list</div><div class="line">``` </div><div class="line"></div><div class="line">#### 查看指定 topic 信息</div></pre></td></tr></table></figure>
-<p>./kafka-topics.sh –zookeeper localhost:2181 –describe –topic Hello-Kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 控制台向 topic 生产数据</div></pre></td></tr></table></figure></p>
-<p>./kafka_console-producer.sh –broker-list localhost:9092 –topic Hello-Kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 控制台消费 topic 的数据</div></pre></td></tr></table></figure></p>
-<p>./kafka-console-consumer.sh –zookeeper localhost:2181 –topic Hello-Kafka –from-beginning<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 查看 topic 某分区偏移量最大（小）值</div></pre></td></tr></table></figure></p>
-<p>./kafka-run-class.sh kafka.tools.GetOffsetshell –topic hive-mdatabase-hostsitable –time -1 –broker-list localhost:9092 –partitions 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">注： time为-1时表示最大值，time为-2时表示最小值</div><div class="line"></div><div class="line">#### 修改 topic 分区数</div></pre></td></tr></table></figure></p>
-<p>./kafka-topics.sh –zookeeper localhost：2181 –alter –topic Hello-Kafka –partitions 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 删除topic，慎用，只会删除zookeeper中的元数据，消息文件须手动删除</div></pre></td></tr></table></figure></p>
-<p>./kafka-run-class.sh kafka.admin.DeleteTopicCommand –zookeeper localhost:2181 –topic t_cdr<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 查看topic消费进度</div><div class="line">这个会显示出consumer group的offset情况， 必须参数为--group， 不指定--topic，默认为所有topic</div><div class="line"></div><div class="line">Displays the: Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Group</div></pre></td></tr></table></figure></p>
-<p>kafka-run-class.sh kafka.tools.ConsumerOffsetChecker<br>```</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2291,7 +2296,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

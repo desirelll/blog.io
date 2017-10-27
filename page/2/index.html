@@ -280,6 +280,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/13/kafka 集群/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢佳伟的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/kafka 集群/" itemprop="url">kafka 集群</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T14:45:04+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">kafka</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/13/kafka 集群/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/13/kafka 集群/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/13/kafka 集群/" class="leancloud_visitors" data-flag-title="kafka 集群">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在三台服务器下分别安装好 kafka </p>
+<h3 id="一、配置一个-ZooKeeper-集群"><a href="#一、配置一个-ZooKeeper-集群" class="headerlink" title="一、配置一个 ZooKeeper 集群"></a>一、配置一个 ZooKeeper 集群</h3><p>修改三个服务器下的 config/zookeeper.properties 为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">dataDir=/Users/desire/Library/kafka_2.11/data</div><div class="line">clientPort=2383</div><div class="line">initLimit=5</div><div class="line">syncLimit=2</div><div class="line">server.0=192.168.165.205:3434:3535</div><div class="line">server.1=192.168.171.50:3434:3535</div><div class="line">server.2=192.168.171.51:3434:3535</div></pre></td></tr></table></figure>
+<p>然后再 dataDir 目录下写一个 myid 文件，内容为当前服务器的 id</p>
+<h3 id="二、配置-broker-集群"><a href="#二、配置-broker-集群" class="headerlink" title="二、配置 broker 集群"></a>二、配置 broker 集群</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">broker.id=0</div><div class="line">delete.topic.enable=true</div><div class="line"></div><div class="line">listeners=PLAINTEXT://192.168.165.205:9092</div><div class="line">#advertised.listeners=PLAINTEXT://your.host.name:9092</div><div class="line">num.network.threads=3</div><div class="line">num.io.threads=8</div><div class="line">socket.send.buffer.bytes=102400</div><div class="line">socket.receive.buffer.bytes=102400</div><div class="line">socket.request.max.bytes=104857600</div><div class="line"></div><div class="line">log.dirs=/tmp/kafka-logs</div><div class="line">num.partitions=1</div><div class="line">num.recovery.threads.per.data.dir=1</div><div class="line"></div><div class="line">offsets.topic.replication.factor=1</div><div class="line">transaction.state.log.replication.factor=1</div><div class="line">transaction.state.log.min.isr=1</div><div class="line"></div><div class="line">#log.flush.interval.messages=10000</div><div class="line">#log.flush.interval.ms=1000</div><div class="line"></div><div class="line">log.retention.hours=168</div><div class="line">#log.retention.bytes=1073741824</div><div class="line">log.segment.bytes=1073741824</div><div class="line">log.retention.check.interval.ms=300000</div><div class="line"></div><div class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</div><div class="line">zookeeper.connection.timeout.ms=10000</div><div class="line"></div><div class="line">group.initial.rebalance.delay.ms=0</div></pre></td></tr></table></figure>
+<p>需要修改的地方为</p>
+<ul>
+<li>broker.id</li>
+<li>listeners</li>
+<li>log.dirs</li>
+<li>zookeeper.connect</li>
+</ul>
+<p>第一个服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">broker.id=0</div><div class="line">listeners=PLAINTEXT://192.168.165.205:9092</div><div class="line">log.dirs=/tmp/kafka-logs</div><div class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</div></pre></td></tr></table></figure>
+<p>第二个服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">broker.id=1</div><div class="line">listeners=PLAINTEXT://192.168.171.50:9092</div><div class="line">log.dirs=/tmp/kafka-logs-1</div><div class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</div></pre></td></tr></table></figure>
+<p>第三个服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">broker.id=2</div><div class="line">listeners=PLAINTEXT://192.168.171.51:9092</div><div class="line">log.dirs=/tmp/kafka-logs-2</div><div class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</div></pre></td></tr></table></figure>
+<h3 id="三、生产者配置文件修改"><a href="#三、生产者配置文件修改" class="headerlink" title="三、生产者配置文件修改"></a>三、生产者配置文件修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bootstrap.servers=192.168.165.205:9092,192.168.171.50:9092,192.168.171.51:9092</div></pre></td></tr></table></figure>
+<h3 id="四、消费者配置文件修改"><a href="#四、消费者配置文件修改" class="headerlink" title="四、消费者配置文件修改"></a>四、消费者配置文件修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</div><div class="line">zookeeper.connection.timeout.ms=10000</div></pre></td></tr></table></figure>
+<h3 id="五、运行服务"><a href="#五、运行服务" class="headerlink" title="五、运行服务"></a>五、运行服务</h3><p>分别开启三个服务器的 ZooKeeper 服务<br><code>./zookeeper-server-start.sh ../config/</code>zookeeper.properties<br>分别开启三个服务器的 kafka 服务<br><code>./kafka-server-start.sh ../config/server.properties</code></p>
+<h3 id="六、生产者发送消息"><a href="#六、生产者发送消息" class="headerlink" title="六、生产者发送消息"></a>六、生产者发送消息</h3><ol>
+<li><p>创建一个 topic</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./kafka-topics.sh --create --zookeeper 192.168.165.205:2181 --replication-factor 3 --partitions 1 --topic test-replicated-topic</div></pre></td></tr></table></figure>
+</li>
+<li><p>生产者发送消息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./kafka-console-producer.sh --broker-list 192.168.165.205:9092 --topic test-replicated-topic</div><div class="line">&gt; hello,kafka!</div><div class="line">&gt; bye,kafka!</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="七、消费者消费消息"><a href="#七、消费者消费消息" class="headerlink" title="七、消费者消费消息"></a>七、消费者消费消息</h3><ol>
+<li><p>第一台服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./kafka-console-consumer.sh --zookeeper 192.168.165.205:2181 --from-beginning --topic test-replicated-topic</div></pre></td></tr></table></figure>
+</li>
+<li><p>第二胎服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./kafka-console-consumer.sh --zookeeper 192.168.171.50:2181 --from-beginning --topic test-replicated-topic</div></pre></td></tr></table></figure>
+</li>
+<li><p>第三台服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./kafka-console-consumer.sh --zookeeper 192.168.171.51:2181 --from-beginning --topic test-replicated-topic</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/13/kafka 命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1042,215 +1257,6 @@
 <p>综上所述，三台服务器中的 ZooKeeper 文件夹中不同的地方就是 dataDir 的路径以及 dataDir 中的 myid 的内容（在这里分别为1、2、3）</p>
 <h3 id="运行-amp-测试"><a href="#运行-amp-测试" class="headerlink" title="运行 &amp; 测试"></a>运行 &amp; 测试</h3><p>修改完成之后逐个启动即可<br><code>./zkServer.sh start</code><br>然后在其中一个服务器中启动客户端连接其他服务器的地址<br><code>./zkCli.sh -server 192.168.1.*:2181</code></p>
 <p>创建一个 znode 来测试</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/Zookeeper 伪集群部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢佳伟的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/05/Zookeeper 伪集群部署/" itemprop="url">Zookeeper 伪集群部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T09:31:53+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">ZooKeeper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/05/Zookeeper 伪集群部署/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/Zookeeper 伪集群部署/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/05/Zookeeper 伪集群部署/" class="leancloud_visitors" data-flag-title="Zookeeper 伪集群部署">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有分布式的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例</p>
-<hr>
-<p>创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4</p>
-<h3 id="修改-zoo-cfg-文件"><a href="#修改-zoo-cfg-文件" class="headerlink" title="修改 zoo.cfg 文件"></a>修改 zoo.cfg 文件</h3><ul>
-<li>server2/conf/zoo.cfg</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server2/data</div><div class="line">clientPort=2182</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
-<ul>
-<li>server3/conf/zoo.cfg</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server3/data</div><div class="line">clientPort=2183</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
-<ul>
-<li>server4/conf/zoo.cfg</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server4/data</div><div class="line">clientPort=2184</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
-<p>可以看到三个配置文件不同的地方是</p>
-<ul>
-<li>dataDir 目录：分别在自己的文件夹内创建一个 data 文件夹</li>
-<li>clientPort：因为是在同一个服务器下，所以三个启动端口必须不一样</li>
-</ul>
-<h3 id="创建-myid-文件"><a href="#创建-myid-文件" class="headerlink" title="创建 myid 文件"></a>创建 myid 文件</h3><p>在上面指定的 dataDir 里面分别创建一个名为 myid 的文件（没有后缀名），存储的是各自的 server id</p>
-<ul>
-<li>/Library/zookeeper/server2/data/myid</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1</div></pre></td></tr></table></figure>
-<ul>
-<li>/Library/zookeeper/server3/data/myid</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure>
-<ul>
-<li>/Library/zookeeper/server4/data/myid</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
-<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>分别进入 bin 文件夹内执行<br><code>./zkServer.sh start</code><br>并执行<br><code>./zkCli.sh -server 127.0.0.1:端口号</code><br>注意端口号要用到配置文件中的三个不同的端口号，以便测试所有服务都可用，完了我们就已经开了三个连接不同端口的客户端<br>然后在其中一个执行 <code>create /test hello</code> 指令创建一个节点，在另外的客户端中执行 <code>ls /</code>命令查看是否创建成功即可</p>
 
           
         

@@ -1,5 +1,6 @@
+http://desirelll.com/2017/10/27/单例模式/
+http://desirelll.com/2017/10/26/Zookeeper 伪集群部署/
 http://desirelll.com/2017/10/25/Mycat 实现读写分离/
-http://desirelll.com/2017/10/25/单例模式/
 http://desirelll.com/2017/10/25/Redis 官网集群步骤/
 http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/
 http://desirelll.com/2017/10/24/MySQL 主从复制/
@@ -12,7 +13,6 @@ http://desirelll.com/2017/09/13/kafka 命令/
 http://desirelll.com/2017/09/05/ZooKeeper 常用接口/
 http://desirelll.com/2017/09/05/ZooKeeper Java 实例/
 http://desirelll.com/2017/09/05/ZooKeeper 集群部署/
-http://desirelll.com/2017/09/05/Zookeeper 伪集群部署/
 http://desirelll.com/2017/09/05/ZooKeeper 安装和启动/
 http://desirelll.com/2017/08/28/netty 基本使用（五）/
 http://desirelll.com/2017/08/28/netty 基本使用（四）/

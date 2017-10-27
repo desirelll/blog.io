@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="本机运行环境：macOS 1. 官网下载http://mirrors.hust.edu.cn/apache/zookeeper/可直接选择 stable release 下载最新的稳定版本 2. 解压 &amp;amp; 修改 cfg 文件名将下载的 tar 包解压放在自己喜欢的目录下，然后进入 conf 子目录将 zoo_sample.cfg 文件改为 zoo.cfg 3. 启动 &amp;amp; 运行进入">
+<meta name="description" content="伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有集群的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例  创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ZooKeeper 安装和启动">
-<meta property="og:url" content="http://desirelll.com/2017/09/05/ZooKeeper 安装和启动/index.html">
+<meta property="og:title" content="Zookeeper 伪集群部署">
+<meta property="og:url" content="http://desirelll.com/2017/10/26/Zookeeper 伪集群部署/index.html">
 <meta property="og:site_name" content="卢佳伟的个人博客">
-<meta property="og:description" content="本机运行环境：macOS 1. 官网下载http://mirrors.hust.edu.cn/apache/zookeeper/可直接选择 stable release 下载最新的稳定版本 2. 解压 &amp;amp; 修改 cfg 文件名将下载的 tar 包解压放在自己喜欢的目录下，然后进入 conf 子目录将 zoo_sample.cfg 文件改为 zoo.cfg 3. 启动 &amp;amp; 运行进入">
+<meta property="og:description" content="伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有集群的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例  创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-05T01:31:01.000Z">
+<meta property="og:updated_time" content="2017-10-26T06:39:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZooKeeper 安装和启动">
-<meta name="twitter:description" content="本机运行环境：macOS 1. 官网下载http://mirrors.hust.edu.cn/apache/zookeeper/可直接选择 stable release 下载最新的稳定版本 2. 解压 &amp;amp; 修改 cfg 文件名将下载的 tar 包解压放在自己喜欢的目录下，然后进入 conf 子目录将 zoo_sample.cfg 文件改为 zoo.cfg 3. 启动 &amp;amp; 运行进入">
+<meta name="twitter:title" content="Zookeeper 伪集群部署">
+<meta name="twitter:description" content="伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有集群的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例  创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://desirelll.com/2017/09/05/ZooKeeper 安装和启动/"/>
+  <link rel="canonical" href="http://desirelll.com/2017/10/26/Zookeeper 伪集群部署/"/>
 
 
 
 
 
-  <title>ZooKeeper 安装和启动 | 卢佳伟的个人博客</title>
+  <title>Zookeeper 伪集群部署 | 卢佳伟的个人博客</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/ZooKeeper 安装和启动/">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/26/Zookeeper 伪集群部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="desirelll">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ZooKeeper 安装和启动</h1>
+          <h1 class="post-title" itemprop="name headline">Zookeeper 伪集群部署</h1>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T09:31:01+08:00">
-                2017-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T14:39:04+08:00">
+                2017-10-26
               </time>
             
 
@@ -364,8 +364,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/05/ZooKeeper 安装和启动/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/ZooKeeper 安装和启动/" itemprop="commentsCount"></span>
+                <a href="/2017/10/26/Zookeeper 伪集群部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/26/Zookeeper 伪集群部署/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -374,7 +374,7 @@
 
           
           
-             <span id="/2017/09/05/ZooKeeper 安装和启动/" class="leancloud_visitors" data-flag-title="ZooKeeper 安装和启动">
+             <span id="/2017/10/26/Zookeeper 伪集群部署/" class="leancloud_visitors" data-flag-title="Zookeeper 伪集群部署">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -405,11 +405,40 @@
       
 
       
-        <p>本机运行环境：macOS</p>
-<h3 id="1-官网下载"><a href="#1-官网下载" class="headerlink" title="1. 官网下载"></a>1. 官网下载</h3><p><a href="http://mirrors.hust.edu.cn/apache/zookeeper/" target="_blank" rel="external">http://mirrors.hust.edu.cn/apache/zookeeper/</a><br>可直接选择 <a href="http://mirrors.hust.edu.cn/apache/zookeeper/stable/" target="_blank" rel="external">stable</a> release 下载最新的稳定版本</p>
-<h3 id="2-解压-amp-修改-cfg-文件名"><a href="#2-解压-amp-修改-cfg-文件名" class="headerlink" title="2. 解压 &amp; 修改 cfg 文件名"></a>2. 解压 &amp; 修改 cfg 文件名</h3><p>将下载的 tar 包解压放在自己喜欢的目录下，然后进入 conf 子目录将 zoo_sample.cfg 文件改为 zoo.cfg</p>
-<h3 id="3-启动-amp-运行"><a href="#3-启动-amp-运行" class="headerlink" title="3. 启动 &amp; 运行"></a>3. 启动 &amp; 运行</h3><p>进入 bin 目录，执行 <code>./zkServer.sh start</code> 命令启动 ZooKeeper，执行 <code>./zkCli.sh</code> 运行 ZooKeeper</p>
-<h3 id="4-基本操作"><a href="#4-基本操作" class="headerlink" title="4. 基本操作"></a>4. 基本操作</h3><p>查看目录：<code>ls /</code><br>创建目录：<code>create</code><br>获取目录：<code>get</code></p>
+        <p>伪集群部署即在同一个服务器上开启多个 ZooKeeper 服务，现实中肯定不会这样使用，因为要是这个服务器挂了，那这些 ZooKeeper 就都挂了，这样就没有集群的意义了。但在资源有限的情况下可以使用这种方法来学习、测试多服务器的部署，这里以3个 Server 为例</p>
+<hr>
+<p>创建一个文件夹 ZooKeeper，并在里面放置三个 ZooKeeper，改名为 server2，server3，server4</p>
+<h3 id="修改-zoo-cfg-文件"><a href="#修改-zoo-cfg-文件" class="headerlink" title="修改 zoo.cfg 文件"></a>修改 zoo.cfg 文件</h3><ul>
+<li>server2/conf/zoo.cfg</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server2/data</div><div class="line">clientPort=2182</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
+<ul>
+<li>server3/conf/zoo.cfg</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server3/data</div><div class="line">clientPort=2183</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
+<ul>
+<li>server4/conf/zoo.cfg</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tickTime=2000</div><div class="line">initLimit=10</div><div class="line">syncLimit=5</div><div class="line">dataDir=/Library/zookeeper/server4/data</div><div class="line">clientPort=2184</div><div class="line">server.1=127.0.0.1:2888:3888</div><div class="line">server.2=127.0.0.1:2889:3889</div><div class="line">server.3=127.0.0.1:2890:3890</div></pre></td></tr></table></figure>
+<p>可以看到三个配置文件不同的地方是</p>
+<ul>
+<li>dataDir 目录：分别在自己的文件夹内创建一个 data 文件夹</li>
+<li>clientPort：因为是在同一个服务器下，所以三个启动端口必须不一样</li>
+</ul>
+<h3 id="创建-myid-文件"><a href="#创建-myid-文件" class="headerlink" title="创建 myid 文件"></a>创建 myid 文件</h3><p>在上面指定的 dataDir 里面分别创建一个名为 myid 的文件（没有后缀名），存储的是各自的 server id</p>
+<ul>
+<li>/Library/zookeeper/server2/data/myid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1</div></pre></td></tr></table></figure>
+<ul>
+<li>/Library/zookeeper/server3/data/myid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure>
+<ul>
+<li>/Library/zookeeper/server4/data/myid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>分别进入 bin 文件夹内执行<br><code>./zkServer.sh start</code><br>并执行<br><code>./zkCli.sh -server 127.0.0.1:端口号</code><br>注意端口号要用到配置文件中的三个不同的端口号，以便测试所有服务都可用，完了我们就已经开了三个连接不同端口的客户端<br>然后在其中一个执行 <code>create /test hello</code> 指令创建一个节点，在另外的客户端中执行 <code>ls /</code>命令查看是否创建成功即可</p>
 
       
     </div>
@@ -463,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/28/netty 基本使用（五）/" rel="next" title="netty 基本使用（五）">
-                <i class="fa fa-chevron-left"></i> netty 基本使用（五）
+              <a href="/2017/10/25/Mycat 实现读写分离/" rel="next" title="Mycat 实现读写分离">
+                <i class="fa fa-chevron-left"></i> Mycat 实现读写分离
               </a>
             
           </div>
@@ -473,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/05/ZooKeeper 集群部署/" rel="prev" title="ZooKeeper 集群部署">
-                ZooKeeper 集群部署 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/27/单例模式/" rel="prev" title="单例模式">
+                单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-官网下载"><span class="nav-number">1.</span> <span class="nav-text">1. 官网下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解压-amp-修改-cfg-文件名"><span class="nav-number">2.</span> <span class="nav-text">2. 解压 & 修改 cfg 文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-启动-amp-运行"><span class="nav-number">3.</span> <span class="nav-text">3. 启动 & 运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-基本操作"><span class="nav-number">4.</span> <span class="nav-text">4. 基本操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-zoo-cfg-文件"><span class="nav-number">1.</span> <span class="nav-text">修改 zoo.cfg 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-myid-文件"><span class="nav-number">2.</span> <span class="nav-text">创建 myid 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务"><span class="nav-number">3.</span> <span class="nav-text">启动服务</span></a></li></ol></div>
             
 
           </div>
@@ -756,7 +785,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/09/05/ZooKeeper 安装和启动/"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/10/26/Zookeeper 伪集群部署/"});
 		
 
 		(function() {

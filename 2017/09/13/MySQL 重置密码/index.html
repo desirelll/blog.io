@@ -410,17 +410,17 @@
 
       
         <h3 id="1-关闭-mysql-服务"><a href="#1-关闭-mysql-服务" class="headerlink" title="1.关闭 mysql 服务"></a>1.关闭 mysql 服务</h3><p>可以使用 <code>ps ax | grep mysql</code> 查找 mysql 进程，然后用 <code>sudo kill -9 [pid]</code> 结束进程</p>
-<h3 id="2-以安全模式运行-mysql"><a href="#2-以安全模式运行-mysql" class="headerlink" title="2.以安全模式运行 mysql"></a>2.以安全模式运行 mysql</h3><p>进入 mysql 的 bin 目录进入管理员模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/mysql/bin</div><div class="line">su</div></pre></td></tr></table></figure></p>
+<h3 id="2-以安全模式运行-mysql"><a href="#2-以安全模式运行-mysql" class="headerlink" title="2.以安全模式运行 mysql"></a>2.以安全模式运行 mysql</h3><p>进入 mysql 的 bin 目录进入管理员模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/bin</span><br><span class="line">su</span><br></pre></td></tr></table></figure></p>
 <p>然后以安全模式运行 mysql</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./mysqld_safe --skip-grant-tables &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre></td></tr></table></figure>
 <h3 id="3-修改密码"><a href="#3-修改密码" class="headerlink" title="3.修改密码"></a>3.修改密码</h3><p>新建一个终端，输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u -root</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u -root</span><br></pre></td></tr></table></figure>
 <p>就能无密码进入 mysql</p>
 <p>修改密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mysql&gt; FLUSH PRIVILEGES;</div><div class="line">mysql&gt; SET PASSWORD FOR root@&apos;localhost&apos; = PASSWORD(&apos;newpassword&apos;);</div><div class="line">mysql&gt; FLUSH PRIVILEGES;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br><span class="line">mysql&gt; SET PASSWORD FOR root@&apos;localhost&apos; = PASSWORD(&apos;newpassword&apos;);</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
 <p>然后退出即可</p>
 <h3 id="重启-mysql"><a href="#重启-mysql" class="headerlink" title="重启 mysql"></a>重启 mysql</h3><p>回到第一个终端，关闭 mysql</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./mysqladmin -u root -p shutdown</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqladmin -u root -p shutdown</span><br></pre></td></tr></table></figure>
 <p>再正常启动 mysql 即可</p>
 
       
@@ -577,7 +577,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

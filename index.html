@@ -284,6 +284,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/01/17/使用 div 嵌入一个页面后遇到的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/使用 div 嵌入一个页面后遇到的问题/" itemprop="url">使用 div 嵌入一个页面后遇到的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T09:46:55+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solution/" itemprop="url" rel="index">
+                    <span itemprop="name">solution</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/17/使用 div 嵌入一个页面后遇到的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/17/使用 div 嵌入一个页面后遇到的问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/01/17/使用 div 嵌入一个页面后遇到的问题/" class="leancloud_visitors" data-flag-title="使用 div 嵌入一个页面后遇到的问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>点击左侧菜单后在右侧空白区域加载相应的HTML页面<br><img src="https://i.loli.net/2018/01/17/5a5ea833a5e4a.png" alt=""></p>
+<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>用一个 div 来承载页面<br><code>&lt;div id=&quot;page1&quot; class=&#39;markdown-preview&#39;&gt;&lt;/div&gt;</code><br>点击左侧时触发 load 事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aClicked</span>(<span class="params">controller, api</span>) </span>&#123;</span><br><span class="line">			$(<span class="string">"#page1"</span>).load(Globals.ctx + <span class="string">"/api/"</span> + controller + <span class="string">"/"</span> + api + <span class="string">".html"</span>);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>页面加载完成后发现大部分 css 样式没有正确显示，一开始以为是嵌入的页面和菜单的样式冲突了，改了多处之后发现问题不在这里，而是因为使用 load 之后加载进来的页面是没有<code>&lt;body&gt;</code>标签的，而我的样式中是依赖<code>&lt;body&gt;</code>标签中的<code>class</code>的，<code>class</code>丢失所以样式无效了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/01/17/使用thymeleaf时遇到的一些问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -406,174 +574,6 @@
 <blockquote>
 <p>在thymeleaf的js中使用&amp;,&lt;,&gt;等符号时会产生这种问题，即使转义也不行，解决方法:将你的js代码包裹在&lt;![CDATA[ ]]&gt;之中即可，like this:<script>//&lt;![CDATA[ js代码 //]]&gt;</script>，详情参考:<a href="http://blog.csdn.net/lijiaojiao123123/article/details/44954667" target="_blank" rel="noopener">http://blog.csdn.net/lijiaojiao123123/article/details/44954667</a></p>
 </blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/01/17/使用 div 嵌入一个页面后遇到的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/使用 div 嵌入一个页面后遇到的问题/" itemprop="url">使用 div 嵌入一个页面后遇到的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T09:42:44+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solution/" itemprop="url" rel="index">
-                    <span itemprop="name">solution</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/17/使用 div 嵌入一个页面后遇到的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/17/使用 div 嵌入一个页面后遇到的问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2018/01/17/使用 div 嵌入一个页面后遇到的问题/" class="leancloud_visitors" data-flag-title="使用 div 嵌入一个页面后遇到的问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###需求<br>点击左侧菜单后在右侧空白区域加载相应的HTML页面<br><img src="https://i.loli.net/2018/01/17/5a5ea833a5e4a.png" alt=""></p>
-<p>###实现思路：<br>用一个 div 来承载页面<br><code>&lt;div id=&quot;page1&quot; class=&#39;markdown-preview&#39;&gt;&lt;/div&gt;</code><br>点击左侧时触发 load 事件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aClicked</span>(<span class="params">controller, api</span>) </span>&#123;</span><br><span class="line">			$(<span class="string">"#page1"</span>).load(Globals.ctx + <span class="string">"/api/"</span> + controller + <span class="string">"/"</span> + api + <span class="string">".html"</span>);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>页面加载完成后发现大部分 css 样式没有正确显示，一开始以为是嵌入的页面和菜单的样式冲突了，改了多处之后发现问题不在这里，而是因为使用 load 之后加载进来的页面是没有<code>&lt;body&gt;</code>标签的，而我的样式中是依赖<code>&lt;body&gt;</code>标签中的<code>class</code>的，<code>class</code>丢失所以样式无效了。</p>
 
           
         

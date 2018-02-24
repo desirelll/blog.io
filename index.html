@@ -426,7 +426,114 @@
 <li><strong>算法</strong>：是实现集合接口的对象里的方法执行的一些有用的计算，例如：搜索和排序。这些算法被称为多态，那是因为相同的方法可以在相似的接口上有着不同的实现。</li>
 </ul>
 <p>除了集合，该框架也定义了几个Map接口和类。Map里存储的是键/值对。尽管Map不是collections，但是它们完全整合在集合中。</p>
-<h3 id="集合框架体系如图所示"><a href="#集合框架体系如图所示" class="headerlink" title="集合框架体系如图所示"></a>集合框架体系如图所示</h3><p><img src="http://images-1254106572.cosgz.myqcloud.com/img/collection-hierarchy.png" alt=""><br><img src="http://images-1254106572.cosgz.myqcloud.com/img/java-map.png" alt=""></p>
+<h3 id="集合框架体系如图所示"><a href="#集合框架体系如图所示" class="headerlink" title="集合框架体系如图所示"></a>集合框架体系如图所示</h3><p><img src="http://images-1254106572.cosgz.myqcloud.com/img/collection-hierarchy.png" alt=""><br><img src="http://images-1254106572.cosgz.myqcloud.com/img/java-map.png" alt="">、</p>
+<h2 id="Collections-接口的方法"><a href="#Collections-接口的方法" class="headerlink" title="Collections 接口的方法"></a>Collections 接口的方法</h2><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>public boolean add(Object element)</td>
+<td>插入一个元素到集合中</td>
+</tr>
+<tr>
+<td>2</td>
+<td>public boolean addAll(Collection c)</td>
+<td>插入一个集合的元素到另一个集合中</td>
+</tr>
+<tr>
+<td>3</td>
+<td>public boolean remove(Object element)</td>
+<td>从集合中删除一个元素</td>
+</tr>
+<tr>
+<td>4</td>
+<td>public boolean removeAll(Collection c)</td>
+<td>删除集合中的所有元素</td>
+</tr>
+<tr>
+<td>5</td>
+<td>public boolean retainAll(Collection c)</td>
+<td>删除除了指定集合外的所有元素</td>
+</tr>
+<tr>
+<td>6</td>
+<td>public int size()</td>
+<td>返回集合中元素的个数</td>
+</tr>
+<tr>
+<td>7</td>
+<td>public void clear()</td>
+<td>删除集合中所有内容</td>
+</tr>
+<tr>
+<td>8</td>
+<td>public boolean contains(Object element)</td>
+<td>判断集合中是否包含某个元素</td>
+</tr>
+<tr>
+<td>9</td>
+<td>public boolean containsAll(Collection c)</td>
+<td>判断集合中是否包含某个集合</td>
+</tr>
+<tr>
+<td>10</td>
+<td>public Iterator iterator()</td>
+<td>返回一个迭代器</td>
+</tr>
+<tr>
+<td>11</td>
+<td>public Object[] toArray()</td>
+<td>将集合转换为数组</td>
+</tr>
+<tr>
+<td>12</td>
+<td>public boolean isEmpty()</td>
+<td>判断是否为空</td>
+</tr>
+<tr>
+<td>13</td>
+<td>public boolean equals(Object element)</td>
+<td>比较集合是否相等</td>
+</tr>
+<tr>
+<td>14</td>
+<td>public int hashCode()</td>
+<td>返回集合的哈希值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="迭代器接口的方法"><a href="#迭代器接口的方法" class="headerlink" title="迭代器接口的方法"></a>迭代器接口的方法</h2><table>
+<thead>
+<tr>
+<th>No.</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>public boolean hasNext()</td>
+<td>判断是否有下一个元素</td>
+</tr>
+<tr>
+<td>2</td>
+<td>public Object next()</td>
+<td>返回下一个元素并将指针指向下一个元素</td>
+</tr>
+<tr>
+<td>3</td>
+<td>public void remove()</td>
+<td>删除最后一个元素（很少使用） </td>
+</tr>
+</tbody>
+</table>
 
           
         

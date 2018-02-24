@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images-1254106572.cosgz.myqcloud.com/img/collection-hierarchy.png">
 <meta property="og:image" content="http://images-1254106572.cosgz.myqcloud.com/img/java-map.png">
-<meta property="og:updated_time" content="2018-02-24T08:20:29.410Z">
+<meta property="og:updated_time" content="2018-02-24T08:22:16.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合框架">
 <meta name="twitter:description" content="基本概念早在 Java2 之前，Java就提供了特设类。比如：Dictionary，Vector，Stack 和 Properties 这些类用来存储和操作对象组。但是它们缺少一个核心，统一的主题。 集合框架被设计成要满足一下几个目标。  该框架必须是高性能的。基本集合（动态数组，链表，树，哈希表）的实现也必须是高效的 该框架允许不同类型的集合，以类似的方式工作，具有高度的互操作性 对一个集合的扩">
@@ -428,14 +428,160 @@
 </ul>
 <p>除了集合，该框架也定义了几个Map接口和类。Map里存储的是键/值对。尽管Map不是collections，但是它们完全整合在集合中。</p>
 <h3 id="集合框架体系如图所示"><a href="#集合框架体系如图所示" class="headerlink" title="集合框架体系如图所示"></a>集合框架体系如图所示</h3><p><img src="http://images-1254106572.cosgz.myqcloud.com/img/collection-hierarchy.png" alt=""><br><img src="http://images-1254106572.cosgz.myqcloud.com/img/java-map.png" alt=""></p>
-<h2 id="集合接口"><a href="#集合接口" class="headerlink" title="集合接口"></a>集合接口</h2><p>集合框架定义了一些接口，概述如下。<br>序号  |  接口描述<br>—|—<br>1  |  Collection<br>Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)。<br>2  |  List<br>List接口是一个有序的 Collection，使用此接口能够精确的控制每个元素插入的位置，能够通过索引(元素在List中位置，类似于数组的下标)来访问List中的元素，第一个元素的索引为 0，而且允许有相同的元素。<br>3  |  Set<br>Set 具有与 Collection 完全一样的接口，只是行为上不同，Set 不保存重复的元素。<br>4  |  SortedSet<br>继承于Set保存有序的集合。<br>5  |  Map<br>将唯一的键映射到值。<br>6  |  Map.Entry<br>描述在一个Map中的一个元素（键/值对）。是一个Map的内部类。<br>7  |  SortedMap<br>继承于Map，使Key保持在升序排列。<br>8  |  Enumeration<br>这是一个传统的接口和定义的方法，通过它可以枚举（一次获得一个）对象集合中的元素。这个传统接口已被迭代器取代。</p>
+<h2 id="集合接口"><a href="#集合接口" class="headerlink" title="集合接口"></a>集合接口</h2><p>集合框架定义了一些接口，概述如下。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>接口描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Collection<br>Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>List<br>List接口是一个有序的 Collection，使用此接口能够精确的控制每个元素插入的位置，能够通过索引(元素在List中位置，类似于数组的下标)来访问List中的元素，第一个元素的索引为 0，而且允许有相同的元素。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Set<br>Set 具有与 Collection 完全一样的接口，只是行为上不同，Set 不保存重复的元素。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SortedSet<br>继承于Set保存有序的集合。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Map<br>将唯一的键映射到值。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Map.Entry<br>描述在一个Map中的一个元素（键/值对）。是一个Map的内部类。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SortedMap<br>继承于Map，使Key保持在升序排列。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Enumeration<br>这是一个传统的接口和定义的方法，通过它可以枚举（一次获得一个）对象集合中的元素。这个传统接口已被迭代器取代。</td>
+</tr>
+</tbody>
+</table>
 <h3 id="Set-和-List-的区别"><a href="#Set-和-List-的区别" class="headerlink" title="Set 和 List 的区别"></a>Set 和 List 的区别</h3><ul>
 <li>Set 接口实例存储的是无序的，不重复的数据。List 接口实例存储的是有序的，可以重复的元素</li>
 <li>Set 检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变 &lt;实现类有 HashSet，TreeSet&gt;</li>
 <li>List 和数组类似，可以动态增长，根据实际存储的数据的长度自动增长 List 的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变 &lt;实现类有 ArrayList，LinkedList，Vector&gt;</li>
 </ul>
-<h2 id="集合实现类"><a href="#集合实现类" class="headerlink" title="集合实现类"></a>集合实现类</h2><p>Java 提供了一套实现了 Collection 接口的标准集合类。其中一些是具体类，这些类可以直接拿来使用，而另外一些是抽象类，提供了接口的部分实现。<br>标准集合类汇总于下表：<br>序号  |  类描述<br>—|—<br>1  |  AbstractCollection<br>实现了大部分的集合接口<br>2  |  AbstractList<br>继承于 AbstractCollection 并且实现了大部分接口<br>3  |  AbstractSequentialList<br>继承于 AbstractList ，提供了对数据元素的链式访问而不是随机访问。<br>4  |  LinkedList<br>该类实现了List接口，允许有null（空）元素。主要用于创建链表数据结构，该类没有同步方法，如果多个线程同时访问一个List，则必须自己实现访问同步，解决方法就是在创建List时候构造一个同步的List。例如：<code>Listlist=Collections.synchronizedList(newLinkedList(...));</code><br>5  |  ArrayList<br>该类也是实现了List的接口，实现了可变大小的数组，随机访问和遍历元素时，提供更好的性能。该类也是非同步的,在多线程的情况下不要使用。ArrayList 增长当前长度的50%，插入删除效率低。<br>6  |  AbstractSet<br>继承于AbstractCollection 并且实现了大部分Set接口。<br>7  |  HashSet<br>该类实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为null的元素，但最多只能一个。<br>8  |  LinkedHashSet<br>具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。<br>9  |  TreeSet<br>该类实现了Set接口，可以实现排序等功能。<br>10  |  AbstractMap<br>实现了大部分的Map接口。<br>11  |  HashMap<br>HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。该类实现了Map接口，根据键的HashCode值存储数据，具有很快的访问速度，最多允许一条记录的键为null，不支持线程同步。<br>12  |  TreeMap<br>继承了AbstractMap，并且使用一颗树。<br>13  |  WeakHashMap<br>继承AbstractMap类，使用弱密钥的哈希表。<br>14  |  LinkedHashMap<br>继承于HashMap，使用元素的自然顺序对元素进行排序.<br>15  |  IdentityHashMap<br>继承AbstractMap类，比较文档时使用引用相等。</p>
-<p>java.util包中定义的类，如下所示：<br>序号  |  类描述<br>—|—<br>1  |  Vector<br>该类和ArrayList非常相似，但是该类是同步的，可以用在多线程的情况，该类允许设置默认的增长长度，默认扩容方式为原来的2倍。<br>2  |  Stack<br>栈是Vector的一个子类，它实现了一个标准的后进先出的栈。<br>3  |  Dictionary<br>Dictionary 类是一个抽象类，用来存储键/值对，作用和Map类相似。<br>4  |  Hashtable<br>Hashtable 是 Dictionary(字典) 类的子类，位于 java.util 包中。<br>5  |  Properties<br>Properties 继承于 Hashtable，表示一个持久的属性集，属性列表中每个键及其对应值都是一个字符串。<br>6  |  BitSet<br>一个Bitset类创建一种特殊类型的数组来保存位值。BitSet中数组大小会随需要增加。</p>
+<h2 id="集合实现类"><a href="#集合实现类" class="headerlink" title="集合实现类"></a>集合实现类</h2><p>Java 提供了一套实现了 Collection 接口的标准集合类。其中一些是具体类，这些类可以直接拿来使用，而另外一些是抽象类，提供了接口的部分实现。<br>标准集合类汇总于下表：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>AbstractCollection<br>实现了大部分的集合接口</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AbstractList<br>继承于 AbstractCollection 并且实现了大部分接口</td>
+</tr>
+<tr>
+<td>3</td>
+<td>AbstractSequentialList<br>继承于 AbstractList ，提供了对数据元素的链式访问而不是随机访问。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>LinkedList<br>该类实现了List接口，允许有null（空）元素。主要用于创建链表数据结构，该类没有同步方法，如果多个线程同时访问一个List，则必须自己实现访问同步，解决方法就是在创建List时候构造一个同步的List。例如：<code>Listlist=Collections.synchronizedList(newLinkedList(...));</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>ArrayList<br>该类也是实现了List的接口，实现了可变大小的数组，随机访问和遍历元素时，提供更好的性能。该类也是非同步的,在多线程的情况下不要使用。ArrayList 增长当前长度的50%，插入删除效率低。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>AbstractSet<br>继承于AbstractCollection 并且实现了大部分Set接口。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>HashSet<br>该类实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为null的元素，但最多只能一个。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>LinkedHashSet<br>具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>TreeSet<br>该类实现了Set接口，可以实现排序等功能。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>AbstractMap<br>实现了大部分的Map接口。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>HashMap<br>HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。该类实现了Map接口，根据键的HashCode值存储数据，具有很快的访问速度，最多允许一条记录的键为null，不支持线程同步。</td>
+</tr>
+<tr>
+<td>12</td>
+<td>TreeMap<br>继承了AbstractMap，并且使用一颗树。</td>
+</tr>
+<tr>
+<td>13</td>
+<td>WeakHashMap<br>继承AbstractMap类，使用弱密钥的哈希表。</td>
+</tr>
+<tr>
+<td>14</td>
+<td>LinkedHashMap<br>继承于HashMap，使用元素的自然顺序对元素进行排序.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>IdentityHashMap<br>继承AbstractMap类，比较文档时使用引用相等。</td>
+</tr>
+</tbody>
+</table>
+<p>java.util包中定义的类，如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Vector<br>该类和ArrayList非常相似，但是该类是同步的，可以用在多线程的情况，该类允许设置默认的增长长度，默认扩容方式为原来的2倍。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Stack<br>栈是Vector的一个子类，它实现了一个标准的后进先出的栈。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Dictionary<br>Dictionary 类是一个抽象类，用来存储键/值对，作用和Map类相似。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Hashtable<br>Hashtable 是 Dictionary(字典) 类的子类，位于 java.util 包中。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Properties<br>Properties 继承于 Hashtable，表示一个持久的属性集，属性列表中每个键及其对应值都是一个字符串。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>BitSet<br>一个Bitset类创建一种特殊类型的数组来保存位值。BitSet中数组大小会随需要增加。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="Collections-接口的方法"><a href="#Collections-接口的方法" class="headerlink" title="Collections 接口的方法"></a>Collections 接口的方法</h2><table>
 <thead>
 <tr>

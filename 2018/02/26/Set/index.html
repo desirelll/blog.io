@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数据结构," />
 
 
 
@@ -98,17 +98,22 @@
 
 
 
-<meta name="description" content="sH07X9uVf2">
-<meta property="og:type" content="website">
-<meta property="og:title" content="desirelll&#39;s blog">
-<meta property="og:url" content="http://desirelll.com/baidu_verify_sH07X9uVf2.html">
+<meta name="description" content="HashSetHashSet 是用来创建一个用哈希表存储的集合，它继承自 AbstractSet，实现了 Set 接口。 主要特点：  HashSet 通过哈希机制来存储数据 HashSet 中的元素不能重复  Set 和 List 的区别List 中可以有重复的元素，而 Set 不可以。 类的声明1public class HashSet&amp;lt;E&amp;gt; extends AbstractSet">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Set">
+<meta property="og:url" content="http://desirelll.com/2018/02/26/Set/index.html">
 <meta property="og:site_name" content="desirelll&#39;s blog">
-<meta property="og:description" content="sH07X9uVf2">
+<meta property="og:description" content="HashSetHashSet 是用来创建一个用哈希表存储的集合，它继承自 AbstractSet，实现了 Set 接口。 主要特点：  HashSet 通过哈希机制来存储数据 HashSet 中的元素不能重复  Set 和 List 的区别List 中可以有重复的元素，而 Set 不可以。 类的声明1public class HashSet&amp;lt;E&amp;gt; extends AbstractSet">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T01:13:38.000Z">
+<meta property="og:image" content="http://images-1254106572.cosgz.myqcloud.com/img/hashset.png">
+<meta property="og:image" content="http://images-1254106572.cosgz.myqcloud.com/img/linkedhashset.png">
+<meta property="og:image" content="http://images-1254106572.cosgz.myqcloud.com/img/treeset.png">
+<meta property="og:updated_time" content="2018-02-26T02:55:42.251Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="desirelll&#39;s blog">
-<meta name="twitter:description" content="sH07X9uVf2">
+<meta name="twitter:title" content="Set">
+<meta name="twitter:description" content="HashSetHashSet 是用来创建一个用哈希表存储的集合，它继承自 AbstractSet，实现了 Set 接口。 主要特点：  HashSet 通过哈希机制来存储数据 HashSet 中的元素不能重复  Set 和 List 的区别List 中可以有重复的元素，而 Set 不可以。 类的声明1public class HashSet&amp;lt;E&amp;gt; extends AbstractSet">
+<meta name="twitter:image" content="http://images-1254106572.cosgz.myqcloud.com/img/hashset.png">
 
 
 
@@ -137,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://desirelll.com/baidu_verify_sH07X9uVf2.html"/>
+  <link rel="canonical" href="http://desirelll.com/2018/02/26/Set/"/>
 
 
 
 
 
-  <title> | desirelll's blog</title>
+  <title>Set | desirelll's blog</title>
   
 
 
@@ -274,34 +279,258 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/02/26/Set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          sH07X9uVf2
-
+          <h1 class="post-title" itemprop="name headline">Set</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:27:20+08:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/Java集合框架/" itemprop="url" rel="index">
+                    <span itemprop="name">Java集合框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/26/Set/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/Set/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/02/26/Set/" class="leancloud_visitors" data-flag-title="Set">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><p>HashSet 是用来创建一个用哈希表存储的集合，它继承自 AbstractSet，实现了 Set 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/hashset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>HashSet 通过哈希机制来存储数据</li>
+<li>HashSet 中的元素不能重复</li>
+</ul>
+<h3 id="Set-和-List-的区别"><a href="#Set-和-List-的区别" class="headerlink" title="Set 和 List 的区别"></a>Set 和 List 的区别</h3><p>List 中可以有重复的元素，而 Set 不可以。</p>
+<h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h2 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h2><p>LinkedHashSet 是一个实现了 Set 接口的哈希表（Hash table）和链接队列（Linked list），它继承自 HashSet，实现了 Set 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/linkedhashset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>和 HashSet 一样不能有重复的元素</li>
+<li>提供 set 的所有操作，并且允许有空元素</li>
+<li>元素有序</li>
+</ul>
+<h3 id="类的声明-1"><a href="#类的声明-1" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br><br><br><br><br><br><br></p>
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p>Tree 是一个使用树结构存储的集合，它继承自 AbstractSet，实现了 NavigableSet 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/treeset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>和 HashSet 一样不能有重复的元素</li>
+<li>访问和检索速度快</li>
+<li>元素有序</li>
+</ul>
+<h3 id="类的声明-2"><a href="#类的声明-2" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ooo.0o0.ooo/2017/08/22/599be6eb8dfaa.jpeg" alt="desirelll WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ooo.0o0.ooo/2017/08/22/599be7748dfc1.jpeg" alt="desirelll Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/24/Java 集合框架/" rel="next" title="Java 集合框架">
+                <i class="fa fa-chevron-left"></i> Java 集合框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/26/List/" rel="prev" title="List">
+                List <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -336,8 +565,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg"
@@ -399,6 +637,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashSet"><span class="nav-number">1.</span> <span class="nav-text">HashSet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-和-List-的区别"><span class="nav-number">1.1.</span> <span class="nav-text">Set 和 List 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的声明"><span class="nav-number">1.2.</span> <span class="nav-text">类的声明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedHashSet"><span class="nav-number">2.</span> <span class="nav-text">LinkedHashSet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的声明-1"><span class="nav-number">2.1.</span> <span class="nav-text">类的声明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TreeSet"><span class="nav-number">3.</span> <span class="nav-text">TreeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的声明-2"><span class="nav-number">3.1.</span> <span class="nav-text">类的声明</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -519,10 +773,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -547,7 +801,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "baidu_verify_sH07X9uVf2.html"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2018/02/26/Set/"});
 		
 
 		(function() {

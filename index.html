@@ -284,6 +284,442 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/02/26/List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/26/List/" itemprop="url">List</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:27:31+08:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/Java集合框架/" itemprop="url" rel="index">
+                    <span itemprop="name">Java集合框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/26/List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/List/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/02/26/List/" class="leancloud_visitors" data-flag-title="List">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>Array 是使用动态数组来存储元素的，它继承于 AbstractList，实现了 List 接口。</p>
+<p><img src="http://images-1254106572.cosgz.myqcloud.com/img/arraylist.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>可以有重复的元素</li>
+<li>元素是有序的</li>
+<li>非同步的</li>
+<li>可以随机访问</li>
+<li>插入删除效率低</li>
+</ul>
+<h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="遍历集合的方法"><a href="#遍历集合的方法" class="headerlink" title="遍历集合的方法"></a>遍历集合的方法</h3><ul>
+<li>Iterator</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;String&gt;();<span class="comment">//Creating arraylist  </span></span><br><span class="line">  list.add(<span class="string">"Ravi"</span>);<span class="comment">//Adding object in arraylist  </span></span><br><span class="line">  list.add(<span class="string">"Vijay"</span>);  </span><br><span class="line">  list.add(<span class="string">"Ravi"</span>);  </span><br><span class="line">  list.add(<span class="string">"Ajay"</span>);  </span><br><span class="line">  <span class="comment">//Traversing list through Iterator  </span></span><br><span class="line">  Iterator itr=list.iterator();  </span><br><span class="line">  <span class="keyword">while</span>(itr.hasNext())&#123;  </span><br><span class="line">   System.out.println(itr.next());  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>for-each</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; al=<span class="keyword">new</span> ArrayList&lt;String&gt;();  </span><br><span class="line">  al.add(<span class="string">"Ravi"</span>);  </span><br><span class="line">  al.add(<span class="string">"Vijay"</span>);  </span><br><span class="line">  al.add(<span class="string">"Ravi"</span>);  </span><br><span class="line">  al.add(<span class="string">"Ajay"</span>);  </span><br><span class="line">  <span class="keyword">for</span>(String obj:al)&#123;  </span><br><span class="line">    System.out.println(obj);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList 使用双向链接来存储数据，具有链表的结构，它继承自 AbstractList，实现 List 和 Deque 接口。</p>
+<p><img src="http://images-1254106572.cosgz.myqcloud.com/img/linkedlist.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>可以有重复的元素</li>
+<li>元素是有序的</li>
+<li>非同步的</li>
+<li>插入删除效率高</li>
+<li>可以当做 list，stack 或 queue 使用</li>
+</ul>
+<h3 id="类的声明-1"><a href="#类的声明-1" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSequentialList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br><br><br><br></p>
+<hr>
+<h2 id="ArrayList-和-LinkedList-的区别"><a href="#ArrayList-和-LinkedList-的区别" class="headerlink" title="ArrayList 和 LinkedList 的区别"></a>ArrayList 和 LinkedList 的区别</h2><p>两者都实现了 List 接口，都是有序的，并且都是非同步的。但也有如下的区别：</p>
+<table>
+<thead>
+<tr>
+<th>ArrayList</th>
+<th>LinkedList</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用动态数组存储元素</td>
+<td>使用双向链表存储元素</td>
+</tr>
+<tr>
+<td>操作效率低，因为当有一个元素插入或删除时，其他元素的位置都要改变</td>
+<td>操作效率高，链表结构不需要改变元素位置</td>
+</tr>
+<tr>
+<td>ArrayList 能当做 list 使用因为它只实现了 List 接口</td>
+<td>LinkedList可以当做 List 或者 queue 使用是因为它实现了 List 和 Deque 接口</td>
+</tr>
+<tr>
+<td>ArrayList 更适合存储和访问数据</td>
+<td>LinkedList 更适合操作数据</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/02/26/Set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/26/Set/" itemprop="url">Set</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:27:20+08:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/Java集合框架/" itemprop="url" rel="index">
+                    <span itemprop="name">Java集合框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/26/Set/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/Set/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/02/26/Set/" class="leancloud_visitors" data-flag-title="Set">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><p>HashSet 是用来创建一个用哈希表存储的集合，它继承自 AbstractSet，实现了 Set 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/hashset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>HashSet 通过哈希机制来存储数据</li>
+<li>HashSet 中的元素不能重复</li>
+</ul>
+<h3 id="Set-和-List-的区别"><a href="#Set-和-List-的区别" class="headerlink" title="Set 和 List 的区别"></a>Set 和 List 的区别</h3><p>List 中可以有重复的元素，而 Set 不可以。</p>
+<h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h2 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h2><p>LinkedHashSet 是一个实现了 Set 接口的哈希表（Hash table）和链接队列（Linked list），它继承自 HashSet，实现了 Set 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/linkedhashset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>和 HashSet 一样不能有重复的元素</li>
+<li>提供 set 的所有操作，并且允许有空元素</li>
+<li>元素有序</li>
+</ul>
+<h3 id="类的声明-1"><a href="#类的声明-1" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br><br><br><br><br><br><br></p>
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p>Tree 是一个使用树结构存储的集合，它继承自 AbstractSet，实现了 NavigableSet 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/treeset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>和 HashSet 一样不能有重复的元素</li>
+<li>访问和检索速度快</li>
+<li>元素有序</li>
+</ul>
+<h3 id="类的声明-2"><a href="#类的声明-2" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/02/24/Java 集合框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2037,380 +2473,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/Redis 官网集群步骤/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/Redis 官网集群步骤/" itemprop="url">Redis 官网集群步骤</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:32:46+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/25/Redis 官网集群步骤/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/Redis 官网集群步骤/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/10/25/Redis 官网集群步骤/" class="leancloud_visitors" data-flag-title="Redis 官网集群步骤">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1. 创建目录"></a>1. 创建目录</h4><p>要让集群正常运作至少需要三个主节点， 不过在刚开始试用集群功能时， 强烈建议使用六个节点： 其中三个为主节点， 而其余三个则是各个主节点的从节点<br>创建一个新目录 redis，并在其中创建六个以端口号为名字的子目录，每个子目录都是一个 redis</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir redis</span><br><span class="line">cd redis</span><br><span class="line">mkdir 7000 7001 7002 7003 7004 7005</span><br></pre></td></tr></table></figure>
-<h4 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2. 修改配置文件"></a>2. 修改配置文件</h4><p>分别进入每个子目录，修改 redis.conf 中如下的配置项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">port 7000</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
-<p>其中端口号 port 分别为 7000-7005</p>
-<h4 id="3-运行实例"><a href="#3-运行实例" class="headerlink" title="3. 运行实例"></a>3. 运行实例</h4><p>接着，从 <a href="https://github.com/antirez/redis" target="_blank" rel="noopener">Redis Github 页面</a>的 unstable 分支中下载最新代码，然后编译出可执行文件放在 redis 文件夹中。（其实从我们的任一子目录里面编译后在 src 文件夹里拿出来也可以）通过如下命令分别创建出 6 个实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 7000</span><br><span class="line">../redis-server ./redis.conf</span><br></pre></td></tr></table></figure>
-<h4 id="4-创建集群"><a href="#4-创建集群" class="headerlink" title="4. 创建集群"></a>4. 创建集群</h4><p>可以使用 src 目录中的 redis-trib 程序来创建集群，首先需要安装 redis gem 才能运行 redis-trib</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install redis</span><br></pre></td></tr></table></figure>
-<p>然后创建集群</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 \</span><br><span class="line">127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</span><br></pre></td></tr></table></figure>
-<p>然后终端会列出集群的情况，并礼貌性的问你这样创建可以吗，当然是输入 yes</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Creating cluster</span><br><span class="line">&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...</span><br><span class="line">Using 3 masters:</span><br><span class="line">127.0.0.1:7000</span><br><span class="line">127.0.0.1:7001</span><br><span class="line">127.0.0.1:7002</span><br><span class="line">Adding replica 127.0.0.1:7003 to 127.0.0.1:7000</span><br><span class="line">Adding replica 127.0.0.1:7004 to 127.0.0.1:7001</span><br><span class="line">Adding replica 127.0.0.1:7005 to 127.0.0.1:7002</span><br><span class="line">M: 968f13cefb4f895cec739794835fcd160bde22af 127.0.0.1:7000</span><br><span class="line">   slots:0-5460 (5461 slots) master</span><br><span class="line">M: 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0 127.0.0.1:7001</span><br><span class="line">   slots:5461-10922 (5462 slots) master</span><br><span class="line">M: 433145fbee24fa60a3e7194b9b8056b02f375023 127.0.0.1:7002</span><br><span class="line">   slots:10923-16383 (5461 slots) master</span><br><span class="line">S: d29b5ce6e4ea9a33a9044d4211ba37aafa5198f8 127.0.0.1:7003</span><br><span class="line">   replicates 968f13cefb4f895cec739794835fcd160bde22af</span><br><span class="line">S: ba9052a112e11e757a563ce6ed89adde463c7ec5 127.0.0.1:7004</span><br><span class="line">   replicates 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0</span><br><span class="line">S: 130bfe6c6e1b8d31ed1e030ae7c41902be268a1f 127.0.0.1:7005</span><br><span class="line">   replicates 433145fbee24fa60a3e7194b9b8056b02f375023</span><br><span class="line">Can I set the above configuration? (type &apos;yes&apos; to accept): yes</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Nodes configuration updated</span><br><span class="line">&gt;&gt;&gt; Assign a different config epoch to each node</span><br><span class="line">&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster</span><br><span class="line">Waiting for the cluster to join...</span><br><span class="line">&gt;&gt;&gt; Performing Cluster Check (using node 127.0.0.1:7000)</span><br><span class="line">M: 968f13cefb4f895cec739794835fcd160bde22af 127.0.0.1:7000</span><br><span class="line">   slots:0-5460 (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 433145fbee24fa60a3e7194b9b8056b02f375023 127.0.0.1:7002</span><br><span class="line">   slots:10923-16383 (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0 127.0.0.1:7001</span><br><span class="line">   slots:5461-10922 (5462 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: ba9052a112e11e757a563ce6ed89adde463c7ec5 127.0.0.1:7004</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0</span><br><span class="line">S: d29b5ce6e4ea9a33a9044d4211ba37aafa5198f8 127.0.0.1:7003</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 968f13cefb4f895cec739794835fcd160bde22af</span><br><span class="line">S: 130bfe6c6e1b8d31ed1e030ae7c41902be268a1f 127.0.0.1:7005</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 433145fbee24fa60a3e7194b9b8056b02f375023</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check for open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All 16384 slots covered.</span><br></pre></td></tr></table></figure>
-<p>到此集群就创建成功了。<br>但很明显这是个伪集群，如果条件允许的话建议使用 6 台机器来创建集群，只需修改相应的地址和端口，并在防火墙开放该端口就行。</p>
-<h4 id="5-简单测试"><a href="#5-简单测试" class="headerlink" title="5. 简单测试"></a>5. 简单测试</h4><p>使用 redis-cli 进行简单的命令测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -c -p 7000</span><br><span class="line">redis 127.0.0.1:7000&gt; set foo bar</span><br><span class="line">-&gt; Redirected to slot [12182] located at 127.0.0.1:7002</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:7002&gt; set hello world</span><br><span class="line">-&gt; Redirected to slot [866] located at 127.0.0.1:7000</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:7000&gt; get foo</span><br><span class="line">-&gt; Redirected to slot [12182] located at 127.0.0.1:7002</span><br><span class="line">&quot;bar&quot;</span><br><span class="line">redis 127.0.0.1:7000&gt; get hello</span><br><span class="line">-&gt; Redirected to slot [866] located at 127.0.0.1:7000</span><br><span class="line">&quot;world&quot;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="url">MySQL TIMESTAMP 字段 Invalid default value 问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:30:58+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" class="leancloud_visitors" data-flag-title="MySQL TIMESTAMP 字段 Invalid default value 问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-- 创建表</span><br><span class="line">CREATE TABLE seckill(</span><br><span class="line">  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &apos;商品库存id&apos;,</span><br><span class="line">  `name` varchar(120) NOT NULL COMMENT &apos;商品名称&apos;,</span><br><span class="line">  `number` int NOT NULL COMMENT &apos;库存数量&apos;,</span><br><span class="line"></span><br><span class="line">  -- 此行不会报错，因为默认值使用CURRENT_TIMESTAMP</span><br><span class="line">  `start_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀开启时间&apos;,</span><br><span class="line"></span><br><span class="line">  -- 此行会报错，因为默认值使用“0000-00-00 00:00:00”，</span><br><span class="line">  -- Mysql 5.7版本后的SQL_MODE默认为strict（NO_ZERO_DATE），</span><br><span class="line">  -- 所以第二个出现报错</span><br><span class="line">  -- 解决方案：SET SQL_MODE = &apos;ALLOW_INVALID_DATES&apos;;</span><br><span class="line"></span><br><span class="line">  `end_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀结束时间&apos;,</span><br><span class="line">  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;,</span><br><span class="line">  PRIMARY KEY (seckill_id),</span><br><span class="line">  key idx_start_time(start_time),</span><br><span class="line">  key idx_end_time(end_time),</span><br><span class="line">  key idx_create_time(create_time)</span><br><span class="line">)ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=UTF8 COMMENT=&apos;秒杀库存表&apos;;</span><br><span class="line"></span><br><span class="line">作者：一个理想主义的大兵</span><br><span class="line">链接：http://www.jianshu.com/p/e21065e32444</span><br><span class="line">來源：简书</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-<p>解决方案是：<br><code>SET SQL_MODE = &#39;ALLOW_INVALID_DATES&#39;;</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2456,7 +2523,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2473,6 +2540,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

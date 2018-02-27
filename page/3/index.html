@@ -284,6 +284,646 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/13/kafka 集群/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/kafka 集群/" itemprop="url">kafka 集群</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T14:45:04+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">kafka</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/13/kafka 集群/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/13/kafka 集群/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/13/kafka 集群/" class="leancloud_visitors" data-flag-title="kafka 集群">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在三台服务器下分别安装好 kafka </p>
+<h3 id="一、配置一个-ZooKeeper-集群"><a href="#一、配置一个-ZooKeeper-集群" class="headerlink" title="一、配置一个 ZooKeeper 集群"></a>一、配置一个 ZooKeeper 集群</h3><p>修改三个服务器下的 config/zookeeper.properties 为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/Users/desire/Library/kafka_2.11/data</span><br><span class="line">clientPort=2383</span><br><span class="line">initLimit=5</span><br><span class="line">syncLimit=2</span><br><span class="line">server.0=192.168.165.205:3434:3535</span><br><span class="line">server.1=192.168.171.50:3434:3535</span><br><span class="line">server.2=192.168.171.51:3434:3535</span><br></pre></td></tr></table></figure>
+<p>然后再 dataDir 目录下写一个 myid 文件，内容为当前服务器的 id</p>
+<h3 id="二、配置-broker-集群"><a href="#二、配置-broker-集群" class="headerlink" title="二、配置 broker 集群"></a>二、配置 broker 集群</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">broker.id=0</span><br><span class="line">delete.topic.enable=true</span><br><span class="line"></span><br><span class="line">listeners=PLAINTEXT://192.168.165.205:9092</span><br><span class="line">#advertised.listeners=PLAINTEXT://your.host.name:9092</span><br><span class="line">num.network.threads=3</span><br><span class="line">num.io.threads=8</span><br><span class="line">socket.send.buffer.bytes=102400</span><br><span class="line">socket.receive.buffer.bytes=102400</span><br><span class="line">socket.request.max.bytes=104857600</span><br><span class="line"></span><br><span class="line">log.dirs=/tmp/kafka-logs</span><br><span class="line">num.partitions=1</span><br><span class="line">num.recovery.threads.per.data.dir=1</span><br><span class="line"></span><br><span class="line">offsets.topic.replication.factor=1</span><br><span class="line">transaction.state.log.replication.factor=1</span><br><span class="line">transaction.state.log.min.isr=1</span><br><span class="line"></span><br><span class="line">#log.flush.interval.messages=10000</span><br><span class="line">#log.flush.interval.ms=1000</span><br><span class="line"></span><br><span class="line">log.retention.hours=168</span><br><span class="line">#log.retention.bytes=1073741824</span><br><span class="line">log.segment.bytes=1073741824</span><br><span class="line">log.retention.check.interval.ms=300000</span><br><span class="line"></span><br><span class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</span><br><span class="line">zookeeper.connection.timeout.ms=10000</span><br><span class="line"></span><br><span class="line">group.initial.rebalance.delay.ms=0</span><br></pre></td></tr></table></figure>
+<p>需要修改的地方为</p>
+<ul>
+<li>broker.id</li>
+<li>listeners</li>
+<li>log.dirs</li>
+<li>zookeeper.connect</li>
+</ul>
+<p>第一个服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">broker.id=0</span><br><span class="line">listeners=PLAINTEXT://192.168.165.205:9092</span><br><span class="line">log.dirs=/tmp/kafka-logs</span><br><span class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</span><br></pre></td></tr></table></figure>
+<p>第二个服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">broker.id=1</span><br><span class="line">listeners=PLAINTEXT://192.168.171.50:9092</span><br><span class="line">log.dirs=/tmp/kafka-logs-1</span><br><span class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</span><br></pre></td></tr></table></figure>
+<p>第三个服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">broker.id=2</span><br><span class="line">listeners=PLAINTEXT://192.168.171.51:9092</span><br><span class="line">log.dirs=/tmp/kafka-logs-2</span><br><span class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</span><br></pre></td></tr></table></figure>
+<h3 id="三、生产者配置文件修改"><a href="#三、生产者配置文件修改" class="headerlink" title="三、生产者配置文件修改"></a>三、生产者配置文件修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootstrap.servers=192.168.165.205:9092,192.168.171.50:9092,192.168.171.51:9092</span><br></pre></td></tr></table></figure>
+<h3 id="四、消费者配置文件修改"><a href="#四、消费者配置文件修改" class="headerlink" title="四、消费者配置文件修改"></a>四、消费者配置文件修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zookeeper.connect=192.168.165.205:2383,192.168.171.50:2383,192.168.171.51:2383</span><br><span class="line">zookeeper.connection.timeout.ms=10000</span><br></pre></td></tr></table></figure>
+<h3 id="五、运行服务"><a href="#五、运行服务" class="headerlink" title="五、运行服务"></a>五、运行服务</h3><p>分别开启三个服务器的 ZooKeeper 服务<br><code>./zookeeper-server-start.sh ../config/</code>zookeeper.properties<br>分别开启三个服务器的 kafka 服务<br><code>./kafka-server-start.sh ../config/server.properties</code></p>
+<h3 id="六、生产者发送消息"><a href="#六、生产者发送消息" class="headerlink" title="六、生产者发送消息"></a>六、生产者发送消息</h3><ol>
+<li><p>创建一个 topic</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-topics.sh --create --zookeeper 192.168.165.205:2181 --replication-factor 3 --partitions 1 --topic test-replicated-topic</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生产者发送消息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./kafka-console-producer.sh --broker-list 192.168.165.205:9092 --topic test-replicated-topic</span><br><span class="line">&gt; hello,kafka!</span><br><span class="line">&gt; bye,kafka!</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="七、消费者消费消息"><a href="#七、消费者消费消息" class="headerlink" title="七、消费者消费消息"></a>七、消费者消费消息</h3><ol>
+<li><p>第一台服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-console-consumer.sh --zookeeper 192.168.165.205:2181 --from-beginning --topic test-replicated-topic</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二胎服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-console-consumer.sh --zookeeper 192.168.171.50:2181 --from-beginning --topic test-replicated-topic</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三台服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-console-consumer.sh --zookeeper 192.168.171.51:2181 --from-beginning --topic test-replicated-topic</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/13/kafka 命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/kafka 命令/" itemprop="url">kafka 命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T14:44:12+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">kafka</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/13/kafka 命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/13/kafka 命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/13/kafka 命令/" class="leancloud_visitors" data-flag-title="kafka 命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="创建-topic"><a href="#创建-topic" class="headerlink" title="创建 topic"></a>创建 topic</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-topics.sh --zookeeper localhost:2181 --create --topic Hello-Kafka --partitions 2 --replication-factor 2</span><br></pre></td></tr></table></figure>
+<p>注： partitions指定topic分区数，replication-factor指定topic每个分区的副本数</p>
+<ul>
+<li>partitions分区数:<ul>
+<li>partitions ：分区数，控制topic将分片成多少个log。可以显示指定，如果不指定则会使用broker(server.properties)中的num.partitions配置的数量</li>
+<li>虽然增加分区数可以提供kafka集群的吞吐量、但是过多的分区数或者或是单台服务器上的分区数过多，会增加不可用及延迟的风险。因为多的分区数，意味着需要打开更多的文件句柄、增加点到点的延时、增加客户端的内存消耗。</li>
+<li>分区数也限制了consumer的并行度，即限制了并行consumer消息的线程数不能大于分区数</li>
+<li>分区数也限制了producer发送消息是指定的分区。如创建topic时分区设置为1，producer发送消息时通过自定义的分区方法指定分区为2或以上的数都会出错的；这种情况可以通过alter –partitions 来增加分区数。</li>
+</ul>
+</li>
+<li>replication-factor副本<ul>
+<li>replication factor 控制消息保存在几个broker(服务器)上，一般情况下等于broker的个数。</li>
+<li>如果没有在创建时显示指定或通过API向一个不存在的topic生产消息时会使用broker(server.properties)中的default.replication.factor配置的数量</li>
+</ul>
+</li>
+</ul>
+<h4 id="查看所有-topic-列表"><a href="#查看所有-topic-列表" class="headerlink" title="查看所有 topic 列表"></a>查看所有 topic 列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./kafka-topics.sh --zookeeper localhost:2181 --list</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">#### 查看指定 topic 信息</span><br></pre></td></tr></table></figure>
+<p>./kafka-topics.sh –zookeeper localhost:2181 –describe –topic Hello-Kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 控制台向 topic 生产数据</span><br></pre></td></tr></table></figure></p>
+<p>./kafka_console-producer.sh –broker-list localhost:9092 –topic Hello-Kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 控制台消费 topic 的数据</span><br></pre></td></tr></table></figure></p>
+<p>./kafka-console-consumer.sh –zookeeper localhost:2181 –topic Hello-Kafka –from-beginning<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 查看 topic 某分区偏移量最大（小）值</span><br></pre></td></tr></table></figure></p>
+<p>./kafka-run-class.sh kafka.tools.GetOffsetshell –topic hive-mdatabase-hostsitable –time -1 –broker-list localhost:9092 –partitions 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注： time为-1时表示最大值，time为-2时表示最小值</span><br><span class="line"></span><br><span class="line">#### 修改 topic 分区数</span><br></pre></td></tr></table></figure></p>
+<p>./kafka-topics.sh –zookeeper localhost：2181 –alter –topic Hello-Kafka –partitions 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 删除topic，慎用，只会删除zookeeper中的元数据，消息文件须手动删除</span><br></pre></td></tr></table></figure></p>
+<p>./kafka-run-class.sh kafka.admin.DeleteTopicCommand –zookeeper localhost:2181 –topic t_cdr<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 查看topic消费进度</span><br><span class="line">这个会显示出consumer group的offset情况， 必须参数为--group， 不指定--topic，默认为所有topic</span><br><span class="line"></span><br><span class="line">Displays the: Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Group</span><br></pre></td></tr></table></figure></p>
+<p>kafka-run-class.sh kafka.tools.ConsumerOffsetChecker<br>```</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/ZooKeeper 常用接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/05/ZooKeeper 常用接口/" itemprop="url">ZooKeeper 常用接口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T11:04:45+08:00">
+                2017-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">ZooKeeper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/05/ZooKeeper 常用接口/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/ZooKeeper 常用接口/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/05/ZooKeeper 常用接口/" class="leancloud_visitors" data-flag-title="ZooKeeper 常用接口">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>方法功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stringcreate(String path, byte[] data, List<acl> acl, CreateMode createMode)</acl></td>
+<td>创建一个给定的目录节点 path, 并给它设置数据，CreateMode 标识有四种形式的目录节点，分别是 PERSISTENT：持久化目录节点，这个目录节点存储的数据不会丢失；PERSISTENT_SEQUENTIAL：顺序自动编号的目录节点，这种目录节点会根据当前已近存在的节点数自动加 1，然后返回给客户端已经成功创建的目录节点名；EPHEMERAL：临时目录节点，一旦创建这个节点的客户端与服务器端口也就是 session 超时，这种节点会被自动删除；EPHEMERAL_SEQUENTIAL：临时自动编号节点</td>
+</tr>
+<tr>
+<td>Statexists(String path, boolean watch)</td>
+<td>判断某个 path 是否存在，并设置是否监控这个目录节点，这里的 watcher 是在创建 ZooKeeper 实例时指定的 watcher，exists方法还有一个重载方法，可以指定特定的 watcher</td>
+</tr>
+<tr>
+<td>Statexists(String path, Watcher watcher)</td>
+<td>重载方法，这里给某个目录节点设置特定的 watcher，Watcher 在 ZooKeeper 是一个核心功能，Watcher 可以监控目录节点的数据变化以及子目录的变化，一旦这些状态发生变化，服务器就会通知所有设置在这个目录节点上的 Watcher，从而每个客户端都很快知道它所关注的目录节点的状态发生变化，而做出相应的反应</td>
+</tr>
+<tr>
+<td>void delete(String path, int version)</td>
+<td>删除 path 对应的目录节点，version 为 -1 可以匹配任何版本，也就删除了这个目录节点所有数据</td>
+</tr>
+<tr>
+<td>List<string> getChildren(String path, boolean watch)</string></td>
+<td>获取指定 path 下的所有子目录节点，同样 getChildren方法也有一个重载方法可以设置特定的 watcher 监控子节点的状态</td>
+</tr>
+<tr>
+<td>StatsetData(String path, byte[] data, int version)</td>
+<td>给 path 设置数据，可以指定这个数据的版本号，如果 version 为 -1 怎可以匹配任何版本</td>
+</tr>
+<tr>
+<td>byte[] getData(String path, boolean watch, Stat stat)</td>
+<td>获取这个 path 对应的目录节点存储的数据，数据的版本等信息可以通过 stat 来指定，同时还可以设置是否监控这个目录节点数据的状态</td>
+</tr>
+<tr>
+<td>void addAuthInfo(String scheme, byte[] auth)</td>
+<td>客户端将自己的授权信息提交给服务器，服务器将根据这个授权信息验证客户端的访问权限。</td>
+</tr>
+<tr>
+<td>StatsetACL(String path, List<acl> acl, int version)</acl></td>
+<td>给某个目录节点重新设置访问权限，需要注意的是 Zookeeper 中的目录节点权限不具有传递性，父目录节点的权限不能传递给子目录节点。目录节点 ACL 由两部分组成：perms 和 id。<br>Perms 有 ALL、READ、WRITE、CREATE、DELETE、ADMIN 几种<br>而 id 标识了访问目录节点的身份列表，默认情况下有以下两种：<br>ANYONE_ID_UNSAFE = new Id(“world”, “anyone”) 和 AUTH_IDS = new Id(“auth”, “”) 分别表示任何人都可以访问和创建者拥有访问权限。</td>
+</tr>
+<tr>
+<td>List<acl> getACL(String path, Stat stat)</acl></td>
+<td>获取某个目录节点的访问权限列表</td>
+</tr>
+</tbody>
+</table>
+<p>除了以上这些上表中列出的方法之外还有一些重载方法，如都提供了一个回调类的重载方法以及可以设置特定 Watcher 的重载方法，具体的方法可以参考 <a href="https://zookeeper.apache.org/doc/r3.4.6/api/org/apache/zookeeper/ZooKeeper.html" target="_blank" rel="noopener">org.apache.zookeeper. ZooKeeper</a> (3.4.6) 类的 API 说明。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/ZooKeeper Java 实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1627,548 +2267,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/08/25/netty 基本使用（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/netty 基本使用（一）/" itemprop="url">netty 基本使用（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T08:50:11+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/netty/" itemprop="url" rel="index">
-                    <span itemprop="name">netty</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/25/netty 基本使用（一）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/25/netty 基本使用（一）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/25/netty 基本使用（一）/" class="leancloud_visitors" data-flag-title="netty 基本使用（一）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>为了学习 netty 的基本用法，对着官方文档敲一遍代码，顺便自己写一下过程和理解。</p>
-<h2 id="Discard-Server"><a href="#Discard-Server" class="headerlink" title="Discard Server"></a>Discard Server</h2><p>按照国际惯例讲道理第一个程序应该是 Hello World，但 netty 却是 Discard Server…可能跟它本身的特性有关吧，为了让读者更容易理解和入门？</p>
-<hr>
-<h3 id="DiscardServerHandler"><a href="#DiscardServerHandler" class="headerlink" title="DiscardServerHandler"></a>DiscardServerHandler</h3><p>Discard Server 就是一个忽略所有收到的信息的服务器，首先需要实现一个什么信息都丢弃的处理类 DiscardServerHandler。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package nettyDemo;</span><br><span class="line"></span><br><span class="line">import io.netty.buffer.ByteBuf;</span><br><span class="line">import io.netty.channel.ChannelHandlerContext;</span><br><span class="line">import io.netty.channel.ChannelInboundHandlerAdapter;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;deprecation&quot;)</span><br><span class="line">public class DiscardServerHandler extends ChannelInboundHandlerAdapter &#123;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception &#123;</span><br><span class="line">		// Discard the received data silently.</span><br><span class="line">		((ByteBuf) msg).release();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		cause.printStackTrace();</span><br><span class="line">		ctx.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 channelRead() 方法在开发中一般是按照如下方式使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void channelRead(ChannelHandlerContext ctx, Object msg) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        // Do something with msg</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        ReferenceCountUtil.release(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而 exceptionCaught() 方法在通常情况下需要打印日志以及关闭相关通道</p>
-<h3 id="DiscardServer"><a href="#DiscardServer" class="headerlink" title="DiscardServer"></a>DiscardServer</h3><p>在有了消息处理类之后，只需要在 main() 方法里启动该服务即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">package io.netty.example.discard;</span><br><span class="line">    </span><br><span class="line">import io.netty.bootstrap.ServerBootstrap;</span><br><span class="line"></span><br><span class="line">import io.netty.channel.ChannelFuture;</span><br><span class="line">import io.netty.channel.ChannelInitializer;</span><br><span class="line">import io.netty.channel.ChannelOption;</span><br><span class="line">import io.netty.channel.EventLoopGroup;</span><br><span class="line">import io.netty.channel.nio.NioEventLoopGroup;</span><br><span class="line">import io.netty.channel.socket.SocketChannel;</span><br><span class="line">import io.netty.channel.socket.nio.NioServerSocketChannel;</span><br><span class="line">    </span><br><span class="line">/**</span><br><span class="line"> * Discards any incoming data.</span><br><span class="line"> */</span><br><span class="line">public class DiscardServer &#123;</span><br><span class="line">    </span><br><span class="line">    private int port;</span><br><span class="line">    </span><br><span class="line">    public DiscardServer(int port) &#123;</span><br><span class="line">        this.port = port;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void run() throws Exception &#123;</span><br><span class="line">        EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)</span><br><span class="line">        EventLoopGroup workerGroup = new NioEventLoopGroup();</span><br><span class="line">        try &#123;</span><br><span class="line">            ServerBootstrap b = new ServerBootstrap(); // (2)</span><br><span class="line">            b.group(bossGroup, workerGroup)</span><br><span class="line">             .channel(NioServerSocketChannel.class) // (3)</span><br><span class="line">             .childHandler(new ChannelInitializer&lt;SocketChannel&gt;() &#123; // (4)</span><br><span class="line">                 @Override</span><br><span class="line">                 public void initChannel(SocketChannel ch) throws Exception &#123;</span><br><span class="line">                     ch.pipeline().addLast(new DiscardServerHandler());</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .option(ChannelOption.SO_BACKLOG, 128)          // (5)</span><br><span class="line">             .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)</span><br><span class="line">    </span><br><span class="line">            // Bind and start to accept incoming connections.</span><br><span class="line">            ChannelFuture f = b.bind(port).sync(); // (7)</span><br><span class="line">    </span><br><span class="line">            // Wait until the server socket is closed.</span><br><span class="line">            // In this example, this does not happen, but you can do that to gracefully</span><br><span class="line">            // shut down your server.</span><br><span class="line">            f.channel().closeFuture().sync();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            workerGroup.shutdownGracefully();</span><br><span class="line">            bossGroup.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        int port;</span><br><span class="line">        if (args.length &gt; 0) &#123;</span><br><span class="line">            port = Integer.parseInt(args[0]);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            port = 8080;</span><br><span class="line">        &#125;</span><br><span class="line">        new DiscardServer(port).run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>NioEventLoopGroup 是一个处理 I/O 操作的多线程事件循环，因为这里要实现的是一个服务端应用程序，所以需要有两个 NioEventLoopGroup。第一个“老板” NioEventLoopGroup 用来接收收到的连接。第二个“员工” NioEventLoopGroup 是当“老板”接收到连接时并将接受的连接注册给“员工”之后，用来处理接受的连接的传输。使用多少线程以及它们如何映射到创建的通道取决于 EventLoopGroup 实现，甚至可以通过构造函数进行配置</li>
-<li>ServerBootstrap 是用来设置一个服务器的帮助类，你可以直接使用 Channel 来设置服务器，但这是一个繁琐的过程，一般都不这样使用。</li>
-<li>在这里，我们指定使用 NioServerSocketChannel 类来实例化一个新的 Channel 来接受传入的连接。</li>
-<li>ChannelInitializer() 是一个特殊的处理程序，用来帮助用户配置新的 Channel。</li>
-<li>我们可以根据 Channel 类指定的实现来设置参数，比如这里要实现的是一个基于 TCP/IP 的服务器，所以我们需要设置类似于 tcpNoDelay 和 keepAlive 的参数。</li>
-<li>option() 是 NioServerSocketChannel 用来接收连接的，而 childOption() 则是用于 Channels 接收主服务器通道的，在这里就是NioServerSocketChannel。</li>
-<li>最后一步就是绑定端口号</li>
-</ol>
-<p>以上就是 DiscardServer 的具体实现。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/08/24/SVN 执行变更/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/SVN 执行变更/" itemprop="url">SVN 执行变更</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T14:31:02+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SVN/" itemprop="url" rel="index">
-                    <span itemprop="name">SVN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/24/SVN 执行变更/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 执行变更/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/24/SVN 执行变更/" class="leancloud_visitors" data-flag-title="SVN 执行变更">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在 trunk 目录下新建一个 test.c 文件，内容随意，执行 <code>make</code> 命令后使用 <code>svn status</code> 命令查询文件状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn status</span><br><span class="line">?       test</span><br><span class="line">?       test.c</span><br></pre></td></tr></table></figure>
-<p>可以看到在未对文件进行任何操作之前是 ？ 状态，在提交前我们需要将文件添加到挂起的更改列表中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn add test.c</span><br><span class="line">A         test.c</span><br></pre></td></tr></table></figure>
-<p>再次查询文件状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn status    </span><br><span class="line">?       test</span><br><span class="line">A       test.c</span><br></pre></td></tr></table></figure>
-<p>现在可以使用 <code>svn commit</code> 提交文件了，使用参数 -m 可以省略本次提交的文本信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn commit -m &quot;Initial commit&quot;</span><br><span class="line">Adding         test.c</span><br><span class="line">Transmitting file data .done</span><br><span class="line">Committing transaction...</span><br><span class="line">Committed revision 2.</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/08/24/SVN 审查变更/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/SVN 审查变更/" itemprop="url">SVN 审查变更</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T14:30:30+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SVN/" itemprop="url" rel="index">
-                    <span itemprop="name">SVN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/24/SVN 审查变更/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/SVN 审查变更/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/24/SVN 审查变更/" class="leancloud_visitors" data-flag-title="SVN 审查变更">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用户 user01 检出最后一个版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ svn checkout http://104.224.145.103:81/svn/project_repo ~/svn/user01/project_repo/ --username=user01</span><br><span class="line">A    svn/user01/project_repo/trunk</span><br><span class="line">A    svn/user01/project_repo/trunk/test.c</span><br><span class="line">A    svn/user01/project_repo/branches</span><br><span class="line">A    svn/user01/project_repo/tags</span><br><span class="line">Checked out revision 2.</span><br></pre></td></tr></table></figure>
-<p>发现已经有人添加了代码，于是使用 <code>svn log</code> 命令检查信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn log</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">r2 | desirelll | 2017-08-24 10:09:14 +0800 (四, 24  8 2017) | 1 line</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">r1 | desirelll | 2017-08-23 14:41:54 +0800 (三, 23  8 2017) | 1 line</span><br><span class="line"></span><br><span class="line">Create trunk, branches, tags directory structure</span><br><span class="line">------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-<p>user01 对 test.c 文件进行了修改，使用 <code>svn status</code> 可以看到文件状态发生变化 A-&gt;M</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn status</span><br><span class="line">M       test.c</span><br></pre></td></tr></table></figure>
-<p><code>svn diff</code>可以查看更改内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn diff</span><br><span class="line">Index: test.c</span><br><span class="line">===================================================================</span><br><span class="line">--- test.c	(revision 2)</span><br><span class="line">+++ test.c	(working copy)</span><br><span class="line">@@ -5,6 +5,12 @@</span><br><span class="line"> printf(&quot;Enter the total number of elements: &quot;);</span><br><span class="line"> scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line"> </span><br><span class="line">+/* handle array overflow condition  */</span><br><span class="line">+if (n &gt; MAX) &#123;</span><br><span class="line">+fprintf(stderr, &quot;Number of elements must be less than %d\n&quot;, MAX);</span><br><span class="line">+return 1;</span><br><span class="line">+&#125;</span><br><span class="line">+</span><br><span class="line"> printf(&quot;Enter the elements\n&quot;);</span><br><span class="line"> </span><br><span class="line"> for (i=0; i&lt;n; ++i) scanf(&quot;%d&quot;, &amp;arr[i]);</span><br></pre></td></tr></table></figure>
-<p>提交代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  trunk svn commit -m &quot;Fix array overflow problem&quot;</span><br><span class="line">Sending        test.c</span><br><span class="line">Transmitting file data .done</span><br><span class="line">Committing transaction...</span><br><span class="line">Committed revision 3.</span><br></pre></td></tr></table></figure>
-<p>user01 的更改被成功提交到了仓库中</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2219,7 +2317,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

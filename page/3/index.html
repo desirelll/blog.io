@@ -284,6 +284,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/19/Mycat 两节点部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/Mycat 两节点部署/" itemprop="url">Mycat 两节点部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T14:13:22+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/mycat/" itemprop="url" rel="index">
+                    <span itemprop="name">mycat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/19/Mycat 两节点部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/19/Mycat 两节点部署/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/10/19/Mycat 两节点部署/" class="leancloud_visitors" data-flag-title="Mycat 两节点部署">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、环境介绍"><a href="#一、环境介绍" class="headerlink" title="一、环境介绍"></a>一、环境介绍</h3><h4 id="1-mysql-节点1环境"><a href="#1-mysql-节点1环境" class="headerlink" title="1. mysql 节点1环境"></a>1. mysql 节点1环境</h4><ul>
+<li>操作系统: centos x64</li>
+<li>数据库名: lujw_mycat_db_53_1</li>
+<li>hostname: c1</li>
+<li>ip: 192.168.171.53</li>
+</ul>
+<h4 id="2-mysql-节点2环境"><a href="#2-mysql-节点2环境" class="headerlink" title="2. mysql 节点2环境"></a>2. mysql 节点2环境</h4><ul>
+<li>操作系统: centos x64</li>
+<li>数据库名: lujw_mycat_db_54_1</li>
+<li>hostname: c2</li>
+<li>ip: 192.168.171.54</li>
+</ul>
+<h4 id="3-mycat-环境"><a href="#3-mycat-环境" class="headerlink" title="3. mycat 环境"></a>3. mycat 环境</h4><p>安装在个人电脑 MacBook 上<br>版本:1.6 release</p>
+<h4 id="4-前提条件"><a href="#4-前提条件" class="headerlink" title="4. 前提条件"></a>4. 前提条件</h4><p>安装好 mycat，两个节点安装好 mysql</p>
+<h3 id="二、配置-mycat"><a href="#二、配置-mycat" class="headerlink" title="二、配置 mycat"></a>二、配置 mycat</h3><h4 id="1-配置-schema-xml"><a href="#1-配置-schema-xml" class="headerlink" title="1. 配置 schema.xml"></a>1. 配置 schema.xml</h4><p>根据个人情况修改 url，user，password </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mycat:schema SYSTEM &quot;schema.dtd&quot;&gt;</span><br><span class="line">&lt;mycat:schema xmlns:mycat=&quot;http://io.mycat/&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;schema name=&quot;TESTDB&quot; checkSQLschema=&quot;false&quot; sqlMaxLimit=&quot;100&quot;&gt;</span><br><span class="line">		&lt;table name=&quot;travelrecord&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;auto-sharding-long&quot; /&gt;</span><br><span class="line">		&lt;table name=&quot;company&quot; primaryKey=&quot;ID&quot; type=&quot;global&quot; dataNode=&quot;dn1,dn2&quot; /&gt;</span><br><span class="line">		&lt;table name=&quot;goods&quot; primaryKey=&quot;ID&quot; type=&quot;global&quot; dataNode=&quot;dn1,dn2&quot; /&gt;</span><br><span class="line">		&lt;table name=&quot;hotnews&quot; primaryKey=&quot;ID&quot; autoIncrement=&quot;true&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;mod-long&quot; /&gt;</span><br><span class="line">		&lt;table name=&quot;employee&quot; primaryKey=&quot;ID&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;sharding-by-intfile&quot; /&gt;</span><br><span class="line">	&lt;/schema&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;dataNode name=&quot;dn1&quot; dataHost=&quot;c1&quot; database=&quot;lujw_mycat_db&quot; /&gt;</span><br><span class="line">	&lt;dataNode name=&quot;dn2&quot; dataHost=&quot;c2&quot; database=&quot;lujw_mycat_db&quot; /&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 主机C1 --&gt;</span><br><span class="line">	&lt;dataHost name=&quot;c1&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot; writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;</span><br><span class="line">		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</span><br><span class="line">		&lt;writeHost host=&quot;hostM1&quot; url=&quot;192.168.171.53:1234&quot; user=&quot;user&quot; password=&quot;123456&quot;&gt;</span><br><span class="line">		&lt;/writeHost&gt;</span><br><span class="line">	&lt;/dataHost&gt;</span><br><span class="line">    &lt;!-- 主机C2 --&gt;</span><br><span class="line">	&lt;dataHost name=&quot;c2&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot; writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot;&gt;</span><br><span class="line">		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</span><br><span class="line">		&lt;writeHost host=&quot;hostM2&quot; url=&quot;192.168.171.54:1234&quot; user=&quot;user&quot; password=&quot;123456&quot;&gt;</span><br><span class="line">		&lt;/writeHost&gt;</span><br><span class="line">	&lt;/dataHost&gt;</span><br><span class="line">    </span><br><span class="line">	</span><br><span class="line">&lt;/mycat:schema&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-配置-server-xml"><a href="#2-配置-server-xml" class="headerlink" title="2. 配置 server.xml"></a>2. 配置 server.xml</h4><p>在尾部添加一个访问数据库的用户，具体看个人用户设置<br>格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 为mycat配置一个用户 --&gt;</span><br><span class="line">&lt;user name=&quot;cat&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;password&quot;&gt;cat&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;schemas&quot;&gt;TESTDB&lt;/property&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-创建数据库"><a href="#3-创建数据库" class="headerlink" title="3. 创建数据库"></a>3. 创建数据库</h4><p>分别在两个节点上使用 mysql 创建 lujw_mycat_db 数据库</p>
+<h3 id="三、启动-mycat"><a href="#三、启动-mycat" class="headerlink" title="三、启动 mycat"></a>三、启动 mycat</h3><p>使用 <code>mycat start</code> 指令尝试运行 mycat，会发现在 logs 目录下的输出日志 wrapper.log 中出现错误，这是因为 mycat 默认的 schema.xml 配置了三个节点，相应的 rule.xml 中的规则也设置了三个节点。我们可以根据日志中的提示找到相应的 rule，然后进行修改。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: io.mycat.config.util.ConfigException: Illegal table conf : table [ TRAVELRECORD ] rule function [ rang-long ] partition size : 3 &gt; table datanode size : 2, please make sure table datanode size = function partition size</span><br></pre></td></tr></table></figure>
+<p>打开 rule.xml 找到上述 rang-long 的规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;function name=&quot;rang-long&quot;</span><br><span class="line">		class=&quot;io.mycat.route.function.AutoPartitionByLong&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;mapFile&quot;&gt;autopartition-long.txt&lt;/property&gt;</span><br><span class="line">&lt;/function&gt;</span><br></pre></td></tr></table></figure>
+<p>再打开属性文件 autopartition-long.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># range start-end ,data node index</span><br><span class="line"># K=1000,M=10000.</span><br><span class="line">0-500M=0</span><br><span class="line">500M-1000M=1</span><br><span class="line">1000M-1500M=2</span><br></pre></td></tr></table></figure>
+<p>修改为两个节点的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># range start-end ,data node index</span><br><span class="line"># K=1000,M=10000.</span><br><span class="line">0-500M=0</span><br><span class="line">500M-1500M=1</span><br><span class="line"># 1000M-1500M=2</span><br></pre></td></tr></table></figure>
+<p>根据日志所有的提示，我们还需要修改的规则有<br>mod-long: count 3 –&gt; 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;function name=&quot;mod-long&quot; class=&quot;io.mycat.route.function.PartitionByMod&quot;&gt;</span><br><span class="line">		&lt;!-- how many data nodes --&gt;</span><br><span class="line">		&lt;property name=&quot;count&quot;&gt;2&lt;/property&gt;</span><br><span class="line">&lt;/function&gt;</span><br></pre></td></tr></table></figure>
+<p>再次启动 mycat，在 wrapper.log 和 mycat.log 中会得到启动成功的信息</p>
+<h3 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h3><p>在 mycat.log 日志中搜索 serverport，可以看到 serverport=8066，使用 mysql 连接这个端口，可以查到根据我们配置好的信息创建的数据库和表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">./mysql -u root -p123456 -P8066 -h127.0.0.1</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+----------+</span><br><span class="line">| DATABASE |</span><br><span class="line">+----------+</span><br><span class="line">| TESTDB   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">+------------------+</span><br><span class="line">| Tables in TESTDB |</span><br><span class="line">+------------------+</span><br><span class="line">| company          |</span><br><span class="line">| employee         |</span><br><span class="line">| goods            |</span><br><span class="line">| hotnews          |</span><br><span class="line">| travelrecord     |</span><br><span class="line">+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>虽然查到了 tables，但其实那些都是空的，所以还需要我们手动创建一次，这里以 employee 为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table employee (id int not null primary key,name varchar(100),sharding_id int not null);</span><br></pre></td></tr></table></figure>
+<p>然后插入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">insert into employee(id,name,sharding_id) values(1,&apos;leader us&apos;,10000);</span><br><span class="line">insert into employee(id,name,sharding_id) values(2, &apos;me&apos;,10010);</span><br><span class="line">insert into employee(id,name,sharding_id) values(3, &apos;mycat&apos;,10000);</span><br><span class="line">insert into employee(id,name,sharding_id) values(4, &apos;mydog&apos;,10010);</span><br></pre></td></tr></table></figure>
+<p>分别到两个节点中的数据库查看，可以看到在数据库1中有：<br>1    leader us    10000<br>3    mycat    10000<br>数据库2中有：<br>2    me    10010<br>4    mydog 10010</p>
+<p>这说明分片成功了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/16/Storm 单机版部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2038,199 +2251,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/08/28/netty 基本使用（五）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/28/netty 基本使用（五）/" itemprop="url">netty 基本使用（五）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T14:53:03+08:00">
-                2017-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/netty/" itemprop="url" rel="index">
-                    <span itemprop="name">netty</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/28/netty 基本使用（五）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/28/netty 基本使用（五）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/28/netty 基本使用（五）/" class="leancloud_visitors" data-flag-title="netty 基本使用（五）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使用-POJO-代替-ByteBuf"><a href="#使用-POJO-代替-ByteBuf" class="headerlink" title="使用 POJO 代替 ByteBuf"></a>使用 POJO 代替 ByteBuf</h2><p>到此为止我们前面使用的数据都是以 ByteBuf 为主要的数据结构，接下来我们将使用 POJO 来代替 ByteBuf 来改善 TIME 客户端和服务端</p>
-<p>首先定义一个新类型 UnixTime</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package io.netty.example.time;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class UnixTime &#123;</span><br><span class="line"></span><br><span class="line">    private final long value;</span><br><span class="line">    </span><br><span class="line">    public UnixTime() &#123;</span><br><span class="line">        this(System.currentTimeMillis() / 1000L + 2208988800L);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public UnixTime(long value) &#123;</span><br><span class="line">        this.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    public long value() &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return new Date((value() - 2208988800L) * 1000L).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来就可以修改 TimeDecoder</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List&lt;Object&gt; out) throws Exception &#123;</span><br><span class="line">		if (in.readableBytes() &lt; 4) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		out.add(new UnixTime(in.readUnsignedInt()));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>然后 TimeClientHandler 也不再使用 ByteBuf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void channelRead(ChannelHandlerContext ctx, Object msg) &#123;</span><br><span class="line">    UnixTime m = (UnixTime) msg;</span><br><span class="line">    System.out.println(m);</span><br><span class="line">    ctx.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样看起来就简单而不失精致了…同样也可以对 Server 端进行修改，首先对 TimeServerHandler 进行修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void channelActive(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    ChannelFuture f = ctx.writeAndFlush(new UnixTime());</span><br><span class="line">    f.addListener(ChannelFutureListener.CLOSE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在还有一件事没做，就是解码类的编写，用于把 UnixTime 转为 ByteBuf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package io.netty.example.time;</span><br><span class="line"></span><br><span class="line">public class TimeEncoder extends ChannelOutboundHandlerAdapter &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) &#123;</span><br><span class="line">        UnixTime m = (UnixTime) msg;</span><br><span class="line">        ByteBuf encoded = ctx.alloc().buffer(4);</span><br><span class="line">        encoded.writeInt((int)m.value());</span><br><span class="line">        ctx.write(encoded, promise); // (1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>注意这里我们没有调用 ctx.flush（），因为有一个被分割出来的 <code>void flush(ChannelHandlerContext ctx)</code> 方法用来覆盖 flush（）操作，首先将父类修改为 MessageToByteEncoder</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class TimeEncoder extends MessageToByteEncoder&lt;UnixTime&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void encode(ChannelHandlerContext ctx, UnixTime msg, ByteBuf out) &#123;</span><br><span class="line">        out.writeInt((int)msg.value());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后只需要把 TimeEncoder 插入到 服务端的 ChannelPipeline 中，注意，要放在 TimeServerHandler 前<br>再次启动服务和客户端，可以得到正确结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mon Aug 28 14:49:07 CST 2017</span><br></pre></td></tr></table></figure>
-<p>以上就是本次对 netty 快速入门学习的全部内容<br>关于更多的学习章节和例子，官网建议前往 <a href="https://github.com/netty/netty/tree/4.0/example/src/main/java/io/netty/example" target="_blank" rel="noopener">io.netty.example</a> 包查看</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2281,7 +2301,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

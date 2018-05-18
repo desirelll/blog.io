@@ -284,6 +284,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/02/26/Set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/26/Set/" itemprop="url">Set</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:27:20+08:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/Java集合框架/" itemprop="url" rel="index">
+                    <span itemprop="name">Java集合框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/26/Set/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/Set/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/02/26/Set/" class="leancloud_visitors" data-flag-title="Set">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><p>HashSet 是用来创建一个用哈希表存储的集合，它继承自 AbstractSet，实现了 Set 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/hashset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>HashSet 通过哈希机制来存储数据</li>
+<li>HashSet 中的元素不能重复</li>
+</ul>
+<h3 id="Set-和-List-的区别"><a href="#Set-和-List-的区别" class="headerlink" title="Set 和 List 的区别"></a>Set 和 List 的区别</h3><p>List 中可以有重复的元素，而 Set 不可以。</p>
+<h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h2 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h2><p>LinkedHashSet 是一个实现了 Set 接口的哈希表（Hash table）和链接队列（Linked list），它继承自 HashSet，实现了 Set 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/linkedhashset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>和 HashSet 一样不能有重复的元素</li>
+<li>提供 set 的所有操作，并且允许有空元素</li>
+<li>元素有序</li>
+</ul>
+<h3 id="类的声明-1"><a href="#类的声明-1" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<p><br><br><br><br><br><br><br><br><br></p>
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p>Tree 是一个使用树结构存储的集合，它继承自 AbstractSet，实现了 NavigableSet 接口。<img src="http://images-1254106572.cosgz.myqcloud.com/img/treeset.png" style="float:right;"></p>
+<p>主要特点：</p>
+<ul>
+<li>和 HashSet 一样不能有重复的元素</li>
+<li>访问和检索速度快</li>
+<li>元素有序</li>
+</ul>
+<h3 id="类的声明-2"><a href="#类的声明-2" class="headerlink" title="类的声明"></a>类的声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/02/24/Java 集合框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2229,188 +2430,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="url">MySQL TIMESTAMP 字段 Invalid default value 问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:30:58+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/" class="leancloud_visitors" data-flag-title="MySQL TIMESTAMP 字段 Invalid default value 问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-- 创建表</span><br><span class="line">CREATE TABLE seckill(</span><br><span class="line">  `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT &apos;商品库存id&apos;,</span><br><span class="line">  `name` varchar(120) NOT NULL COMMENT &apos;商品名称&apos;,</span><br><span class="line">  `number` int NOT NULL COMMENT &apos;库存数量&apos;,</span><br><span class="line"></span><br><span class="line">  -- 此行不会报错，因为默认值使用CURRENT_TIMESTAMP</span><br><span class="line">  `start_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀开启时间&apos;,</span><br><span class="line"></span><br><span class="line">  -- 此行会报错，因为默认值使用“0000-00-00 00:00:00”，</span><br><span class="line">  -- Mysql 5.7版本后的SQL_MODE默认为strict（NO_ZERO_DATE），</span><br><span class="line">  -- 所以第二个出现报错</span><br><span class="line">  -- 解决方案：SET SQL_MODE = &apos;ALLOW_INVALID_DATES&apos;;</span><br><span class="line"></span><br><span class="line">  `end_time` TIMESTAMP NOT NULL COMMENT &apos;秒杀结束时间&apos;,</span><br><span class="line">  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;,</span><br><span class="line">  PRIMARY KEY (seckill_id),</span><br><span class="line">  key idx_start_time(start_time),</span><br><span class="line">  key idx_end_time(end_time),</span><br><span class="line">  key idx_create_time(create_time)</span><br><span class="line">)ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=UTF8 COMMENT=&apos;秒杀库存表&apos;;</span><br><span class="line"></span><br><span class="line">作者：一个理想主义的大兵</span><br><span class="line">链接：http://www.jianshu.com/p/e21065e32444</span><br><span class="line">來源：简书</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-<p>解决方案是：<br><code>SET SQL_MODE = &#39;ALLOW_INVALID_DATES&#39;;</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2456,7 +2480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

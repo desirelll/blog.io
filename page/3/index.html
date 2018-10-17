@@ -284,6 +284,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/Redis 官网集群步骤/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="desirelll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="desirelll's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/Redis 官网集群步骤/" itemprop="url">Redis 官网集群步骤</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T10:32:46+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/Redis 官网集群步骤/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/25/Redis 官网集群步骤/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/10/25/Redis 官网集群步骤/" class="leancloud_visitors" data-flag-title="Redis 官网集群步骤">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1. 创建目录"></a>1. 创建目录</h4><p>要让集群正常运作至少需要三个主节点， 不过在刚开始试用集群功能时， 强烈建议使用六个节点： 其中三个为主节点， 而其余三个则是各个主节点的从节点<br>创建一个新目录 redis，并在其中创建六个以端口号为名字的子目录，每个子目录都是一个 redis</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir redis</span><br><span class="line">cd redis</span><br><span class="line">mkdir 7000 7001 7002 7003 7004 7005</span><br></pre></td></tr></table></figure>
+<h4 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2. 修改配置文件"></a>2. 修改配置文件</h4><p>分别进入每个子目录，修改 redis.conf 中如下的配置项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">port 7000</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+<p>其中端口号 port 分别为 7000-7005</p>
+<h4 id="3-运行实例"><a href="#3-运行实例" class="headerlink" title="3. 运行实例"></a>3. 运行实例</h4><p>接着，从 <a href="https://github.com/antirez/redis" target="_blank" rel="noopener">Redis Github 页面</a>的 unstable 分支中下载最新代码，然后编译出可执行文件放在 redis 文件夹中。（其实从我们的任一子目录里面编译后在 src 文件夹里拿出来也可以）通过如下命令分别创建出 6 个实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 7000</span><br><span class="line">../redis-server ./redis.conf</span><br></pre></td></tr></table></figure>
+<h4 id="4-创建集群"><a href="#4-创建集群" class="headerlink" title="4. 创建集群"></a>4. 创建集群</h4><p>可以使用 src 目录中的 redis-trib 程序来创建集群，首先需要安装 redis gem 才能运行 redis-trib</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install redis</span><br></pre></td></tr></table></figure>
+<p>然后创建集群</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 \</span><br><span class="line">127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</span><br></pre></td></tr></table></figure>
+<p>然后终端会列出集群的情况，并礼貌性的问你这样创建可以吗，当然是输入 yes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Creating cluster</span><br><span class="line">&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...</span><br><span class="line">Using 3 masters:</span><br><span class="line">127.0.0.1:7000</span><br><span class="line">127.0.0.1:7001</span><br><span class="line">127.0.0.1:7002</span><br><span class="line">Adding replica 127.0.0.1:7003 to 127.0.0.1:7000</span><br><span class="line">Adding replica 127.0.0.1:7004 to 127.0.0.1:7001</span><br><span class="line">Adding replica 127.0.0.1:7005 to 127.0.0.1:7002</span><br><span class="line">M: 968f13cefb4f895cec739794835fcd160bde22af 127.0.0.1:7000</span><br><span class="line">   slots:0-5460 (5461 slots) master</span><br><span class="line">M: 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0 127.0.0.1:7001</span><br><span class="line">   slots:5461-10922 (5462 slots) master</span><br><span class="line">M: 433145fbee24fa60a3e7194b9b8056b02f375023 127.0.0.1:7002</span><br><span class="line">   slots:10923-16383 (5461 slots) master</span><br><span class="line">S: d29b5ce6e4ea9a33a9044d4211ba37aafa5198f8 127.0.0.1:7003</span><br><span class="line">   replicates 968f13cefb4f895cec739794835fcd160bde22af</span><br><span class="line">S: ba9052a112e11e757a563ce6ed89adde463c7ec5 127.0.0.1:7004</span><br><span class="line">   replicates 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0</span><br><span class="line">S: 130bfe6c6e1b8d31ed1e030ae7c41902be268a1f 127.0.0.1:7005</span><br><span class="line">   replicates 433145fbee24fa60a3e7194b9b8056b02f375023</span><br><span class="line">Can I set the above configuration? (type &apos;yes&apos; to accept): yes</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Nodes configuration updated</span><br><span class="line">&gt;&gt;&gt; Assign a different config epoch to each node</span><br><span class="line">&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster</span><br><span class="line">Waiting for the cluster to join...</span><br><span class="line">&gt;&gt;&gt; Performing Cluster Check (using node 127.0.0.1:7000)</span><br><span class="line">M: 968f13cefb4f895cec739794835fcd160bde22af 127.0.0.1:7000</span><br><span class="line">   slots:0-5460 (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 433145fbee24fa60a3e7194b9b8056b02f375023 127.0.0.1:7002</span><br><span class="line">   slots:10923-16383 (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0 127.0.0.1:7001</span><br><span class="line">   slots:5461-10922 (5462 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: ba9052a112e11e757a563ce6ed89adde463c7ec5 127.0.0.1:7004</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 3c088766a36ed8ccd7bef5e6e2fbe75c48bc10c0</span><br><span class="line">S: d29b5ce6e4ea9a33a9044d4211ba37aafa5198f8 127.0.0.1:7003</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 968f13cefb4f895cec739794835fcd160bde22af</span><br><span class="line">S: 130bfe6c6e1b8d31ed1e030ae7c41902be268a1f 127.0.0.1:7005</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 433145fbee24fa60a3e7194b9b8056b02f375023</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check for open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All 16384 slots covered.</span><br></pre></td></tr></table></figure>
+<p>到此集群就创建成功了。<br>但很明显这是个伪集群，如果条件允许的话建议使用 6 台机器来创建集群，只需修改相应的地址和端口，并在防火墙开放该端口就行。</p>
+<h4 id="5-简单测试"><a href="#5-简单测试" class="headerlink" title="5. 简单测试"></a>5. 简单测试</h4><p>使用 redis-cli 进行简单的命令测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -c -p 7000</span><br><span class="line">redis 127.0.0.1:7000&gt; set foo bar</span><br><span class="line">-&gt; Redirected to slot [12182] located at 127.0.0.1:7002</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:7002&gt; set hello world</span><br><span class="line">-&gt; Redirected to slot [866] located at 127.0.0.1:7000</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:7000&gt; get foo</span><br><span class="line">-&gt; Redirected to slot [12182] located at 127.0.0.1:7002</span><br><span class="line">&quot;bar&quot;</span><br><span class="line">redis 127.0.0.1:7000&gt; get hello</span><br><span class="line">-&gt; Redirected to slot [866] located at 127.0.0.1:7000</span><br><span class="line">&quot;world&quot;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/10/25/MySQL TIMESTAMP 字段 Invalid default value 问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2075,204 +2267,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/05/ZooKeeper Java 实例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="desirelll">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="desirelll's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/05/ZooKeeper Java 实例/" itemprop="url">ZooKeeper Java 实例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T10:45:58+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/ZooKeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">ZooKeeper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/05/ZooKeeper Java 实例/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/05/ZooKeeper Java 实例/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/05/ZooKeeper Java 实例/" class="leancloud_visitors" data-flag-title="ZooKeeper Java 实例">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Java-API-简单调用"><a href="#Java-API-简单调用" class="headerlink" title="Java API 简单调用"></a>Java API 简单调用</h3><ul>
-<li>创建一个 maven 工程，引入 ZooKeeper</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.4.6&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建 NormalZooKeeper 类</li>
-</ul>
-<p>创建 ZooKeeper 实例时 host 若不指定端口，默认是2181，而我的三个服务器端口分别是 2182，2183，2184，所以需要写上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.zookeeper.CreateMode;</span><br><span class="line">import org.apache.zookeeper.KeeperException;</span><br><span class="line">import org.apache.zookeeper.ZooDefs;</span><br><span class="line">import org.apache.zookeeper.ZooKeeper;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by desire on 2017/9/5.</span><br><span class="line"> */</span><br><span class="line">public class NormalZookeeper &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException, InterruptedException, KeeperException&#123;</span><br><span class="line">        //创建一个Zookeeper实例，第一个参数为目标服务器地址和端口，第二个参数为Session超时时间，第三个为节点变化时的回调方法</span><br><span class="line">        ZooKeeper zooKeeper = new ZooKeeper(&quot;127.0.0.1:2182&quot;, 50000, new ConnectionWatcher());</span><br><span class="line"></span><br><span class="line">        //创建一个节点root，数据是mydata,不进行ACL权限控制，节点为永久性的(即客户端shutdown了也不会消失)</span><br><span class="line">        zooKeeper.create(&quot;/root&quot;, &quot;mydata&quot;.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);</span><br><span class="line"></span><br><span class="line">        //在root下面创建一个childone znode,数据为childone,不进行ACL权限控制，节点为永久性的</span><br><span class="line">        zooKeeper.create(&quot;/root/childone&quot;,&quot;childone&quot;.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);</span><br><span class="line"></span><br><span class="line">        //取得/root节点下的子节点名称,返回List&lt;String&gt;</span><br><span class="line">        zooKeeper.getChildren(&quot;/root&quot;, true);</span><br><span class="line"></span><br><span class="line">        //取得/root/childone节点下的数据,返回byte[]</span><br><span class="line">        zooKeeper.getData(&quot;/root/childone&quot;, true, null);</span><br><span class="line"></span><br><span class="line">        //修改节点/root/childone下的数据，第三个参数为版本，如果是-1，那会无视被修改的数据版本，直接改掉</span><br><span class="line">        zooKeeper.setData(&quot;/root/childone&quot;, &quot;childonemodify&quot;.getBytes(), -1);</span><br><span class="line"></span><br><span class="line">        //zooKeeper.delete(&quot;/root/childone&quot;, -1);</span><br><span class="line"></span><br><span class="line">        zooKeeper.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用这种方法测试程序容易出现错误，当端口写错或者服务器挂了的时候，我们无法成功连接，程序就挂了，所以可以使用下面这种比较优化的方式</p>
-<h3 id="继承-Watcher-的使用方式"><a href="#继承-Watcher-的使用方式" class="headerlink" title="继承 Watcher 的使用方式"></a>继承 Watcher 的使用方式</h3><ul>
-<li>创建 ConnetctionWatcher 类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.zookeeper.WatchedEvent;</span><br><span class="line">import org.apache.zookeeper.Watcher;</span><br><span class="line">import org.apache.zookeeper.ZooKeeper;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by desire on 2017/9/2.</span><br><span class="line"> */</span><br><span class="line">public class ConnectionWatcher implements Watcher &#123;</span><br><span class="line"></span><br><span class="line">    private CountDownLatch connettedSignal = new CountDownLatch(1);</span><br><span class="line"></span><br><span class="line">    private static final int SESSION_TIMEOUT = 5000;</span><br><span class="line"></span><br><span class="line">    ZooKeeper zk;</span><br><span class="line"></span><br><span class="line">    public void connect(String host) throws InterruptedException, IOException &#123;</span><br><span class="line">        zk = new ZooKeeper(host, SESSION_TIMEOUT, this);</span><br><span class="line">        connettedSignal.await();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void process(WatchedEvent watchedEvent) &#123;</span><br><span class="line">        if (watchedEvent.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">            connettedSignal.countDown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void close() throws InterruptedException &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            zk.close();</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这里我们使用了 CountDownLatch，一个同步辅助类，在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。<br>countDown 方法，当前线程调用此方法，则计数减一<br>await 方法，调用此方法会一直阻塞当前线程，直到计时器的值为 0<br>在 process 中增加了条件判断是否成功连接，若成功了则 await 方法停止阻塞，可以自行添加失败时进行的操作</p>
-<ul>
-<li>创建 HelloZooKeeper 类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.zookeeper.CreateMode;</span><br><span class="line">import org.apache.zookeeper.KeeperException;</span><br><span class="line">import org.apache.zookeeper.ZooDefs;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by desire on 2017/9/2.</span><br><span class="line"> */</span><br><span class="line">public class HelloZookeeper extends ConnectionWatcher &#123;</span><br><span class="line"></span><br><span class="line">    public void createNode(String nodeName, String nodeValue) throws KeeperException, InterruptedException &#123;</span><br><span class="line">        String path = &quot;/&quot; + nodeName;</span><br><span class="line"></span><br><span class="line">        String createPath = zk.create(path, nodeValue.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;Created znode: &quot; + createPath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void getValue(String nodeName) throws KeeperException, InterruptedException &#123;</span><br><span class="line">        String path = &quot;/&quot; + nodeName;</span><br><span class="line">        byte[] value = zk.getData(path, false, null);</span><br><span class="line">        System.out.printf(&quot;[%s,%s]&quot;,path, new String(value));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws IOException, InterruptedException, KeeperException &#123;</span><br><span class="line">        // 1 - Connect</span><br><span class="line">        HelloZookeeper zk = new HelloZookeeper();</span><br><span class="line">        zk.connect(&quot;127.0.0.1:2182&quot;);</span><br><span class="line"></span><br><span class="line">        // 2 - Created node</span><br><span class="line">        zk.createNode(&quot;hello&quot;, &quot;world&quot;);</span><br><span class="line"></span><br><span class="line">        // 3 - Get value</span><br><span class="line">        zk.getValue(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">        TimeUnit.HOURS.sleep(1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意这里创建 node 时 CreateMode 跟上面的例子不一样，具体区别如下</p>
-<blockquote>
-<p>CreateMode 标识有四种形式的目录节点，分别是 PERSISTENT：持久化目录节点，这个目录节点存储的数据不会丢失；PERSISTENT_SEQUENTIAL：顺序自动编号的目录节点，这种目录节点会根据当前已近存在的节点数自动加 1，然后返回给客户端已经成功创建的目录节点名；EPHEMERAL：临时目录节点，一旦创建这个节点的客户端与服务器端口也就是 session 超时，这种节点会被自动删除；EPHEMERAL_SEQUENTIAL：临时自动编号节点</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2323,7 +2317,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2334,7 +2328,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

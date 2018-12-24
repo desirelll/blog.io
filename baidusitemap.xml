@@ -4,11 +4,36 @@
 
     
   <url>
-    <loc>http://desirelll.com/2018/12/24/Springboot(%E4%B8%89)%20%E9%9B%86%E6%88%90%20Pagehelper/</loc>
-    <lastmod>2018-12-24T08:22:12.508Z</lastmod>
+    <loc>http://desirelll.com/2018/12/24/Spring%20Boot(%E5%9B%9B)%20%E9%9B%86%E6%88%90%E9%80%9A%E7%94%A8%20Mapper4/</loc>
+    <lastmod>2018-12-24T08:59:32.645Z</lastmod>
     <data>
         <display>
-        <title>Springboot(三) 集成 Pagehelper</title>
+        <title>Spring Boot(四) 集成通用 Mapper4</title>
+        <pubTime>2018-12-24T08:24:03.003Z</pubTime>
+        
+        <tag>springboot</tag>
+         
+        <tag>mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://desirelll.com/categories/java/"/>
+          
+             
+              <breadCrumb title="springboot" url="http://desirelll.com/categories/java/springboot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://desirelll.com/2018/12/24/Springboot(%E4%B8%89)%20%E9%9B%86%E6%88%90%20Pagehelper/</loc>
+    <lastmod>2018-12-24T08:24:36.946Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot(三) 集成 Pagehelper</title>
         <pubTime>2018-12-24T08:13:28.085Z</pubTime>
         
         <tag>springboot</tag>

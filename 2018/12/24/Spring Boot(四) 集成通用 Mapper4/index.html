@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="springboot,mybatis," />
 
 
 
@@ -98,20 +98,18 @@
 
 
 
-<meta name="description" content="1. 检查默认字符集1234567891011121314mysql&amp;gt; show variables like &amp;apos;%char%&amp;apos;;+--------------------------+-----------------------------------------------------------+| Variable_name            | Value">
+<meta name="description" content="一、添加 Mapper4 依赖12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;tk.mybatis&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mapper-spring-boot-starter&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt;&amp;lt;/depen">
+<meta name="keywords" content="springboot,mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 修改默认字符集">
-<meta property="og:url" content="http://desirelll.com/2017/09/15/MySQL 修改默认字符集/index.html">
+<meta property="og:title" content="Spring Boot(四) 集成通用 Mapper4">
+<meta property="og:url" content="http://desirelll.com/2018/12/24/Spring Boot(四) 集成通用 Mapper4/index.html">
 <meta property="og:site_name" content="desirelll&#39;s blog">
-<meta property="og:description" content="1. 检查默认字符集1234567891011121314mysql&amp;gt; show variables like &amp;apos;%char%&amp;apos;;+--------------------------+-----------------------------------------------------------+| Variable_name            | Value">
+<meta property="og:description" content="一、添加 Mapper4 依赖12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;tk.mybatis&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mapper-spring-boot-starter&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt;&amp;lt;/depen">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba48361bd79.png">
-<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba48a097c00.png">
-<meta property="og:updated_time" content="2017-09-15T01:18:28.000Z">
+<meta property="og:updated_time" content="2018-12-24T08:59:32.645Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL 修改默认字符集">
-<meta name="twitter:description" content="1. 检查默认字符集1234567891011121314mysql&amp;gt; show variables like &amp;apos;%char%&amp;apos;;+--------------------------+-----------------------------------------------------------+| Variable_name            | Value">
-<meta name="twitter:image" content="https://i.loli.net/2017/09/14/59ba48361bd79.png">
+<meta name="twitter:title" content="Spring Boot(四) 集成通用 Mapper4">
+<meta name="twitter:description" content="一、添加 Mapper4 依赖12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;tk.mybatis&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mapper-spring-boot-starter&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;2.1.0&amp;lt;/version&amp;gt;&amp;lt;/depen">
 
 
 
@@ -140,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://desirelll.com/2017/09/15/MySQL 修改默认字符集/"/>
+  <link rel="canonical" href="http://desirelll.com/2018/12/24/Spring Boot(四) 集成通用 Mapper4/"/>
 
 
 
 
 
-  <title>MySQL 修改默认字符集 | desirelll's blog</title>
+  <title>Spring Boot(四) 集成通用 Mapper4 | desirelll's blog</title>
   
 
 
@@ -289,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/09/15/MySQL 修改默认字符集/">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/12/24/Spring Boot(四) 集成通用 Mapper4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="desirelll">
@@ -306,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MySQL 修改默认字符集</h1>
+          <h1 class="post-title" itemprop="name headline">Spring Boot(四) 集成通用 Mapper4</h1>
         
 
         <div class="post-meta">
@@ -318,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T09:18:28+08:00">
-                2017-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-24T16:24:03+08:00">
+                2018-12-24
               </time>
             
 
@@ -352,8 +350,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/java/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
                   </a>
                 </span>
 
@@ -371,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/15/MySQL 修改默认字符集/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/15/MySQL 修改默认字符集/" itemprop="commentsCount"></span>
+                <a href="/2018/12/24/Spring Boot(四) 集成通用 Mapper4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/12/24/Spring Boot(四) 集成通用 Mapper4/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -381,7 +379,7 @@
 
           
           
-             <span id="/2017/09/15/MySQL 修改默认字符集/" class="leancloud_visitors" data-flag-title="MySQL 修改默认字符集">
+             <span id="/2018/12/24/Spring Boot(四) 集成通用 Mapper4/" class="leancloud_visitors" data-flag-title="Spring Boot(四) 集成通用 Mapper4">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,13 +410,15 @@
       
 
       
-        <h4 id="1-检查默认字符集"><a href="#1-检查默认字符集" class="headerlink" title="1. 检查默认字符集"></a>1. 检查默认字符集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like &apos;%char%&apos;;</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| Variable_name            | Value                                                     |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| character_set_client     | utf8                                                      |</span><br><span class="line">| character_set_connection | utf8                                                      |</span><br><span class="line">| character_set_database   | latin1                                                    |</span><br><span class="line">| character_set_filesystem | binary                                                    |</span><br><span class="line">| character_set_results    | utf8                                                      |</span><br><span class="line">| character_set_server     | latin1                                                    |</span><br><span class="line">| character_set_system     | utf8                                                      |</span><br><span class="line">| character_sets_dir       | /usr/local/mysql-5.7.19-macos10.12-x86_64/share/charsets/ |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>character_set_database和character_set_server依然是latin1的字符集，也就是说mysql后续创建的表都是latin1字符集的，不是utf8，会造成一些麻烦。所以有必要修改my.cnf，在修改my.cnf之前一定要关闭mysql进程，不然会遇到mysql的sock不能连接的问题。</p>
-<h4 id="2-关闭-mysqld-后台进程"><a href="#2-关闭-mysqld-后台进程" class="headerlink" title="2. 关闭 mysqld 后台进程"></a>2. 关闭 mysqld 后台进程</h4><p><img src="https://i.loli.net/2017/09/14/59ba48361bd79.png" alt=""><br><img src="https://i.loli.net/2017/09/14/59ba48a097c00.png" alt=""></p>
-<h4 id="3-修改-mysql-配置文件"><a href="#3-修改-mysql-配置文件" class="headerlink" title="3. 修改 mysql 配置文件"></a>3. 修改 mysql 配置文件</h4><p>sudo vi /etc/my.cnf<br>添加如下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure>
-<p>然后重启 mysql</p>
-<h4 id="4-检查结果"><a href="#4-检查结果" class="headerlink" title="4. 检查结果"></a>4. 检查结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like &apos;%char%&apos;;</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| Variable_name            | Value                                                     |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| character_set_client     | utf8                                                      |</span><br><span class="line">| character_set_connection | utf8                                                      |</span><br><span class="line">| character_set_database   | utf8                                                      |</span><br><span class="line">| character_set_filesystem | binary                                                    |</span><br><span class="line">| character_set_results    | utf8                                                      |</span><br><span class="line">| character_set_server     | utf8                                                      |</span><br><span class="line">| character_set_system     | utf8                                                      |</span><br><span class="line">| character_sets_dir       | /usr/local/mysql-5.7.19-macos10.12-x86_64/share/charsets/ |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">8 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+        <h2 id="一、添加-Mapper4-依赖"><a href="#一、添加-Mapper4-依赖" class="headerlink" title="一、添加 Mapper4 依赖"></a>一、添加 Mapper4 依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;tk.mybatis&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mapper-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="二、修改启动类上-MapperScan"><a href="#二、修改启动类上-MapperScan" class="headerlink" title="二、修改启动类上 @MapperScan"></a>二、修改启动类上 @MapperScan</h2><p>使用 <code>tk.mybatis.spring.annotation.MapperScan</code> 代替 <code>org.mybatis.spring.annotation.MapperScan</code></p>
+<h2 id="三、创建自己的-Mapper-基类"><a href="#三、创建自己的-Mapper-基类" class="headerlink" title="三、创建自己的 Mapper 基类"></a>三、创建自己的 Mapper 基类</h2><p>根据使用场景来选择需要继承的 Mapper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demo.config;</span><br><span class="line"></span><br><span class="line">import tk.mybatis.mapper.additional.insert.InsertListMapper;</span><br><span class="line">import tk.mybatis.mapper.common.Mapper;</span><br><span class="line"></span><br><span class="line">public interface BaseMapper&lt;T&gt; extends Mapper, InsertListMapper &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="四、修改-UserMapper"><a href="#四、修改-UserMapper" class="headerlink" title="四、修改 UserMapper"></a>四、修改 UserMapper</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.demo.config.BaseMapper;</span><br><span class="line"><span class="keyword">import</span> com.example.demo.entity.User;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> <span class="keyword">extends</span> <span class="title">BaseMapper</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="五、修改-UserService"><a href="#五、修改-UserService" class="headerlink" title="五、修改 UserService"></a>五、修改 UserService</h2><p>添加一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">selectById</span><span class="params">(<span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (User)userMapper.selectByPrimaryKey(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="六、修改-UserController"><a href="#六、修改-UserController" class="headerlink" title="六、修改 UserController"></a>六、修改 UserController</h2><p>添加一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">selectUserById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> userService.selectById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="七、修改实体类-User"><a href="#七、修改实体类-User" class="headerlink" title="七、修改实体类 User"></a>七、修改实体类 User</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> Long userId;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> Integer userAge;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Long userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getUserAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userAge;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserAge</span><span class="params">(Integer userAge)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userAge = userAge;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -463,6 +463,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/springboot/" rel="tag"># springboot</a>
+          
+            <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          
+        </div>
+      
 
       
       
@@ -472,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/MySQL 重置密码/" rel="next" title="MySQL 重置密码">
-                <i class="fa fa-chevron-left"></i> MySQL 重置密码
+              <a href="/2018/12/24/Springboot(三) 集成 Pagehelper/" rel="next" title="Spring Boot(三) 集成 Pagehelper">
+                <i class="fa fa-chevron-left"></i> Spring Boot(三) 集成 Pagehelper
               </a>
             
           </div>
@@ -481,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/16/Storm 单机版部署/" rel="prev" title="Storm 单机版部署">
-                Storm 单机版部署 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -620,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-检查默认字符集"><span class="nav-number">1.</span> <span class="nav-text">1. 检查默认字符集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-关闭-mysqld-后台进程"><span class="nav-number">2.</span> <span class="nav-text">2. 关闭 mysqld 后台进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改-mysql-配置文件"><span class="nav-number">3.</span> <span class="nav-text">3. 修改 mysql 配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-检查结果"><span class="nav-number">4.</span> <span class="nav-text">4. 检查结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、添加-Mapper4-依赖"><span class="nav-number">1.</span> <span class="nav-text">一、添加 Mapper4 依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、修改启动类上-MapperScan"><span class="nav-number">2.</span> <span class="nav-text">二、修改启动类上 @MapperScan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、创建自己的-Mapper-基类"><span class="nav-number">3.</span> <span class="nav-text">三、创建自己的 Mapper 基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、修改-UserMapper"><span class="nav-number">4.</span> <span class="nav-text">四、修改 UserMapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、修改-UserService"><span class="nav-number">5.</span> <span class="nav-text">五、修改 UserService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、修改-UserController"><span class="nav-number">6.</span> <span class="nav-text">六、修改 UserController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、修改实体类-User"><span class="nav-number">7.</span> <span class="nav-text">七、修改实体类 User</span></a></li></ol></div>
             
 
           </div>
@@ -774,7 +778,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/09/15/MySQL 修改默认字符集/"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2018/12/24/Spring Boot(四) 集成通用 Mapper4/"});
 		
 
 		(function() {

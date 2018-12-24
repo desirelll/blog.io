@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="springboot,mybatis," />
 
 
 
@@ -98,17 +98,18 @@
 
 
 
-<meta name="description" content="使用 POJO 代替 ByteBuf到此为止我们前面使用的数据都是以 ByteBuf 为主要的数据结构，接下来我们将使用 POJO 来代替 ByteBuf 来改善 TIME 客户端和服务端 首先定义一个新类型 UnixTime 12345678910111213141516171819202122232425package io.netty.example.time;import java.uti">
+<meta name="description" content="一、添加 Druid 依赖12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;druid-spring-boot-starter&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;1.1.9&amp;lt;/version&amp;gt;&amp;lt;/depende">
+<meta name="keywords" content="springboot,mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="netty 基本使用（五）">
-<meta property="og:url" content="http://desirelll.com/2017/08/28/netty 基本使用（五）/index.html">
+<meta property="og:title" content="Springboot(二) 集成 Druid">
+<meta property="og:url" content="http://desirelll.com/2018/12/24/Springboot(二) 集成 Druid/index.html">
 <meta property="og:site_name" content="desirelll&#39;s blog">
-<meta property="og:description" content="使用 POJO 代替 ByteBuf到此为止我们前面使用的数据都是以 ByteBuf 为主要的数据结构，接下来我们将使用 POJO 来代替 ByteBuf 来改善 TIME 客户端和服务端 首先定义一个新类型 UnixTime 12345678910111213141516171819202122232425package io.netty.example.time;import java.uti">
+<meta property="og:description" content="一、添加 Druid 依赖12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;druid-spring-boot-starter&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;1.1.9&amp;lt;/version&amp;gt;&amp;lt;/depende">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-28T06:53:03.000Z">
+<meta property="og:updated_time" content="2018-12-24T08:06:50.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="netty 基本使用（五）">
-<meta name="twitter:description" content="使用 POJO 代替 ByteBuf到此为止我们前面使用的数据都是以 ByteBuf 为主要的数据结构，接下来我们将使用 POJO 来代替 ByteBuf 来改善 TIME 客户端和服务端 首先定义一个新类型 UnixTime 12345678910111213141516171819202122232425package io.netty.example.time;import java.uti">
+<meta name="twitter:title" content="Springboot(二) 集成 Druid">
+<meta name="twitter:description" content="一、添加 Druid 依赖12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;druid-spring-boot-starter&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;1.1.9&amp;lt;/version&amp;gt;&amp;lt;/depende">
 
 
 
@@ -137,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://desirelll.com/2017/08/28/netty 基本使用（五）/"/>
+  <link rel="canonical" href="http://desirelll.com/2018/12/24/Springboot(二) 集成 Druid/"/>
 
 
 
 
 
-  <title>netty 基本使用（五） | desirelll's blog</title>
+  <title>Springboot(二) 集成 Druid | desirelll's blog</title>
   
 
 
@@ -286,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2017/08/28/netty 基本使用（五）/">
+    <link itemprop="mainEntityOfPage" href="http://desirelll.com/2018/12/24/Springboot(二) 集成 Druid/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="desirelll">
@@ -303,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">netty 基本使用（五）</h1>
+          <h1 class="post-title" itemprop="name headline">Springboot(二) 集成 Druid</h1>
         
 
         <div class="post-meta">
@@ -315,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T14:53:03+08:00">
-                2017-08-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-24T16:02:23+08:00">
+                2018-12-24
               </time>
             
 
@@ -349,8 +350,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/netty/" itemprop="url" rel="index">
-                    <span itemprop="name">netty</span>
+                  <a href="/categories/java/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
                   </a>
                 </span>
 
@@ -368,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/28/netty 基本使用（五）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/28/netty 基本使用（五）/" itemprop="commentsCount"></span>
+                <a href="/2018/12/24/Springboot(二) 集成 Druid/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/12/24/Springboot(二) 集成 Druid/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -378,7 +379,7 @@
 
           
           
-             <span id="/2017/08/28/netty 基本使用（五）/" class="leancloud_visitors" data-flag-title="netty 基本使用（五）">
+             <span id="/2018/12/24/Springboot(二) 集成 Druid/" class="leancloud_visitors" data-flag-title="Springboot(二) 集成 Druid">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -409,24 +410,10 @@
       
 
       
-        <h2 id="使用-POJO-代替-ByteBuf"><a href="#使用-POJO-代替-ByteBuf" class="headerlink" title="使用 POJO 代替 ByteBuf"></a>使用 POJO 代替 ByteBuf</h2><p>到此为止我们前面使用的数据都是以 ByteBuf 为主要的数据结构，接下来我们将使用 POJO 来代替 ByteBuf 来改善 TIME 客户端和服务端</p>
-<p>首先定义一个新类型 UnixTime</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package io.netty.example.time;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class UnixTime &#123;</span><br><span class="line"></span><br><span class="line">    private final long value;</span><br><span class="line">    </span><br><span class="line">    public UnixTime() &#123;</span><br><span class="line">        this(System.currentTimeMillis() / 1000L + 2208988800L);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public UnixTime(long value) &#123;</span><br><span class="line">        this.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    public long value() &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return new Date((value() - 2208988800L) * 1000L).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来就可以修改 TimeDecoder</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List&lt;Object&gt; out) throws Exception &#123;</span><br><span class="line">		if (in.readableBytes() &lt; 4) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		out.add(new UnixTime(in.readUnsignedInt()));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>然后 TimeClientHandler 也不再使用 ByteBuf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void channelRead(ChannelHandlerContext ctx, Object msg) &#123;</span><br><span class="line">    UnixTime m = (UnixTime) msg;</span><br><span class="line">    System.out.println(m);</span><br><span class="line">    ctx.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样看起来就简单而不失精致了…同样也可以对 Server 端进行修改，首先对 TimeServerHandler 进行修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void channelActive(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    ChannelFuture f = ctx.writeAndFlush(new UnixTime());</span><br><span class="line">    f.addListener(ChannelFutureListener.CLOSE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在还有一件事没做，就是解码类的编写，用于把 UnixTime 转为 ByteBuf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package io.netty.example.time;</span><br><span class="line"></span><br><span class="line">public class TimeEncoder extends ChannelOutboundHandlerAdapter &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) &#123;</span><br><span class="line">        UnixTime m = (UnixTime) msg;</span><br><span class="line">        ByteBuf encoded = ctx.alloc().buffer(4);</span><br><span class="line">        encoded.writeInt((int)m.value());</span><br><span class="line">        ctx.write(encoded, promise); // (1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>注意这里我们没有调用 ctx.flush（），因为有一个被分割出来的 <code>void flush(ChannelHandlerContext ctx)</code> 方法用来覆盖 flush（）操作，首先将父类修改为 MessageToByteEncoder</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class TimeEncoder extends MessageToByteEncoder&lt;UnixTime&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void encode(ChannelHandlerContext ctx, UnixTime msg, ByteBuf out) &#123;</span><br><span class="line">        out.writeInt((int)msg.value());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后只需要把 TimeEncoder 插入到 服务端的 ChannelPipeline 中，注意，要放在 TimeServerHandler 前<br>再次启动服务和客户端，可以得到正确结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mon Aug 28 14:49:07 CST 2017</span><br></pre></td></tr></table></figure>
-<p>以上就是本次对 netty 快速入门学习的全部内容<br>关于更多的学习章节和例子，官网建议前往 <a href="https://github.com/netty/netty/tree/4.0/example/src/main/java/io/netty/example" target="_blank" rel="noopener">io.netty.example</a> 包查看</p>
+        <h2 id="一、添加-Druid-依赖"><a href="#一、添加-Druid-依赖" class="headerlink" title="一、添加 Druid 依赖"></a>一、添加 Druid 依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.9&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="二、数据源配置"><a href="#二、数据源配置" class="headerlink" title="二、数据源配置"></a>二、数据源配置</h2><p>将数据源配置改为如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据源</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    hikari:</span></span><br><span class="line"><span class="attr">      idle-timeout:</span> <span class="number">600000</span></span><br><span class="line"><span class="attr">      max-lifetime:</span> <span class="number">1800000</span></span><br><span class="line"><span class="attr">      connection-timeout:</span> <span class="number">30000</span></span><br><span class="line"><span class="attr">    druid:</span></span><br><span class="line"><span class="attr">      url:</span> <span class="attr">jdbc:mysql://localhost:3306/springboot-demo?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</span></span><br><span class="line"><span class="attr">      username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">      password:</span> <span class="number">123456</span></span><br><span class="line"><span class="attr">      driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">      initial-size:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">      max-active:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">      min-idle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">      max-wait:</span> <span class="number">60000</span></span><br><span class="line">      <span class="comment"># 配置间隔多久才进行一次检测，检测需要关闭的空闲连接</span></span><br><span class="line"><span class="attr">      time-between-eviction-runs-millis:</span> <span class="number">60000</span></span><br><span class="line">      <span class="comment"># 连接保持空闲而不被驱逐的最小时间</span></span><br><span class="line"><span class="attr">      min-evictable-idle-time-millis:</span> <span class="number">300000</span></span><br><span class="line">      <span class="comment"># 用来检测连接是否有效的sql，要求是一个查询语句</span></span><br><span class="line"><span class="attr">      validation-query:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line">      <span class="comment"># 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。</span></span><br><span class="line"><span class="attr">      test-while-idle:</span> <span class="literal">true</span></span><br><span class="line">      <span class="comment"># 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。</span></span><br><span class="line"><span class="attr">      test-on-borrow:</span> <span class="literal">false</span></span><br><span class="line">      <span class="comment"># 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。</span></span><br><span class="line"><span class="attr">      test-on-return:</span> <span class="literal">false</span></span><br><span class="line">      <span class="comment"># 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。</span></span><br><span class="line"><span class="attr">      pool-prepared-statements:</span> <span class="literal">true</span></span><br><span class="line">      <span class="comment"># 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。</span></span><br><span class="line"><span class="attr">      max-pool-prepared-statement-per-connection-size:</span> <span class="number">50</span></span><br><span class="line">      <span class="comment"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计</span></span><br><span class="line"><span class="attr">      filters:</span> <span class="string">config,</span> <span class="string">stat,</span> <span class="string">wall</span></span><br><span class="line">      <span class="comment"># 通过connectProperties属性来打开mergeSql功能；慢SQL记录</span></span><br><span class="line"><span class="attr">      connection-properties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br><span class="line">      <span class="comment"># 合并多个DruidDataSource的监控数据</span></span><br><span class="line"><span class="attr">      use-global-data-source-stat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      aop-patterns:</span> <span class="string">com.example.demo.service.*</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、添加配置类"><a href="#三、添加配置类" class="headerlink" title="三、添加配置类"></a>三、添加配置类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.druid.support.http.StatViewServlet;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.druid.support.http.WebStatFilter;</span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.LogManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.servlet.FilterRegistrationBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.servlet.ServletRegistrationBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lujw</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LogManager.getLogger(DruidConfiguration.class.getName());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">druidServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"init Druid Servlet Configuration "</span>);</span><br><span class="line">        ServletRegistrationBean servletRegistrationBean = <span class="keyword">new</span> ServletRegistrationBean();</span><br><span class="line">        servletRegistrationBean.setServlet(<span class="keyword">new</span> StatViewServlet());</span><br><span class="line">        servletRegistrationBean.addUrlMappings(<span class="string">"/druid/*"</span>);</span><br><span class="line">        Map&lt;String, String&gt; initParameters = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">        <span class="comment">// 用户名</span></span><br><span class="line">        initParameters.put(<span class="string">"loginUsername"</span>, <span class="string">"admin"</span>);</span><br><span class="line">        <span class="comment">// 密码</span></span><br><span class="line">        initParameters.put(<span class="string">"loginPassword"</span>, <span class="string">"admin"</span>);</span><br><span class="line">        <span class="comment">// 禁用HTML页面上的“Reset All”功能</span></span><br><span class="line">        initParameters.put(<span class="string">"resetEnable"</span>, <span class="string">"false"</span>);</span><br><span class="line">        <span class="comment">// IP白名单 (没有配置或者为空，则允许所有访问)</span></span><br><span class="line">        initParameters.put(<span class="string">"allow"</span>, <span class="string">""</span>);</span><br><span class="line">        <span class="comment">//initParameters.put("deny", "192.168.20.38");// IP黑名单 (存在共同时，deny优先于allow)</span></span><br><span class="line">        servletRegistrationBean.setInitParameters(initParameters);</span><br><span class="line">        <span class="keyword">return</span> servletRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">filterRegistrationBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        FilterRegistrationBean filterRegistrationBean = <span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line">        filterRegistrationBean.setFilter(<span class="keyword">new</span> WebStatFilter());</span><br><span class="line">        filterRegistrationBean.addUrlPatterns(<span class="string">"/*"</span>);</span><br><span class="line">        filterRegistrationBean.addInitParameter(<span class="string">"exclusions"</span>, <span class="string">"*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"</span>);</span><br><span class="line">        <span class="keyword">return</span> filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -471,6 +458,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/springboot/" rel="tag"># springboot</a>
+          
+            <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          
+        </div>
+      
 
       
       
@@ -480,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/28/netty 基本使用（四）/" rel="next" title="netty 基本使用（四）">
-                <i class="fa fa-chevron-left"></i> netty 基本使用（四）
+              <a href="/2018/12/24/Springboot(一) 集成 MyBatis/" rel="next" title="Springboot(一) 集成 MyBatis">
+                <i class="fa fa-chevron-left"></i> Springboot(一) 集成 MyBatis
               </a>
             
           </div>
@@ -489,10 +484,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/05/ZooKeeper 安装和启动/" rel="prev" title="ZooKeeper 安装和启动">
-                ZooKeeper 安装和启动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -628,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-POJO-代替-ByteBuf"><span class="nav-number">1.</span> <span class="nav-text">使用 POJO 代替 ByteBuf</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、添加-Druid-依赖"><span class="nav-number">1.</span> <span class="nav-text">一、添加 Druid 依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、数据源配置"><span class="nav-number">2.</span> <span class="nav-text">二、数据源配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、添加配置类"><span class="nav-number">3.</span> <span class="nav-text">三、添加配置类</span></a></li></ol></div>
             
 
           </div>
@@ -782,7 +773,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2017/08/28/netty 基本使用（五）/"});
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "2018/12/24/Springboot(二) 集成 Druid/"});
 		
 
 		(function() {

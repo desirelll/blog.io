@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://desirelll.com/2018/12/24/Springboot(%E4%B8%80)%20%E9%9B%86%E6%88%90%20MyBatis/</loc>
+    <lastmod>2018-12-24T07:03:02.199Z</lastmod>
+    <data>
+        <display>
+        <title>Springboot(一) 集成 MyBatis</title>
+        <pubTime>2018-12-24T06:48:41.331Z</pubTime>
+        
+        <tag>springboot</tag>
+         
+        <tag>mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://desirelll.com/categories/java/"/>
+          
+             
+              <breadCrumb title="springboot" url="http://desirelll.com/categories/java/springboot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://desirelll.com/2018/11/15/kubernetes%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2018-11-23T02:48:54.399Z</lastmod>
+    <data>
+        <display>
+        <title>kubernetes集群安装</title>
+        <pubTime>2018-11-15T03:00:05.813Z</pubTime>
+        
+        <tag>k8s</tag>
+         
+         
+           
+             
+              <breadCrumb title="k8s" url="http://desirelll.com/categories/k8s/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://desirelll.com/2018/10/17/docker%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
     <lastmod>2018-10-17T07:47:17.595Z</lastmod>
     <data>

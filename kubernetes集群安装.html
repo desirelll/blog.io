@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+<meta name="google-site-verification" content="e6O-xZqbiXuaCqMyIHbKzhafEzgZYFMa1t_jqojxUBU" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="kubernetes集群安装集群环境：    master: 192.168.151.36 node: 192.168.151.51 node: 192.168.151.69  一、master 安装 master 节点所需 npm 包如下所示：    etcd-3.0.15-1.el7.x86_64.rpm kubernetes-client-1.5.2-2.el7.x86_64.rpm kub">
+<meta property="og:type" content="website">
+<meta property="og:title" content="desirelll&#39;s blog">
+<meta property="og:url" content="http://desirelll.com/kubernetes集群安装.html">
+<meta property="og:site_name" content="desirelll&#39;s blog">
+<meta property="og:description" content="kubernetes集群安装集群环境：    master: 192.168.151.36 node: 192.168.151.51 node: 192.168.151.69  一、master 安装 master 节点所需 npm 包如下所示：    etcd-3.0.15-1.el7.x86_64.rpm kubernetes-client-1.5.2-2.el7.x86_64.rpm kub">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-16T08:18:24.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="desirelll&#39;s blog">
+<meta name="twitter:description" content="kubernetes集群安装集群环境：    master: 192.168.151.36 node: 192.168.151.51 node: 192.168.151.69  一、master 安装 master 节点所需 npm 包如下所示：    etcd-3.0.15-1.el7.x86_64.rpm kubernetes-client-1.5.2-2.el7.x86_64.rpm kub">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://desirelll.com/kubernetes集群安装.html"/>
+
+
+
+
+
+  <title> | desirelll's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">desirelll's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-board">
+          <a href="/board/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="kubernetes集群安装"><a href="#kubernetes集群安装" class="headerlink" title="kubernetes集群安装"></a>kubernetes集群安装</h1><p>集群环境：  </p>
+<ul>
+<li>master: 192.168.151.36</li>
+<li>node: 192.168.151.51</li>
+<li>node: 192.168.151.69</li>
+</ul>
+<h2 id="一、master-安装"><a href="#一、master-安装" class="headerlink" title="一、master 安装"></a>一、master 安装</h2><blockquote>
+<p>master 节点所需 npm 包如下所示：  </p>
+<ul>
+<li>etcd-3.0.15-1.el7.x86_64.rpm</li>
+<li>kubernetes-client-1.5.2-2.el7.x86_64.rpm</li>
+<li>kubernetes-master-1.5.2-2.el7.x86_64.rpm</li>
+</ul>
+</blockquote>
+<h3 id="1-etcd-安装"><a href="#1-etcd-安装" class="headerlink" title="1. etcd 安装"></a>1. etcd 安装</h3><p>执行 <code>rpm -ivh etcd-3.0.15-1.el7.x86_64.rpm</code> 安装 etcd，自动生成 <code>/etc/etcd/etcd.conf</code> 配置文件，配置文件通常不需要特殊的参数设置，默认将监听在 <a href="http://localhost:2379" target="_blank" rel="noopener">http://localhost:2379</a> 地址。<br>安装完毕后通过 <code>systemctl start</code> 启动服务，同时通过 <code>systemctl enable</code> 将服务加入开机启动项中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl daemon-reload</span></span><br><span class="line"><span class="comment"># systemctl enable etcd.service</span></span><br><span class="line"><span class="comment"># systemctl start etcd.service</span></span><br></pre></td></tr></table></figure>
+<p>通过执行 <code>etcdctl cluster-health</code> 检查验证是否成功启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># etcdctl cluster-health</span></span><br><span class="line">member 8e9e05c52164694d is healthy: got healthy result from http://localhost:2379</span><br><span class="line">cluster is healthy</span><br></pre></td></tr></table></figure>
+<h3 id="2-k8s-master-安装"><a href="#2-k8s-master-安装" class="headerlink" title="2. k8s-master 安装"></a>2. k8s-master 安装</h3><p>执行 <code>rpm -ivh kubernetes-client-1.5.2-2.el7.x86_64.rpm</code> 和 <code>rpm -ivh kubernetes-master-1.5.2-2.el7.x86_64.rpm</code>，生成相关配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/systemd/system/kube-apiserver.service</span><br><span class="line">/usr/lib/systemd/system/kube-controller-manager.service</span><br><span class="line">/usr/lib/systemd/system/kube-scheduler.service</span><br><span class="line"></span><br><span class="line">/etc/kubernetes/config <span class="comment">#这是三个服务公有的配置信息</span></span><br><span class="line">/etc/kubernetes/apiserver</span><br><span class="line">/etc/kubernetes/controller-manager</span><br><span class="line">/etc/kubernetes/scheduler</span><br></pre></td></tr></table></figure>
+<p><strong>修改 <code>/etc/kubernetes/config</code> 配置中 –master 项为本机 IP 地址</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment"># kubernetes system config</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The following values are used to configure various aspects of all</span></span><br><span class="line"><span class="comment"># kubernetes services, including</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   kube-apiserver.service</span></span><br><span class="line"><span class="comment">#   kube-controller-manager.service</span></span><br><span class="line"><span class="comment">#   kube-scheduler.service</span></span><br><span class="line"><span class="comment">#   kubelet.service</span></span><br><span class="line"><span class="comment">#   kube-proxy.service</span></span><br><span class="line"><span class="comment"># logging to stderr means we get it in the systemd journal</span></span><br><span class="line">KUBE_LOGTOSTDERR=<span class="string">"--logtostderr=true"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># journal message level, 0 is debug</span></span><br><span class="line">KUBE_LOG_LEVEL=<span class="string">"--v=0"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Should this cluster be allowed to run privileged docker containers</span></span><br><span class="line">KUBE_ALLOW_PRIV=<span class="string">"--allow-privileged=false"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># How the controller-manager, scheduler, and proxy find the apiserver</span></span><br><span class="line">KUBE_MASTER=<span class="string">"--master=http://192.168.151.36:8080"</span></span><br></pre></td></tr></table></figure>
+<p><strong>修改 /etc/kubernetes/apiserver –insecure-bind-address=0.0.0.0</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment"># kubernetes system config</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The following values are used to configure the kube-apiserver</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The address on the local server to listen to.</span></span><br><span class="line">KUBE_API_ADDRESS=<span class="string">"--insecure-bind-address=0.0.0.0"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The port on the local server to listen on.</span></span><br><span class="line"><span class="comment"># KUBE_API_PORT="--port=8080"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Port minions listen on</span></span><br><span class="line"><span class="comment"># KUBELET_PORT="--kubelet-port=10250"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Comma separated list of nodes in the etcd cluster</span></span><br><span class="line">KUBE_ETCD_SERVERS=<span class="string">"--etcd-servers=http://127.0.0.1:2379"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Address range to use for services</span></span><br><span class="line">KUBE_SERVICE_ADDRESSES=<span class="string">"--service-cluster-ip-range=10.254.0.0/16"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># default admission control policies</span></span><br><span class="line">KUBE_ADMISSION_CONTROL=<span class="string">"--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add your own!</span></span><br><span class="line">KUBE_API_ARGS=<span class="string">""</span></span><br></pre></td></tr></table></figure>
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl daemon-reload</span></span><br><span class="line"><span class="comment"># systemctl enable kube-apiserver.service kube-controller-manager.service kube-scheduler.service</span></span><br><span class="line"><span class="comment"># systemctl start kube-apiserver.service kube-controller-manager.service kube-scheduler.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、node-节点安装"><a href="#二、node-节点安装" class="headerlink" title="二、node 节点安装"></a>二、node 节点安装</h2><blockquote>
+<p>node 节点所需 npm 包如下所示：  </p>
+<ul>
+<li>docker-1.12.5-14.el7.x86_64.rpm</li>
+<li>kubernetes-node-1.5.2-2.el7.x86_64.rpm</li>
+<li>kubernetes-master-1.5.2-2.el7.x86_64.rpm  </li>
+<li>kubernetes-client-1.5.2-2.el7.x86_64.rpm</li>
+</ul>
+<p>docker 依赖包：   </p>
+<ul>
+<li>container-selinux-1.12.5-14.el7.x86_64.rpm</li>
+<li>docker-client-1.12.5-14.el7.x86_64.rpm</li>
+<li>docker-common-1.12.5-14.el7.x86_64.rpm</li>
+<li>libseccomp-2.3.1-2.el7.x86_64.rpm</li>
+<li>oci-register-machine-0-1.11.gitdd0daef.el7.x86_64.rpm</li>
+<li>oci-systemd-hook-0.1.4-9.git671c428.el7.x86_64.rpm</li>
+<li>skopeo-containers-0.1.19-1.el7.x86_64.rpm</li>
+</ul>
+<p>k8s node 依赖包</p>
+<ul>
+<li>libnetfilter_cthelper-1.0.0-4.el7.x86_64.rpm</li>
+<li>libnetfilter_queue-1.0.2-2.el7.x86_64.rpm</li>
+<li>libnetfilter_cttimeout-1.0.0-2.el7.x86_64.rpm</li>
+<li>conntrack-tools-1.4.2-3.el7.x86_64.rpm </li>
+<li>socat-1.7.2.2-5.el7.x86_64.rpm</li>
+</ul>
+</blockquote>
+<h3 id="1-docker-安装"><a href="#1-docker-安装" class="headerlink" title="1. docker 安装"></a>1. docker 安装</h3><p>先安装依赖包，再装docker：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpm -ivh container-selinux-1.12.5-14.el7.x86_64.rpm docker-client-1.12.5-14.el7.x86_64.rpm docker-common-1.12.5-14.el7.x86_64.rpm libseccomp-2.3.1-2.el7.x86_64.rpm oci-register-machine-0-1.11.gitdd0daef.el7.x86_64.rpm oci-systemd-hook-0.1.4-9.git671c428.el7.x86_64.rpm skopeo-containers-0.1.19-1.el7.x86_64.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rpm -ivh docker-1.12.5-14.el7.x86_64.rpm</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-k8s-node-安装"><a href="#2-k8s-node-安装" class="headerlink" title="2. k8s-node 安装"></a>2. k8s-node 安装</h3><p>同样需要先安装依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpm -ivh libnetfilter_cthelper-1.0.0-4.el7.x86_64.rpm libnetfilter_cttimeout-1.0.0-2.el7.x86_64.rpm libnetfilter_queue-1.0.2-2.el7.x86_64.rpm</span></span><br><span class="line"><span class="comment"># rpm -ivh conntrack-tools-1.4.2-3.el7.x86_64.rpm socat-1.7.2.2-5.el7.x86_64.rpm</span></span><br><span class="line"><span class="comment"># rpm -ivh kubernetes-client-1.5.2-2.el7.x86_64.rpm</span></span><br><span class="line"><span class="comment"># rpm -ivh kubernetes-node-1.5.2-2.el7.x86_64.rpm</span></span><br></pre></td></tr></table></figure>
+<p>安装完毕后生成相关配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc/kubernetes/config</span><br><span class="line">/etc/kubernetes/kubelet</span><br><span class="line">/etc/kubernetes/proxy</span><br><span class="line"></span><br><span class="line">/usr/lib/systemd/system/kubelet.service</span><br><span class="line">/usr/lib/systemd/system/kube-proxy.service</span><br></pre></td></tr></table></figure>
+<p><strong>修改配置文件 /etc/kubernetes/kubelet KUBELET_API_SERVER 和 KUBELET_HOSTNAME</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment"># kubernetes kubelet (minion) config</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)</span></span><br><span class="line">KUBELET_ADDRESS=<span class="string">"--address=127.0.0.1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The port for the info server to serve on</span></span><br><span class="line"><span class="comment"># KUBELET_PORT="--port=10250"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You may leave this blank to use the actual hostname 改为hostname</span></span><br><span class="line">KUBELET_HOSTNAME=<span class="string">"--hostname-override=192.168.151.51"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># location of the api-server 改为master API-Server的地址</span></span><br><span class="line">KUBELET_API_SERVER=<span class="string">"--api-servers=http://192.168.151.36:8080"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add your own!</span></span><br><span class="line">KUBELET_ARGS=<span class="string">""</span></span><br></pre></td></tr></table></figure>
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl daemon-reload</span></span><br><span class="line"><span class="comment"># systemctl enable kubelet.service kube-proxy.service docker.service</span></span><br><span class="line"><span class="comment"># systemctl start docker.service</span></span><br><span class="line"><span class="comment"># systemctl start kubelet.service kube-proxy.service</span></span><br></pre></td></tr></table></figure>
+<p>安装完成，在另外一台 node 主机上进行同样的操作即可。</p>
+<h2 id="三、flannel-安装"><a href="#三、flannel-安装" class="headerlink" title="三、flannel 安装"></a>三、flannel 安装</h2><ol>
+<li>在 master 主机修改配置</li>
+</ol>
+<p>修改 etcd 配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/etcd/etcd.conf</span></span><br><span class="line">ETCD_LISTEN_CLIENT_URLS=<span class="string">"http://192.168.151.36:2379"</span></span><br><span class="line">ETCD_ADVERTISE_CLIENT_URLS=<span class="string">"http://192.168.151.36:2379"</span></span><br></pre></td></tr></table></figure>
+<p>修改 apiserver etcd配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/kubernetes/apiserver</span></span><br><span class="line">KUBE_ETCD_SERVERS=<span class="string">"--etcd-servers=http://192.168.151.36"</span></span><br></pre></td></tr></table></figure>
+<p>重启服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl daemom-reload</span></span><br><span class="line"><span class="comment"># systemctl restart etcd.service</span></span><br><span class="line"><span class="comment"># systemctl restart kube-apiserver.service</span></span><br></pre></td></tr></table></figure>
+<p>etcd添加子网信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># etcdctl mk /atomic.io/network/config '&#123;"Network":"172.17.0.0/16"&#125;'</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>在 node 节点上安装 flannel，并修改配置，启动服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpm -ivh flannel-0.5.5-1.el7.x86_64.rpm</span></span><br><span class="line"><span class="comment"># vi /etc/sysconfig/flanneld</span></span><br><span class="line">FLANNEL_ETCD_ENDPOINTS=<span class="string">"http://192.168.151.36:2379"</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>启动 flannel，查看信息</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl daemon-reload</span></span><br><span class="line"><span class="comment"># systemctl enable flannel.service</span></span><br><span class="line"><span class="comment"># systemctl start flannel.service</span></span><br><span class="line"><span class="comment"># cat /run/flannel/subnet.env</span></span><br><span class="line">FLANNEL_NETWORK=172.17.0.0/16</span><br><span class="line">FLANNEL_SUBNET=172.17.67.1/24</span><br><span class="line">FLANNEL_MTU=1472</span><br><span class="line">FLANNEL_IPMASQ=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>编辑/lib/systemd/system/docker.service，输入上面查到的 subnet 和 mtu 信息，记得在每一行后面加上 <code>\</code>，删掉注释</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Docker Application Container Engine</span><br><span class="line">Documentation=http://docs.docker.com</span><br><span class="line">After=network.target</span><br><span class="line">Wants=docker-storage-setup.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line">NotifyAccess=all</span><br><span class="line">EnvironmentFile=-/etc/sysconfig/docker</span><br><span class="line">EnvironmentFile=-/etc/sysconfig/docker-storage</span><br><span class="line">EnvironmentFile=-/etc/sysconfig/docker-network</span><br><span class="line">Environment=GOTRACEBACK=crash</span><br><span class="line">Environment=DOCKER_HTTP_HOST_COMPAT=1</span><br><span class="line">Environment=PATH=/usr/libexec/docker:/usr/bin:/usr/sbin</span><br><span class="line">ExecStart=/usr/bin/dockerd-current \</span><br><span class="line">          --add-runtime docker-runc=/usr/libexec/docker/docker-runc-current \</span><br><span class="line">          --default-runtime=docker-runc \</span><br><span class="line">          --<span class="built_in">exec</span>-opt native.cgroupdriver=systemd \</span><br><span class="line">          --userland-proxy-path=/usr/libexec/docker/docker-proxy-current \</span><br><span class="line">          --bip=172.17.67.1/24 \ <span class="comment"># 添加的行</span></span><br><span class="line">          --mtu=1472 \ <span class="comment"># 添加的行</span></span><br><span class="line">          <span class="variable">$OPTIONS</span> \</span><br><span class="line">          <span class="variable">$DOCKER_STORAGE_OPTIONS</span> \</span><br><span class="line">          <span class="variable">$DOCKER_NETWORK_OPTIONS</span> \</span><br><span class="line">          <span class="variable">$ADD_REGISTRY</span> \</span><br><span class="line">          <span class="variable">$BLOCK_REGISTRY</span> \</span><br><span class="line">          <span class="variable">$INSECURE_REGISTRY</span> </span><br><span class="line">ExecReload=/bin/<span class="built_in">kill</span> -s HUP <span class="variable">$MAINPID</span></span><br><span class="line">LimitNOFILE=1048576</span><br><span class="line">LimitNPROC=1048576</span><br><span class="line">LimitCORE=infinity</span><br><span class="line">TimeoutStartSec=0</span><br><span class="line">Restart=on-abnormal</span><br><span class="line">MountFlags=slave</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<ol>
+<li>重启 docker 服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl daemon-reload</span></span><br><span class="line"><span class="comment"># systemctl restart docker.service</span></span><br><span class="line"><span class="comment"># docker network ls</span></span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">a9988e7b270a        bridge              bridge              <span class="built_in">local</span>               </span><br><span class="line">58b66e32816c        host                host                <span class="built_in">local</span>               </span><br><span class="line">910a339cc2bf        none                null                <span class="built_in">local</span></span><br><span class="line"><span class="comment"># docker network inspect a9988e7b270a</span></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"Name"</span>: <span class="string">"bridge"</span>,</span><br><span class="line">        <span class="string">"Id"</span>: <span class="string">"a9988e7b270ad9d4999a6ea8c361eb49c90c2196c7843790235476c5aded6984"</span>,</span><br><span class="line">        <span class="string">"Scope"</span>: <span class="string">"local"</span>,</span><br><span class="line">        <span class="string">"Driver"</span>: <span class="string">"bridge"</span>,</span><br><span class="line">        <span class="string">"EnableIPv6"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"IPAM"</span>: &#123;</span><br><span class="line">            <span class="string">"Driver"</span>: <span class="string">"default"</span>,</span><br><span class="line">            <span class="string">"Options"</span>: null,</span><br><span class="line">            <span class="string">"Config"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"Subnet"</span>: <span class="string">"172.17.67.1/24"</span>,</span><br><span class="line">                    <span class="string">"Gateway"</span>: <span class="string">"172.17.67.1"</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"Internal"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"Containers"</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">"Options"</span>: &#123;</span><br><span class="line">            <span class="string">"com.docker.network.bridge.default_bridge"</span>: <span class="string">"true"</span>,</span><br><span class="line">            <span class="string">"com.docker.network.bridge.enable_icc"</span>: <span class="string">"true"</span>,</span><br><span class="line">            <span class="string">"com.docker.network.bridge.enable_ip_masquerade"</span>: <span class="string">"true"</span>,</span><br><span class="line">            <span class="string">"com.docker.network.bridge.host_binding_ipv4"</span>: <span class="string">"0.0.0.0"</span>,</span><br><span class="line">            <span class="string">"com.docker.network.bridge.name"</span>: <span class="string">"docker0"</span>,</span><br><span class="line">            <span class="string">"com.docker.network.driver.mtu"</span>: <span class="string">"1472"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"Labels"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment"># ifconfig docker0 |grep  inet &amp;&amp; ifconfig flannel0 |grep inet</span></span><br></pre></td></tr></table></figure>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://i.loli.net/2017/08/22/599bdd59c13c9.jpeg"
+               alt="desirelll" />
+          <p class="site-author-name" itemprop="name">desirelll</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes集群安装"><span class="nav-number">1.</span> <span class="nav-text">kubernetes集群安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、master-安装"><span class="nav-number">1.1.</span> <span class="nav-text">一、master 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-etcd-安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. etcd 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-k8s-master-安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. k8s-master 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、node-节点安装"><span class="nav-number">1.2.</span> <span class="nav-text">二、node 节点安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-docker-安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. docker 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-k8s-node-安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. k8s-node 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、flannel-安装"><span class="nav-number">1.3.</span> <span class="nav-text">三、flannel 安装</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Tue Aug 22 2017 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">desirelll</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 94790, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 94790, xid: "kubernetes集群安装.html"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/94790/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("3dyzenBNRinhwhUNQQtaMGdC-gzGzoHsz", "9tVYWrM65ug9vvmDvqAp5M16");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
